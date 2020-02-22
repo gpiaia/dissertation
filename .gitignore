@@ -15,4 +15,8 @@
 *.lol
 *.ilg
 *.ind
-draw.io
+*.fls
+*.fdb_latexmk
+*.nav
+*.out
+*.snm

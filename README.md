@@ -1,6 +1,6 @@
-# TCC
+# Dissertation 
 
-Source code of my monograph and presentation, applied to the conclusion of the Control and Automation  Engineering course - UNISINOS (2018).
+Source code of my dissertation and presentation, applied to the conclusion of Master Degree of Electrical Engineering course - UNISINOS (2020).
 
 Compiled files:
 
