@@ -4,12 +4,10 @@
 
 \chapter{Revisão Bibliográfica}
 
-Fazer:
-\begin{itemize}
-    \item Conceito básico de máquinas rotativas
-    \item Conceito de Motor Elétricos
-    \item Falar de motores elétricos CC e, por último, sobre Indução, fazendo o link com a próxima etapa
-\end{itemize}
+Com o objetivo de compreender os conceitos básicos do trabalho, este capítulo os apresenta de forma evolutiva e 
+cronológica, partindo dos conceitos sobre motores elétricos com suas particularidades, até o estado da arte em 
+detecção e diagnóstico de falhas em motores elétricos de indução. 
+
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
@@ -17,33 +15,55 @@ Fazer:
 
 \section{Motores Elétricos de Indução}\label{sec:}
 
-Fazer:
-\begin{itemize}
-    \item conceitos gerais usando Fitzgerald
-    \item Rotor
-    \item Estator
-    \item Buscar algo sobre corrente elétrica ou complementar em relação ao circuito equivalente
-\end{itemize}
-
+Motores elétricos de indução são um dos tipos de máquinas elétricas, as quais convertem energia elétrica em mecânica. 
+Nos motores elétricos de indução, uma corrente elétrica é induzida no rotor através da corrente de armadura que circula
+no estator. Contudo, um rotor do tipo gaiola de esquilo, pode ser visto na figura \ref{fig:ind_motor_petruzella_p115}, 
+é um curto curto circuito formado por barras e lâminas de alumíno. Por essa constituição simples, motores elétricos de indução
+com rotor do tipo gaiola resultam em motores relativamente baratos e confiáveis, contribuindo para sua popularidade \cite{Umans2003}.
+ 
 \begin{figure}[H]
     \caption{Motor elétrico de indução tipo gaiola de esquilo.}
     \begin{center}
         \includegraphics[scale=.5]{referencial/img/ind_motor_petruzella_p115.png}
     \end{center}
     \fonte{\citeonline{Petruzella1911}.} 
-    \label{fig:}
+    \label{fig:ind_motor_petruzella_p115}
 \end{figure}
 
-
+Uma das formas de se modelar um motor elétrico de indução, é através de uma representação em forma de um circuito 
+elétrico, onde todas as variáveis podem ser representadas por componentes elétricos simples, facilitando a compreensão, modelagem e
+prever possíveis variações nos elementos mecânicos e elétricos. O circuito representado na figura \ref{fig:circuit_fitzgerald_p354},
+é um circuito equivalente monofásico de um motor elétrico indutivo polifásico, o que simplifica toda a análise em um único circuito,
+onde é trivial isolar a tensão em um terminal e a sua corrente. Para se saber as demais correntes e tensões, basta deslocar as fases
+em $\pm\ang{120}$ \cite{Umans2003}.
 
 \begin{figure}[H]
-    \caption{Circuito equivalente monofásico de um motor indutivo polifásico.}
+    \caption{Circuito equivalente monofásico de um motor de indução polifásico.}
     \begin{center}
         \includegraphics[scale=.35]{referencial/img/circuit_fitzgerald_p354.png}
     \end{center}
     \fonte{\citeonline{Umans2003}.} 
-    \label{fig:}
+    \label{fig:circuit_fitzgerald_p354}
 \end{figure}
+
+Onde
+
+\begin{itemize}
+    \item $\hat{V}_1$ = tensão no estator
+    \item $\hat{E}_2$ = Força eletromotriz contrária gerada pelo fluxo no entreferro
+    \item $\hat{I}_1$ = corrente do estator
+    \item $\hat{R}_1$ = resistência efetiva do estator
+    \item $\hat{X}_1$ = reatância de vazamento do estator
+    \item $R_c$ = resistência à perdas do núcleo
+    \item $X_m$ = reatância magnetizante
+    \item $\hat{I}_2$ = componente de corrente gerada pela carga
+    \item $\hat{X}_2$ = reatância de vazamento do rotor no estator na frequência de escorregamento
+    \item $R_2$ = resistência do rotor
+    \item $\hat{I}_\varphi$ = componente de corrente exitada no estator
+\end{itemize}
+
+Com a apresentação de conceitos básicos sobre motores elétricos de indução e sua modelagem, é possível abordar os principais falhas que 
+acometem as partes mecânicas e elétricas de um motor elétrico.
 
 
 %----------------------------------------------------------------
@@ -52,53 +72,54 @@ Fazer:
 
 \section{Falhas em Motores Elétricos de Indução}\label{sec:}
 
-Fazer:
-\begin{itemize}
-    \item Conceitos básicos e a importância das falhas
-    \item Listar as principais falhas e lincar com os efeitos
-    \item explicar a imagem sobre todos os tipos de falhas e elencar as mais comuns via refêrencia
-    \item após a etapa acima, apresentar os principais problemas de acordo com as imagens
-\end{itemize}
+Como dito anteriormente, um motor elétrico é utilizado para transformar energia elétrica em mecânica, sendo empregado em máquinas que podem
+realizar diversas atividades. A figura \ref{fig:monitoring_methods_rilski_p78} representa uma generalização de um sistema em que um motor
+elétrico é empregado. Nesta figura, podemos ver os elementos que constituem a parte elétrica: a fonte de energia, o inversor de frequência e
+o próprio motor. Também é possível ver a parte mecânica: a estrutura do motor, o acoplamento mecânico, a carga e as bases. Todos esses
+elementos podem induzir falhas no motor, começando pelo acionamento, onde pode ocorrer uma falha e fazer o motor perder uma fase, ou ainda, 
+oscilações na tensão e sobre carga. Todas essas falhas inevitavelmente alteram o espectro da fonte de energia \citeonline{Gorbounov2018}. 
+Na parte mecânica, o desalinhamento entre a carga e o motor pode acarretar falhas no acoplamento que transfere a energia mecânica do motor
+para o processo, e isso é normalmente provocado por uma instalação inapropriada.
 
 \begin{figure}[H]
-    \caption{Variação da carga para distinção da causa do efeito observado.}
+    \caption{Visão geral de sistema com um motor elétrico.}
     \begin{center}
-        \includegraphics[scale=.45]{referencial/img/fault_effect_randall_p54.png}
+        \includegraphics[scale=.45]{referencial/img/motor_system_rilski_p2.png}
     \end{center}
-    \fonte{\citeonline{Wu2013}.} 
-    \label{fig:}
+    \fonte{\citeonline{Gorbounov2018}.} 
+    \label{fig:motor_system_rilski_p2}
 \end{figure}
 
+A figura \ref{fig:faults_rilski_p77} apresenta uma árvore das principais falhas que acometem os motores elétricos, sendo também divididas
+em mecânicas e elétricas. 
 
 \begin{figure}[H]
     \caption{Árvo dos principais tipos de falhas em motores elétricos.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/faults_rilski_p77.png}
+        \includegraphics[scale=.45]{referencial/img/faults_rilski_p77.png}
     \end{center}
     \fonte{\citeonline{Gorbounov2018}.} 
-    \label{fig:}
+    \label{fig:faults_rilski_p77}
 \end{figure}
 
-
-\begin{figure}[H]
-    \caption{Ilustração com as frequências associadas as falhas em rotores ou estatores de motores elétricos.}
-    \begin{center}
-        \includegraphics[scale=.35]{referencial/img/fault_freq_randall_p55.png}
-    \end{center}
-    \fonte{\citeonline{Wu2013}.} 
-    \label{fig:}
-\end{figure}
-
+Dentre todas essas falhas, o trabalho aborda com maior foco as falhas mecânicas, mais especificamente desalinhamento, rolamentos 
+e desbalanceamento que causam um aumento na vibração do sistema. O desalinhamento ocorre quando o motor e o sistema não estão perfeitamente alinhados, podendo ter dois tipos:
+paralelo e angulas, os quais podem ser vistos na figura \ref{fig:misadraw_analog_p2}, respectivamente na parte a) e b) 
+\cite{Sopcik2019}.
 
 \begin{figure}[H]
     \caption{Ilustração com os tipos de desalinhamento.}
     \begin{center}
-        \includegraphics[scale=.45]{referencial/img/misadraw_analog_p2.png}
+        \includegraphics[scale=.35]{referencial/img/misadraw_analog_p2.png}
     \end{center}
     \fonte{\citeonline{Sopcik2019}.} 
-    \label{fig:}
+    \label{fig:misadraw_analog_p2}
 \end{figure}
 
+Já a falha de desbalanceamento, pode ocorrer em qualquer parte rotativa do sistema, que vai desde o motor até a carga, compreendida por
+algum problema na disposição das massas. Por último, os rolamentos, que são utilizados em diversas partes de um sistema e que podem
+apresentar pequenas rachaduras na falta de lubrificação, que podem ser vistas na figura \ref{fig:bearing_analog_p3}, aumentando a 
+vibração \cite{Sopcik2019}.
 
 \begin{figure}[H]
     \caption{Imagens de rolamentos no topo, e falhas na parte de baixo.}
@@ -106,70 +127,130 @@ Fazer:
         \includegraphics[scale=.5]{referencial/img/bearing_analog_p3.png}
     \end{center}
     \fonte{\citeonline{Sopcik2019}.} 
-    \label{fig:}
+    \label{fig:bearing_analog_p3}
 \end{figure}
+
+Mais de 66\% destas falhas são detectadas durante a operação e 28\% são encontradas apenas durante a manutenção 
+preventiva \citeonline{Gorbounov2018}, destacando a importância de uma boa estratégia de manutenção. Existem três tipos de estratégias 
+para manutenção: 
+
+Após apresentados os conceitos básicos sobre motores elétricos e suas falhas, e como essas falhas aumentam o nível de vibração,
+o próximo capítulo tem por objetivo apresentar conceitos de detecção e diagnóstico destas falhas.
+
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Análise de Vibração}\label{sec:}
+\section{Sistemas de Detecção e Diagnóstico de Falhas}\label{sec:}
 
-Fazer:
-\begin{itemize}
-    \item breve esclarecimento entre os sinais amostrados e o espectro
-    \item explicação sobre a amostragem nesses casos
-\end{itemize}
+Como apresentado anteriormente, falhas em componentes de um motor elétrico, ou no sistema em que eles está inserido, podem ocasionar
+um aumento da vibração e alteração no espectro da corrente do motor, que serão estudados na sequência.
+
+
+%----------------------------------------------------------------
+% 
+%----------------------------------------------------------------
+
+\subsection{Análise de Vibração}\label{subsec:}
+
+O aumento da vibração pode ocasionar perturbações até mesmo na parte elétrica de um motor, como mostra o gráfico que está na 
+figura \ref{fig:fault_effect_randall_p54}. Com o aumento da carga e da vibração em conjunto, o efeito mecânico e elétrico pode ser 
+severo \citeonline{Wu2013}.
 
 \begin{figure}[H]
-    \caption{Valores máximos de velocidade RMS para cada porte de máquina indicados pela norma ISO 10816-1.}
+    \caption{Variação da carga para distinção da causa do efeito observado.}
+    \begin{center}
+        \includegraphics[scale=.45]{referencial/img/fault_effect_randall_p54.png}
+    \end{center}
+    \fonte{\citeonline{Wu2013}.} 
+    \label{fig:fault_effect_randall_p54}
+\end{figure}
+
+
+Essa vibração possui um característica especifica, que depende de qual falha ela é oriunda, que acaba criando uma assinatura
+ao se analisar a vibração, sendo possível diagnosticar se o motor e o sistema em que ele está inserido está com boa saúde \cite{Wu2013}.
+Uma das primeiras técnicas para classificar os estado de saúde de uma máquina, é a norma ISO 10816-1, que recomenda níveis de vibração 
+em valores eficaz de acordo com o porte da máquina, que pode ser visto na figura \ref{fig:iso10816-1_randall_p146}.
+
+\begin{figure}[H]
+    \caption{Tabela de valores eficaz máximos de velocidade para cada porte de máquina indicados pela norma ISO 10816-1.}
     \begin{center}
         \includegraphics[scale=.5]{referencial/img/iso10816-1_randall_p146.png}
     \end{center}
     \fonte{\citeonline{Wu2013}.} 
-    \label{fig:}
+    \label{fig:iso10816-1_randall_p146}
 \end{figure}
 
+Onde
+
+\begin{itemize}
+    \item A = bom estado
+    \item B = aceitável
+    \item C = apenas tolerável
+    \item D = não permitido
+    \item Classe I = pequenas máquinas (potência menor que $\SI{15}{\kilo\watt}$)
+    \item Classe II = máquinas médias sem uma fundação especial (potência entre $\SI{15}{\kilo\watt}$ e $\SI{75}{\kilo\watt}$)
+    \item Classe III = máquinas grandes sobre uma fundação rígida e pesada
+    \item Classe IV = máquinas grandes sobre um fundação flexível (turbomáquinas) 
+\end{itemize}
+
+Relembrando o que foi escrito anteriormente, é possível ver as assinaturas das falhas no espectro da vibração captados por um transdutor
+que está acoplado no sistema. Quando uma falha de desalinhamento está presente, há um aumento de até duas vezes nas harmónicas de alta 
+frequência, como pode ser visto na figura \ref{fig:misa_analog_p2} \cite{Sopcik2019}.
+
 \begin{figure}[H]
-    \caption{Indicação espectral de desalinhamento.}
+    \caption{Indicação espectral de desalinhamento na velocidade.}
     \begin{center}
         \includegraphics[scale=.4]{referencial/img/misa_analog_p2.png}
     \end{center}
     \fonte{\citeonline{Sopcik2019}.} 
-    \label{fig:}
+    \label{fig:misa_analog_p2}
 \end{figure}
 
+Já quando uma falha de desbalanceamento está presente, há um aumento na harmônica principal da velocidade, em relação ao valor de base.
+A figura \ref{fig:imbalance_analog_p2} exemplifica.
+
 \begin{figure}[H]
-    \caption{Indicação espectral de desbalanceamento.}
+    \caption{Indicação espectral de desbalanceamento na velocidade.}
     \begin{center}
         \includegraphics[scale=.5]{referencial/img/imbalance_analog_p2.png}
     \end{center}
     \fonte{\citeonline{Sopcik2019}.} 
-    \label{fig:}
+    \label{fig:imbalance_analog_p2}
 \end{figure}
 
+No mesmo conceit, é possível identificar a assinatura de uma falha de rolamentos de acordo com o tipo de rolamento, velocidade de rotação
+do motor, entre outras característica. Uma tabela com estas frequências, se encontra na sequência na figura \ref{fig:bearing_table_analog_p3}
 
-%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-% 
-%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-\section{Sistemas de Detecção de Falhas}\label{sec:}
 
 \begin{figure}[H]
-    \caption{Árvo de métodos de monitoramento de falhas em motores elétricos.}
+    \caption{Tabela de frequências para falhas em rolamentos.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/monitoring_methods_rilski_p78.png}
+        \includegraphics[scale=.5]{referencial/img/bearing_table_analog_p3.png}
     \end{center}
-    \fonte{\citeonline{Gorbounov2018}.} 
-    \label{fig:}
+    \fonte{\citeonline{Sopcik2019}.} 
+    \label{fig:bearing_table_analog_p3}
 \end{figure}
 
+Após a análise das falhas utilizando a vibração da sistema, é possível fazer o mesmo com a corrente elétrica na armadura, que será
+apresenta na subseção na sequência.
 
-%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+%----------------------------------------------------------------
 % 
-%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%----------------------------------------------------------------
 
 \subsection{Análise de Corrente Elétrica }\label{sec:}
+
+\begin{figure}[H]
+    \caption{Ilustração com as frequências associadas as falhas em rotores ou estatores de motores elétricos.}
+    \begin{center}
+        \includegraphics[scale=.35]{referencial/img/fault_freq_randall_p55.png}
+    \end{center}
+    \fonte{\citeonline{Wu2013}.} 
+    \label{fig:fault_freq_randall_p55}
+\end{figure}
 
 
 \begin{figure}[H]
@@ -178,8 +259,9 @@ Fazer:
         \includegraphics[scale=.5]{referencial/img/current_benbouzid_p3.png}
     \end{center}
     \fonte{\citeonline{El1999}.} 
-    \label{fig:}
+    \label{fig:current_benbouzid_p3}
 \end{figure}
+
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
@@ -188,6 +270,14 @@ Fazer:
 \section{Técnicas Modernas de Processamento de Sinais}\label{sec:}
 
 
+\begin{figure}[H]
+    \caption{Árvo de métodos de monitoramento de falhas em motores elétricos.}
+    \begin{center}
+        \includegraphics[scale=.5]{referencial/img/monitoring_methods_rilski_p78.png}
+    \end{center}
+    \fonte{\citeonline{Gorbounov2018}.} 
+    \label{fig:monitoring_methods_rilski_p78}
+\end{figure}
 
 %----------------------------------------------------------------
 % 
@@ -201,7 +291,7 @@ Fazer:
         \includegraphics[scale=.4]{referencial/img/cnn_image_ince_p5.png}
     \end{center}
     \fonte{\citeonline{Ince2016}.} 
-    \label{fig:}
+    \label{fig:cnn_image_ince_p5}
 \end{figure}
 
 
@@ -217,7 +307,7 @@ Fazer:
         \includegraphics[scale=.5]{referencial/img/fatica_fang_p3.png}
     \end{center}
     \fonte{Duan2017.} 
-    \label{fig:}
+    \label{fig:atica_fang_p3}
 \end{figure}
 
 
@@ -233,7 +323,7 @@ Fazer:
         \includegraphics[scale=.45]{referencial/img/t-sne_algorithm_maaten_p9.png}
     \end{center}
     \fonte{\citeonline{VanDerMaaten2008}.} 
-    \label{fig:}
+    \label{fig:t-sne_algorithm_maaten_p9}
 \end{figure}
 
 %----------------------------------------------------------------
@@ -248,7 +338,7 @@ Fazer:
         \includegraphics[scale=.5]{referencial/img/k-means_jain_p7.png}
     \end{center}
     \fonte{\citeonline{Jain2010}.} 
-    \label{fig:}
+    \label{fig:k-means_jain_p7}
 \end{figure}
 
 
@@ -271,7 +361,7 @@ Fazer:
         \includegraphics[scale=.45]{referencial/img/cnn_ince_p2.png}
     \end{center}
     \fonte{\citeonline{Ince2016}.} 
-    \label{fig:}
+    \label{fig:cnn_ince_p2}
 \end{figure}
 
 
@@ -281,7 +371,7 @@ Fazer:
         \includegraphics[scale=.45]{referencial/img/orbit_jeong_p3.png}
     \end{center}
     \fonte{\citeonline{Jeong2016}.} 
-    \label{fig:}
+    \label{fig:orbit_jeong_p3}
 \end{figure}
 
 \begin{figure}[H]
@@ -290,7 +380,7 @@ Fazer:
         \includegraphics[scale=.65]{referencial/img/back-programation-zhang-p5.png}
     \end{center}
     \fonte{\citeonline{Zhang2018}.} 
-    \label{fig:}
+    \label{fig:back-programation-zhang-p5}
 \end{figure}
 
 
@@ -306,7 +396,7 @@ Fazer:
         \includegraphics[scale=.5]{referencial/img/ica_bracamonte_p4.png}
     \end{center}
     \fonte{\citeonline{Garcia-Bracamonte2019}.} 
-    \label{fig:}
+    \label{fig:ica_bracamonte_p4}
 \end{figure}
 
 
