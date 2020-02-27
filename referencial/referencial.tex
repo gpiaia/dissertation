@@ -131,8 +131,21 @@ vibração \cite{Sopcik2019}.
 \end{figure}
 
 Mais de 66\% destas falhas são detectadas durante a operação e 28\% são encontradas apenas durante a manutenção 
-preventiva \citeonline{Gorbounov2018}, destacando a importância de uma boa estratégia de manutenção. Existem três tipos de estratégias 
-para manutenção: 
+preventiva \cite{Gorbounov2018}, destacando a importância de uma boa estratégia de manutenção. Existem três tipos de estratégias 
+para manutenção \cite{Wu2013}:  
+
+\begin{enumerate}
+    \item Funcionar até quebrar: é uma das técnicas mais tradicionais, onde o equipamento funciona até quebrar. Só após isso a
+manutenção é realizada. Possui diversas desvantagens, principalmente pelo fato que a falha pode se manifestar durante a produção e
+deixar a máquina parada por horas, causando grande prejuízo;
+    \item Manutenção Preventiva: é baseada em manutenções em intervalos regulares antes da falha se manifestar. Quando a frequência das
+falhas é conhecida, pode ser uma boa estratégia, mas possibilita a troca de componentes que ainda teriam uma sobrevida, ou ainda, a falha
+ocorrer antes do previsto, devido à alterações não esperada no processo;
+    \item Manutenção Preditiva: quando é detectado que uma falha está próxima, antes de acontecer e com tempo ótimo para se fazer a 
+manutenção sem afetar a produtividade e danificar mais o equipamento. Essa estratégia é baseada em um monitoramento do equipamento,
+permitindo acompanhar o estado de sa[ude da máquina. Se bem implementa essa estratégia, pode reduzir em até 65\% os custos de manutenção
+\cite{Wu2013};
+\end{enumerate}
 
 Após apresentados os conceitos básicos sobre motores elétricos e suas falhas, e como essas falhas aumentam o nível de vibração,
 o próximo capítulo tem por objetivo apresentar conceitos de detecção e diagnóstico destas falhas.
@@ -433,7 +446,7 @@ Após esclarecidas as equações, é possível apresentar o algoritmo que implem
     \label{fig:t-sne_algorithm_maaten_p9}
 \end{figure}
 
-A presente técnica é a primeira sobre aprendizagem de máquina que foi apresentadas, onde a segunda está descrita na próxima subseção.
+A presente técnica é a primeira sobre aprendizagem de máquina, onde a segunda está descrita na próxima subseção.
 
 
 %----------------------------------------------------------------
@@ -466,12 +479,21 @@ modernas para detecção e diagnóstico de falhas em motores elétricos.
 
 \section{Estado da Arte}
 
+O estado da arte em detecção e diagnóstico de falhas em motores elétricos está no emprego de diversas técnicas numa mesma solução. Algumas 
+utilizam técnicas clássicas com CNNs, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contem
+algum exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente.
 
 %----------------------------------------------------------------
 % 
 %----------------------------------------------------------------
 
-\subsection{CNN}
+\subsection{RNA}
+
+O emprego de CNNs em classificação de imagens é muito utilizado para se classificar as assinaturas que foram geradas por alguma técnica
+de processamento de sinais. A primeira solução que será apresentada, processa os sinais de corrente do motor via uma CNN de 1 dimensão,
+conforme a figura \ref{fig:cnn_ince_p2}. Uma das principais características dessa técnica, é o emprego unicamente de uma CNN adaptativa,
+não utilizando outras técnicas de processamento de sinais.
+
 
 \begin{figure}[H]
     \caption{Diagrama de um sistema que utiliza CNN.}
@@ -481,6 +503,30 @@ modernas para detecção e diagnóstico de falhas em motores elétricos.
     \fonte{\citeonline{Ince2016}.} 
     \label{fig:cnn_ince_p2}
 \end{figure}
+
+Outra técnica que utiliza CNN é a que foi desenvolvida por \cite{Jeong2016}, onde uma imagem é gerada por um pré-processamento, que nada
+mais é do que a criação de orbitais que são criados pela combinação de dois sensores que devem ter $\ang{90}$ entre eles. As expressões
+que geram esses orbitais são as seguintes:
+
+\begin{equation}\label{eq:}
+    z(n) = x(n)+y(n)\dot j
+\end{equation}
+
+Onde x e y são os dados de vibração. E
+
+\begin{equation}\label{eq:}
+    Z(k) = \sum_{n=0}^{N-1}{z(n)e^{-j\frac{2\pi}{N}nk}}
+\end{equation}
+
+Uma aproximação para z(n), quando $\omega$ [e a velocidade angular, m é positivo e inteiro, $R_{m\omega_+}$ e $R_{m\omega_1}$ são números
+complexos. 
+
+\begin{equation}\label{eq:orbit}
+    \hat{z}(n) = \sum_{m=1}^{N}(R_{m\omega_+}e^{jm\omega n}+R_{m\omega_-}e^{-jm\omega n})
+\end{equation}
+
+O offset pode ser removido via a subtração da média dos valores. Um exemplo de orbitais e suas falhas características pode ser visto
+na figura \ref{fig:orbit_jeong_p3}.
 
 
 \begin{figure}[H]
@@ -492,21 +538,45 @@ modernas para detecção e diagnóstico de falhas em motores elétricos.
     \label{fig:orbit_jeong_p3}
 \end{figure}
 
+Após a obtenção desses orbitais e suas respectivas falhas, os autores treinaram uma CNN para reconhecer o orbital e classificar qual 
+falha está se manifestando.
+
+Outra técnica que emprega RNA, é a que está representada na figura \ref{fig:back-programation-zhang-p5}. Foram
+testados vários tipos de RNAs com o objetivo de comparar o desempenho de cada uma delas, inclusive o proposto pelos autores \cite{Zhang2018}.
+
 \begin{figure}[H]
-    \caption{Técnica com Back-programation.}
+    \caption{Técnica proposta por \citeonline{Zhang2018}.}
     \begin{center}
-        \includegraphics[scale=.65]{referencial/img/back-programation-zhang-p5.png}
+        \includegraphics[scale=.35]{referencial/img/proposta_zhang_p4.png}
+    \end{center}
+    \fonte{\citeonline{Zhang2018}.} 
+    \label{fig:proposta_zhang_p4.png}
+\end{figure}
+
+Ao testarem, obtiveram os seguintes resultados comparativos:
+
+\begin{figure}[H]
+    \caption{Resultados da técnica proposta por \citeonline{Zhang2018}.}
+    \begin{center}
+        \includegraphics[scale=.35]{referencial/img/results_zhang_p7.png}
     \end{center}
     \fonte{\citeonline{Zhang2018}.} 
     \label{fig:back-programation-zhang-p5}
 \end{figure}
 
+Esses foram os principais casos de uso de RNA, com foco em CNN, onde é possível ver a sobressalência desse método sobre os demais
+tipos de RNA. Na sequência, temos um método que combina FFT e ICA para detectar e classificar falhas.
 
 %----------------------------------------------------------------
 % 
 %----------------------------------------------------------------
 
 \subsection{ICA}
+
+Essa técnica na verdade emprega 3 assuntos que já foram explicados anteriormente, incluindo FFT, ICA e RNA sobre o sinal de corrente
+do motor. Os sinais que são aplicados no algoritmo FastICA, são o a saída da FFT normalizados e com um tamanho de 1024 amostras. 
+A topologia se encontra na figura \ref{fig:ica_bracamonte_p4}. Por fim, ao se obter as características extra[idas pelo algoritmo FastICA,
+a saída é aplicada em um RNA com o objetivo de classificar a saída.
 
 \begin{figure}[H]
     \caption{Fluxograma de uma técnica que utiliza ICA.}
@@ -518,10 +588,6 @@ modernas para detecção e diagnóstico de falhas em motores elétricos.
 \end{figure}
 
 
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{WPT (\textit{Wavelet Packet Transform})}
-
-\textbf{VER COM O RODRIGO, PORQUE NÃO EXPLIQUEI O ASSUNTO E NÃO APLIQUEI NOS RESULTADOS}
+Após elucidados os conceitos básicos sobre motores elétricos de indução, suas falhas, técnicas modernas de processamento de sinais e as 
+técnicas que estão sendo empregadas na atualidade para se detectar e diagnosticar falhas, a proposta de solução do presente trabalho 
+pode ser apresentada, que se encontra no próximo capítulo.
