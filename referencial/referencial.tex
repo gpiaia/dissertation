@@ -54,12 +54,12 @@ Onde
     \item $\hat{I}_1$ = corrente do estator
     \item $\hat{R}_1$ = resistência efetiva do estator
     \item $\hat{X}_1$ = reatância de vazamento do estator
-    \item $R_c$ = resistência à perdas no núcleo
+    \item $R_c$ = resistência às perdas no núcleo
     \item $X_m$ = reatância magnetizante
     \item $\hat{I}_2$ = componente de corrente gerada pela carga
     \item $\hat{X}_2$ = reatância de vazamento do rotor no estator na frequência de escorregamento
     \item $R_2$ = resistência do rotor
-    \item $\hat{I}_\varphi$ = componente de corrente exitada no estator
+    \item $\hat{I}_\varphi$ = componente de corrente excitada no estator
 \end{itemize}
 
 Com a apresentação de conceitos básicos sobre motores elétricos de indução e sua modelagem, é possível abordar os principais falhas que 
@@ -143,7 +143,7 @@ falhas é conhecida, pode ser uma boa estratégia, mas possibilita a troca de co
 ocorrer antes do previsto, devido à alterações não esperada no processo;
     \item Manutenção Preditiva: quando é detectado que uma falha está próxima, antes de acontecer e com tempo ótimo para se fazer a 
 manutenção sem afetar a produtividade e danificar mais o equipamento. Essa estratégia é baseada em um monitoramento do equipamento,
-permitindo acompanhar o estado de sa[ude da máquina. Se bem implementa essa estratégia, pode reduzir em até 65\% os custos de manutenção
+permitindo acompanhar o estado de saúde da máquina. Se bem implementa essa estratégia, pode reduzir em até 65\% os custos de manutenção
 \cite{Wu2013};
 \end{enumerate}
 
@@ -157,7 +157,7 @@ o próximo capítulo tem por objetivo apresentar conceitos de detecção e diagn
 
 \section{Sistemas de Detecção e Diagnóstico de Falhas}\label{sec:}
 
-Como apresentado anteriormente, falhas em componentes de um motor elétrico, ou no sistema em que eles está inserido, podem ocasionar
+Como apresentado anteriormente, falhas em componentes de um motor elétrico, ou no sistema em que ele está inserido, podem ocasionar
 um aumento da vibração e alteração no espectro da corrente do motor, que serão estudados na sequência.
 
 
@@ -181,9 +181,9 @@ severo \citeonline{Wu2013}.
 \end{figure}
 
 
-Essa vibração possui um característica especifica, que depende de qual falha ela é oriunda, que acaba criando uma assinatura
+Essa vibração possui um característica específica, que depende de qual falha ela é oriunda, que acaba criando uma assinatura
 ao se analisar a vibração, sendo possível diagnosticar se o motor e o sistema em que ele está inserido está com boa saúde \cite{Wu2013}.
-Uma das primeiras técnicas para classificar os estado de saúde de uma máquina, é a norma ISO 10816-1, que recomenda níveis de vibração 
+Uma das primeiras técnicas para classificar o estado de saúde de uma máquina, é a norma ISO 10816-1, que recomenda níveis de vibração 
 em valores eficaz de acordo com o porte da máquina, que pode ser visto na figura \ref{fig:iso10816-1_randall_p146}.
 
 \begin{figure}[H]
@@ -205,11 +205,11 @@ Onde
     \item Classe I = pequenas máquinas (potência menor que $\SI{15}{\kilo\watt}$)
     \item Classe II = máquinas médias sem uma fundação especial (potência entre $\SI{15}{\kilo\watt}$ e $\SI{75}{\kilo\watt}$)
     \item Classe III = máquinas grandes sobre uma fundação rígida e pesada
-    \item Classe IV = máquinas grandes sobre um fundação flexível (turbomáquinas) 
+    \item Classe IV = máquinas grandes sobre uma fundação flexível (turbomáquinas) 
 \end{itemize}
 
-Relembrando o que foi escrito anteriormente, é possível ver as assinaturas das falhas no espectro da vibração captados por um transdutor
-que está acoplado no sistema. Quando uma falha de desalinhamento está presente, há um aumento de até duas vezes nas harmónicas de alta 
+Relembrando o que foi escrito anteriormente, é possível ver as assinaturas das falhas no espectro da vibração captada por um transdutor
+que está acoplado no sistema. Quando uma falha de desalinhamento está presente, há um aumento de até duas vezes nas harmônicas de alta 
 frequência, como pode ser visto na figura \ref{fig:misa_analog_p2} \cite{Sopcik2019}.
 
 \begin{figure}[H]
@@ -234,7 +234,7 @@ A figura \ref{fig:imbalance_analog_p2} exemplifica.
 \end{figure}
 
 No mesmo conceito, é possível identificar a assinatura de uma falha de rolamentos de acordo com o tipo de rolamento, velocidade de rotação
-do motor, entre outras característica. Uma tabela com estas frequências, se encontra na sequência na figura \ref{fig:bearing_table_analog_p3}
+do motor, entre outras características. Uma tabela com estas frequências, se encontra na sequência na figura \ref{fig:bearing_table_analog_p3}
 
 
 \begin{figure}[H]
@@ -246,7 +246,7 @@ do motor, entre outras característica. Uma tabela com estas frequências, se en
     \label{fig:bearing_table_analog_p3}
 \end{figure}
 
-Após a análise das falhas utilizando a vibração da sistema, é necessário fazer a mesma análise com a corrente elétrica na armadura, 
+Após a análise das falhas utilizando a vibração do sistema, é necessário fazer a mesma análise com a corrente elétrica na armadura, 
 que será apresenta na subseção na sequência.
 
 
@@ -343,7 +343,7 @@ possibilita analisar as assinaturas no espectro desses sinais, conforme descrito
 
 \subsection{CNN}
 
-CNNs são redes neurais artificiais (RNA) sem realimentação, inspiradas em redes neurais que compõe o cortex visual de mamíferos. Essa
+CNNs são redes neurais artificiais (RNA) sem realimentação, inspiradas em redes neurais que compõe o córtex visual de mamíferos. Essa
 técnica é largamente utilizada em processamento de imagens, principalmente em sistemas de reconhecimento em imagens e vídeos. Um exemplo
 pode ser visto na figura \ref{fig:cnn_image_ince_p5}, onde um modelo que aceita uma imagem com 28 x 28 pixel. Cada camada subsequente é
 subamostrada, dizimando a propagação 2D da camada anterior. O filtro 2D do kernel pe otimizado pelo algoritmo de retropropagação do erro, 
@@ -370,7 +370,7 @@ encontra na próxima subseção.
 
 ICA foi criada para resolver o problema de separação de fontes desconhecidas, quando estes estão mixados. A técnica ICA utiliza o conceito
 que as fontes estão estaticamente separadas. Se considerarmos o vetor de fontes de sinal $s=[s,...,s_i]^T$ e as observações
-$X = [x_1,...,x_m]^T$ que geram o uma matriz mixada A, ou seja \cite{Duan2017}:
+$X = [x_1,...,x_m]^T$ que geram uma matriz mixada A, seguindo a relação \cite{Duan2017}:
 
 \begin{equation}\label{eq:ica_1}
     x = As
@@ -395,7 +395,7 @@ da matriz W, e $w_T$ é a sua transposta. Através do método Newton, podemos ob
 
 Onde $w^*$ é o novo valor de w; $\mu$ é o passo da interação; $E\{.\}$ é o valor esperado; $g(.)$ é a derivada de $G(.)$; $G$ é uma
 função constante e $\beta = E\{w^T Xg(w^T X)\}$.
-Apresentadas as principais equações, o algoritmo propriamente dito pode ser visto na figura \ref{fig:fatica_fang_p3}.
+Apresentadas as principais equações, o algoritmo pode ser visto na figura \ref{fig:fatica_fang_p3}.
 
 \begin{figure}[H]
     \caption{Fluxograma do algoritmo FastICA.}
@@ -418,7 +418,7 @@ A segunda técnica de aprendizagem de máquina encontra-se na subseção da sequ
 É uma técnica não linear com o objetivo de reduzir a dimensionalidade de uma massa de dados. t-SNE é particularmente melhor que 
 outras técnicas existentes para criar um único mapa que pode revelar estruturas de diferentes escalas. A técnica t-SNE começa com a 
 conversão de dimensões superiores de distâncias Euclidianas entre dois dados em uma probabilidade condicional
-$p_{j|i}$. A equação \ref{eq:t-sne_1} representa o cáculo, onde $\sigma$ é a variância \cite{VanDerMaaten2008}.
+$p_{j|i}$. A equação \ref{eq:t-sne_1} representa o cálculo, onde $\sigma$ é a variância \cite{VanDerMaaten2008}.
 
 \begin{equation}\label{eq:t-sne_1}
     p_{j|i}=\frac{exp(-\parallel x_i-x_j\parallel^2/2\sigma_i^2)}{\sum_{k\ne i}{exp(-\parallel x_i-x_k\parallel^2/2\sigma_i^2)}}
@@ -469,7 +469,7 @@ E o objetivo é minimizar a seguinte expressão:
     J(c_k) = \sum_{k=1}^{K}\sum_{x_j\in c_k} {\parallel x_i-\mu_k \parallel^2}
 \end{equation}
 
-Com isso, os conceitos básicos das técnicas de processamento de sinais forM apresentados. A próxima seção contém algumas soluções
+Com isso, os conceitos básicos das técnicas de processamento de sinais foram apresentados. A próxima seção contém algumas soluções
 modernas para detecção e diagnóstico de falhas em motores elétricos.
 
 
@@ -564,7 +564,7 @@ Ao testarem, obtiveram os seguintes resultados comparativos:
     \label{fig:back-programation-zhang-p5}
 \end{figure}
 
-Esses foram os principais casos de uso de RNA, com foco em CNN, onde é possível ver a sobressalência desse método sobre os demais
+Esses foram os principais casos de uso de RNA, com foco em CNN, onde é possível ver o melhor desempenho desse método sobre os demais
 tipos de RNA. Na sequência, temos um método que combina FFT e ICA para detectar e classificar falhas.
 
 %----------------------------------------------------------------
@@ -573,7 +573,7 @@ tipos de RNA. Na sequência, temos um método que combina FFT e ICA para detecta
 
 \subsection{ICA}
 
-Essa técnica na verdade emprega 3 assuntos que já foram explicados anteriormente, incluindo FFT, ICA e RNA sobre o sinal de corrente
+Essa técnica emprega 3 assuntos que já foram explicados anteriormente, incluindo FFT, ICA e RNA sobre o sinal de corrente
 do motor. Os sinais que são aplicados no algoritmo FastICA, são o a saída da FFT normalizados e com um tamanho de 1024 amostras. 
 A topologia se encontra na figura \ref{fig:ica_bracamonte_p4}. Por fim, ao se obter as características extra[idas pelo algoritmo FastICA,
 a saída é aplicada em um RNA com o objetivo de classificar a saída.
