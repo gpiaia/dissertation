@@ -18,7 +18,7 @@ detecção e diagnóstico de falhas em motores elétricos de indução.
 Motores elétricos de indução são um dos tipos de máquinas elétricas, as quais convertem energia elétrica em mecânica. 
 Nos motores elétricos de indução, uma corrente elétrica é induzida no rotor através da corrente de armadura que circula
 no estator. Contudo, um rotor do tipo gaiola de esquilo, pode ser visto na figura \ref{fig:ind_motor_petruzella_p115}, 
-é um curto curto circuito formado por barras e lâminas de alumíno. Por essa constituição simples, motores elétricos de indução
+é um curto-circuito formado por barras e lâminas de alumínio. Por essa constituição simples, motores elétricos de indução
 com rotor do tipo gaiola resultam em motores relativamente baratos e confiáveis, contribuindo para sua popularidade \cite{Umans2003}.
  
 \begin{figure}[H]
@@ -54,7 +54,7 @@ Onde
     \item $\hat{I}_1$ = corrente do estator
     \item $\hat{R}_1$ = resistência efetiva do estator
     \item $\hat{X}_1$ = reatância de vazamento do estator
-    \item $R_c$ = resistência à perdas do núcleo
+    \item $R_c$ = resistência à perdas no núcleo
     \item $X_m$ = reatância magnetizante
     \item $\hat{I}_2$ = componente de corrente gerada pela carga
     \item $\hat{X}_2$ = reatância de vazamento do rotor no estator na frequência de escorregamento
@@ -220,21 +220,21 @@ A figura \ref{fig:imbalance_analog_p2} exemplifica.
     \label{fig:imbalance_analog_p2}
 \end{figure}
 
-No mesmo conceit, é possível identificar a assinatura de uma falha de rolamentos de acordo com o tipo de rolamento, velocidade de rotação
+No mesmo conceito, é possível identificar a assinatura de uma falha de rolamentos de acordo com o tipo de rolamento, velocidade de rotação
 do motor, entre outras característica. Uma tabela com estas frequências, se encontra na sequência na figura \ref{fig:bearing_table_analog_p3}
 
 
 \begin{figure}[H]
     \caption{Tabela de frequências para falhas em rolamentos.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/bearing_table_analog_p3.png}
+        \includegraphics[scale=.7]{referencial/img/bearing_table_analog_p3.png}
     \end{center}
     \fonte{\citeonline{Sopcik2019}.} 
     \label{fig:bearing_table_analog_p3}
 \end{figure}
 
-Após a análise das falhas utilizando a vibração da sistema, é possível fazer o mesmo com a corrente elétrica na armadura, que será
-apresenta na subseção na sequência.
+Após a análise das falhas utilizando a vibração da sistema, é necessário fazer a mesma análise com a corrente elétrica na armadura, 
+que será apresenta na subseção na sequência.
 
 
 %----------------------------------------------------------------
@@ -243,8 +243,13 @@ apresenta na subseção na sequência.
 
 \subsection{Análise de Corrente Elétrica }\label{sec:}
 
+Como apresentado no circuito da figura \ref{fig:circuit_fitzgerald_p354}, variações na constituição mecânica de um motor elétrico de 
+indução ocasionam variações na corrente e na tensão de entrada. Por exemplo o desbalanceamento, que pode ser uma anomalia no rotor,
+tem uma assinatura específica no espectro da corrente de entrada \cite{Wu2013}.  A figura \ref{fig:fault_freq_randall_p55} contém as
+frequências que estão associadas Às falhas em um rotor.
+
 \begin{figure}[H]
-    \caption{Ilustração com as frequências associadas as falhas em rotores ou estatores de motores elétricos.}
+    \caption{Ilustração com as frequências associadas às falhas em rotores ou estatores de motores elétricos.}
     \begin{center}
         \includegraphics[scale=.35]{referencial/img/fault_freq_randall_p55.png}
     \end{center}
@@ -252,6 +257,9 @@ apresenta na subseção na sequência.
     \label{fig:fault_freq_randall_p55}
 \end{figure}
 
+Como é possível se estimar as frequências características de uma falha no rotor, é viável se criar um sistema que é capaz de detectar uma 
+falha e indicá-la em tempo real se o espectro for analisado por algum algoritmo \cite{El1999}. A figura \ref{fig:current_benbouzid_p3} apresenta uma
+técnica que utiliza esse conceito.
 
 \begin{figure}[H]
     \caption{Proposta de sistema de diagnóstico utilizando a corrente do estator.}
@@ -262,6 +270,12 @@ apresenta na subseção na sequência.
     \label{fig:current_benbouzid_p3}
 \end{figure}
 
+Onde FFT é a transformada rápida de Fourier (\textit{Fast Fourier Transform}), que possibilita a obtenção do espectro com poucos recursos
+computacionais e boa velocidade.
+
+Após a apresentação das principais assinaturas que aparecem nos dados amostrados de motores elétricos de indução, técnicas de processamento
+destes sinais são necessárias para a criação de um sistema autônomo e em tempo real. Estas técnicas estão descritas na próxima seção.
+
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
@@ -269,9 +283,12 @@ apresenta na subseção na sequência.
 
 \section{Técnicas Modernas de Processamento de Sinais}\label{sec:}
 
+Com o objetivo de se detectar falhas e se obter um diagnóstico das mesmas, muitas técnicas já foram implementadas. Essas técnicas podem ser
+não invasivas ou invasivas \cite{Gorbounov2018}. A figura \ref{fig:monitoring_methods_rilski_p78} apresenta algumas técnicas que são
+utilizadas para detecção e diagnóstico de falhas.
 
 \begin{figure}[H]
-    \caption{Árvo de métodos de monitoramento de falhas em motores elétricos.}
+    \caption{Árvore de métodos de monitoramento de falhas em motores elétricos.}
     \begin{center}
         \includegraphics[scale=.5]{referencial/img/monitoring_methods_rilski_p78.png}
     \end{center}
@@ -279,11 +296,45 @@ apresenta na subseção na sequência.
     \label{fig:monitoring_methods_rilski_p78}
 \end{figure}
 
+Dentre essas, a transformada rápida de Fourier (FFT) e CNN (\textit{Convolutional Neural network} - rede neural convolucional) 
+serão descritas na sequência, adicionando mais uma técnica de análise de assinaturas que é a ICA (\textit{Indepent Compoent Analysys}
+ - análise de componentes independentes). Além disso, o presente trabalho também aborda duas técnicas de aprendizagem de máquinas, que 
+ é a t-SNE (\textit{t-Distributed Stochastic Neighbor Embedding} Incorporação Estocástica de Vizinhos com Distribuição T) e, por último, 
+ a técnica K-means.
+
+
 %----------------------------------------------------------------
 % 
 %----------------------------------------------------------------
 
-\subsection{RNA}
+\subsection{FFT}
+
+FFT é um algoritmo muito eficiente que calcula a DFT (\textit{Discrete Fourier Transform} - Transformada discreta de Fourier), a qual 
+pode ser descrita da seguinte forma \cite{Wu2013}:
+
+\begin{equation}\label{eq:dft}
+    G(k)=\frac{1}{N}\sum_{k=0}^{N-1} g(n)exp(-j2\pi kn/N)
+\end{equation}
+
+\begin{equation}\label{eq:dft}
+    g(n)=\sum_{k=0}^{N-1} G(k)exp(j2\pi kn/N)
+\end{equation}
+
+Esta ferramenta é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
+possibilita analisar as assinaturas no espectro desses sinais, conforme descrito na seção anterior.
+
+
+%----------------------------------------------------------------
+% 
+%----------------------------------------------------------------
+
+\subsection{CNN}
+
+CNNs são redes neurais artificiais (RNA) sem realimentação, inspiradas em redes neurais que compõe o cortex visual de mamíferos. Essa
+técnica é largamente utilizada em processamento de imagens, principalmente em sistemas de reconhecimento em imagens e vídeos. Um exemplo
+pode ser visto na figura \ref{fig:cnn_image_ince_p5}, onde um modelo que aceita uma imagem com 28 x 28 pixel. Cada camada subsequente é
+subamostrada, dizimando a propagação 2D da camada anterior. O filtro 2D do kernel pe otimizado pelo algoritmo de retropropagação do erro, 
+e os principais parâmetros de uma CNN são o tamanho do kernel e o fator de subamostragem \cite{Ince2016}.
 
 \begin{figure}[H]
     \caption{Rede neural convolucional.}
@@ -294,6 +345,9 @@ apresenta na subseção na sequência.
     \label{fig:cnn_image_ince_p5}
 \end{figure}
 
+Após a apresentação da técnica que permite reconhecer imagens, será apresentada a primeira técnica de aprendizagem de máquina, que se
+encontra na próxima subseção.
+
 
 %----------------------------------------------------------------
 % 
@@ -301,22 +355,75 @@ apresenta na subseção na sequência.
 
 \subsection{ICA}
 
+ICA foi criada para resolver o problema de separação de fontes desconhecidas, quando estes estão mixados. A técnica ICA utiliza o conceito
+que as fontes estão estaticamente separadas. Se considerarmos o vetor de fontes de sinal $s=[s,...,s_i]^T$ e as observações
+$X = [x_1,...,x_m]^T$ que geram o uma matriz mixada A, ou seja \cite{Duan2017}:
+
+\begin{equation}\label{eq:ica_1}
+    x = As
+\end{equation}
+
+A técnica ICA busca pela matriz W separadora, a qual pode recuperar as fontes estimadas, sendo representa da seguinte forma: 
+
+\begin{equation}\label{eq:ica_2}
+    s = A^{-1}X = WX
+\end{equation}
+
+A implementação escolhida para a ICA é a FastICA, a qual busca a maximização não Gaussiana da expressão $w^Tx$, onde w é o vetor linha
+da matriz W, e $w_T$ é a sua transposta. Através do método Newton, podemos obter a matriz w da seguinte forma \cite{Duan2017}:
+
+\begin{equation}\label{eq:ica_3}
+    w_+ = w - \mu[E\{xg(w_Tx)-\beta w\}] /[E\{\hat{g}(w_Tx)-\beta\}]
+\end{equation}
+
+\begin{equation}\label{eq:ica_4}
+    w^* = w^+/\parallel w^+\parallel
+\end{equation}
+
+Onde $w^*$ é o novo valor de w; $\mu$ é o passo da interação; $E\{.\}$ é o valor esperado; $g(.)$ é a derivada de $G(.)$; $G$ é uma
+função constante e $\beta = E\{w^T Xg(w^T X)\}$.
+Apresentadas as principais equações, o algoritmo propriamente dito pode ser visto na figura \ref{fig:fatica_fang_p3}.
+
 \begin{figure}[H]
-    \caption{Fluxograma do algoritmo fastICA.}
+    \caption{Fluxograma do algoritmo FastICA.}
     \begin{center}
         \includegraphics[scale=.5]{referencial/img/fatica_fang_p3.png}
     \end{center}
-    \fonte{Duan2017.} 
-    \label{fig:atica_fang_p3}
+    \fonte{\citeonline{Duan2017}.} 
+    \label{fig:fatica_fang_p3}
 \end{figure}
+
+A segunda técnica de aprendizagem de máquina encontra-se na subseção da sequência.
 
 
 %----------------------------------------------------------------
 % 
 %----------------------------------------------------------------
 
-\subsection{T-SNE}
+\subsection{t-SNE}
 
+É uma técnica não linear com o objetivo de reduzir a dimensionalidade de uma massa de dados. t-SNE é particularmente melhor que 
+outras técnicas existentes para criar um único mapa que pode revelar estruturas de diferentes escalas. A técnica t-SNE começa com a 
+conversão de dimensões superiores de distâncias Euclidianas entre dois dados em uma probabilidade condicional
+$p_{j|i}$. A equação \ref{eq:t-sne_1} representa o cáculo, onde $\sigma$ é a variância \cite{VanDerMaaten2008}.
+
+\begin{equation}\label{eq:t-sne_1}
+    p_{j|i}=\frac{exp(-\parallel x_i-x_j\parallel^2/2\sigma_i^2)}{\sum_{k\ne i}{exp(-\parallel x_i-x_k\parallel^2/2\sigma_i^2)}}
+\end{equation}
+
+t-SNE utiliza a distribuição do tipo t com um grau de liberdade, com essa distribuição, a probabilidade $q_{ij}$ pode ser calculada como:
+
+\begin{equation}\label{eq:t-sne_4}
+    q_{ij}=\frac{(1+\parallel y_i-y_j\parallel^2)^{-1})}{\sum_{k\ne l}{(1 + \parallel y_k-y_l\parallel^2)^{-1}}}
+\end{equation}
+
+Com as duas equações, é possível calcular o gradiente de Kullback-Leibler  divergente entre P e a probabilidade Q, da seguinte forma:
+
+\begin{equation}\label{eq:t-sne_5}
+    \frac{\delta C}{\delta y_i} = 4 \sum_j{(p_{ij}-q_{ij})(y_i - y_j)(1+\parallel y_i-y_j\parallel^2)^{-1}}
+\end{equation}
+
+Após esclarecidas as equações, é possível apresentar o algoritmo que implementa a técnica, que está na figura \ref{fig:t-sne_algorithm_maaten_p9}.
 \begin{figure}[H]
     \caption{Algoritmo simplificado da técnica t-SNE.}
     \begin{center}
@@ -326,20 +433,31 @@ apresenta na subseção na sequência.
     \label{fig:t-sne_algorithm_maaten_p9}
 \end{figure}
 
+A presente técnica é a primeira sobre aprendizagem de máquina que foi apresentadas, onde a segunda está descrita na próxima subseção.
+
+
 %----------------------------------------------------------------
 % 
 %----------------------------------------------------------------
 
 \subsection{K-Means}
 
-\begin{figure}[H]
-    \caption{Exemplo de clusterização utilizando K-means.}
-    \begin{center}
-        \includegraphics[scale=.5]{referencial/img/k-means_jain_p7.png}
-    \end{center}
-    \fonte{\citeonline{Jain2010}.} 
-    \label{fig:k-means_jain_p7}
-\end{figure}
+K-means é uma das técnicas mais populares de clusterização de dados, sendo publicada pela primeira vez em 1955. Sendo $X=\{x_i\}, i=1, ..., n$
+n d-dimensões pontos para serem clusterizados em K clusters, onde $C = \{c_k, k=1, ..., K\}$. O algoritmo K-means encontra uma partição onde o erro quadrático entre a média 
+empírica de um cluster e os pontos no cluster sejam minimizados. A média do cluster $c_k$ é $\mu_k$, definido da seguinte forma \cite{Jain2010}:
+
+\begin{equation}\label{eq:k-means}
+    J(c_k) = \sum_{x_j\in c_k} {\parallel x_i-\mu_k \parallel^2}
+\end{equation}
+
+E o objetivo é minimizar a seguinte expressão:
+
+\begin{equation}\label{eq:k-means}
+    J(c_k) = \sum_{k=1}^{K}\sum_{x_j\in c_k} {\parallel x_i-\mu_k \parallel^2}
+\end{equation}
+
+Com isso, os conceitos básicos das técnicas de processamento de sinais forM apresentados. A próxima seção contém algumas soluções
+modernas para detecção e diagnóstico de falhas em motores elétricos.
 
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
