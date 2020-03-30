@@ -79,17 +79,20 @@ Corrente Elétrica Utilizando Técnicas de Clusterização}
 \begin{frame}{Introdução}
 	\begin{itemize}
 		\justifying
-		\item Uma das formas de se controlar a posição de um satélite é através da variação do momento angular de rodas.
-		\item Diversas técnicas de controle são empregadas para se controlar essa posição. O tipo mais usado é o controlador PID  (Proporcional-Integral-Derivativo).
-		\item Este trabalho tem por principal objetivo a implementação em um sistema embarcado
-de um controlador com sintonia automática utilizando conceitos de controle inteligente e testa-lo em um simulador de satélites com rodas de reação.
-    \end{itemize}
+		\item Os motores elétricos de indução são amplamente empregados na indústria, pela sua confiabilidade e construção, o que o torna uma opção 
+		barata e confiável \cite{Umans2003};
+		\item A utilização de uma estratégia para uma manutenção ótima (preventiva), pode reduzir em até 65\% os custos de manutenção \cite{Wu2013};
+		\item Monitoramento de limites de vibração, inteligência artificial e aprendizado de máquina podem ser
+		utilizados para se criar uma técnica de manutenção preditiva;
+		\item Este trabalho descreve a implementação de uma técnica de manutenção preditiva utilizando ferramentas
+		modernas de processamento de sinais;
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Referencial Teórico}
-\begin{frame}{Referencial Teórico - Motores Elétricos de Inclusão}
+\begin{frame}{Referencial Teórico - Motores Elétricos de Indução}
 	\begin{columns}
     	\begin{column}{0.50\textwidth}
 			\begin{figure}[HT]
@@ -105,7 +108,8 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 		
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item infos
+				\item Motores elétricos de indução um tipo de máquinas elétricas, as quais convertem
+				energia elétrica em mecânica;
 			\end{itemize}
 	 	\end{column}
 	 \end{columns}
@@ -113,23 +117,36 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referencial Teórico - Motores Elétricos de Inclusão}
+\begin{frame}{Referencial Teórico - Motores Elétricos de Indução}
 	\begin{columns}
     	\begin{column}{0.50\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
 					\captionsetup{justification=justified}
-					\includegraphics[scale=.25]{../referencial/img/circuit_fitzgerald_p354.png}
+					\includegraphics[scale=.22]{../referencial/img/circuit_fitzgerald_p354.png}
 					\caption{Circuito equivalente monofásico de um motor de indução polifásico. \newline
 					Fonte: \citeonline{Umans2003}.} 
 					\label{fig:circuit_fitzgerald_p354}
 				\end{center}
 			\end{figure}
+			\begin{itemize}
+				\item $\hat{V}_1$ = tensão no estator
+				\item $\hat{E}_2$ = Força eletromotriz contrária gerada pelo fluxo no entreferro
+			\end{itemize}
      	\end{column}
 		
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item infos
+				\item $\hat{I}_1$ = corrente do estator
+				\item $\hat{R}_1$ = resistência efetiva do estator
+				\item $\hat{X}_1$ = reatância de vazamento do estator
+				\item $R_c$ = resistência às perdas no núcleo
+				\item $X_m$ = reatância magnetizante
+				\item $\hat{I}_2$ = componente de corrente gerada pela carga
+				\item $\hat{X}_2$ = reatância de vazamento do rotor no estator na frequência de escorregamento
+				\item $R_2$ = resistência do rotor
+				\item $\hat{I}_\varphi$ = componente de corrente \newline 
+				excitada no estator
 			\end{itemize}
 	 	\end{column}
 	 \end{columns}
@@ -214,7 +231,10 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 		
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item Infos
+				\item  Com o aumento da carga e da vibração em conjunto, o efeito mecânico e elétrico pode ser 
+				severo \citeonline{Wu2013};
+				\item A vibração possui características específicas chamadas assinaturas;
+				\item A análise dessas assinaturas pode levar ao diagnóstico da falha, ou a sua detecção;
 			\end{itemize}
 	 	\end{column}
 	 \end{columns}
@@ -519,7 +539,6 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Resultados Preliminares}
 \begin{frame}{Resultados Preliminares - t-SNE}
 	\begin{figure}[HT]
 		\begin{center}
@@ -559,14 +578,53 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Cronograma}
+\begin{frame}{Cronograma}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.18]{cronograma.png}
+					\caption{Cronograma das atividades. \newline
+					Fonte: Elaborado pelo Autor.} 
+					\label{fig:crono}
+				\end{center}
+			\end{figure}
+			\begin{itemize}
+				\item 1 - Estudo e escolha do tema.
+				\item 2 - Fundamentação teórica.
+				\item 3 - Estudo da planta \textit{SpectraQuest Machinery Fault Simulator}.
+			\end{itemize}		
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item 4 - Aquisição dos dados das diferentes combinações de falhas de motores.
+				\item 5 - Estudo e aplicação das técnicas definidas nas primeiras etapas.
+				\item 6 - Escrita da Qualificação.
+				\item 7 - Estudo de técnicas complementares.
+				\item 8 - Apresentação.
+				\item 9 - Criação de um software que embarque a solução.
+				\item 10 - Testes, validação e \newline
+				melhorias no software.
+				\item 11 - Escrita da dissertação.
+			\end{itemize}		
+	 	\end{column}
+	 \end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Considerações Finais}
 	\begin{frame}{Considerações Finais}
     \begin{itemize}
-        	\justifying
-			\item Perceptível influência da vibração dos motores na resposta do movimento de rotação do sumulador.
-			\item Necessidade de melhorias no sistema inercial.
-			\item Possibilidade de se empregar técnicas modernas em controle, onde uma RNA aprendeu o comportamento de dinâmica de um simulador de satélites.
-		\end{itemize}
+			\justifying
+			\item Diversidade de técnicas aplicáveis;
+			\item Clara possibilidade de criação de clusters de acordo com cada tipo de falha;
+			\item Possibilidade de isolamento das fontes de vibração;
+			\item Cronograma bem distribuído e com tempo hábil;
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -574,10 +632,10 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 \begin{frame}{Considerações Finais - Trabalhos futuros}
     \begin{itemize}
         \justifying
-		\item Substituição do inercial simples por um absoluto com processamento integrado. 
-		\item Criação de uma interface gráfica para o usuário.
-		\item Essa interface será didática, auxiliando o ensino da teoria de controle.  
-		\item Disponibilizar todos os códigos fonte no GitHub e Bitbucket.
+		\item Aplicação de uma CNN na classificação dos clusters; 
+		\item Novas coletas de dados no MFS, explorando outras falhas e configurações de amostragem dos sinais;
+		\item Criação de um software com interface gráfica para possibilitar o uso pelos responsáveis pela manutenção
+		dos motores elétricos de indução;
 		\end{itemize}
 \end{frame}
 
