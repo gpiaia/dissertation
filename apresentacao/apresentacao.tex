@@ -41,6 +41,7 @@
 	\usepackage{graphicx}			% Inclusão de gráficos
 	\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 	\usepackage{txfonts}			% Fontes virtuais
+	\usepackage{tabularx}
 
 \title[ Detecção e Diagnóstico Automático de Falhas em Motores Elétricos de Indução via Análise de Assinaturas na
 Corrente Elétrica Utilizando ...]
@@ -87,6 +88,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Referencial Teórico}
 \begin{frame}{Referencial Teórico - Motores Elétricos de Inclusão}
 	\begin{columns}
     	\begin{column}{0.50\textwidth}
@@ -256,7 +258,6 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
     	\begin{column}{0.50\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
-					\captionsetup{justification=justified}
 					\includegraphics[scale=.25]{../referencial/img/misa_analog_p2.png}
 					\caption{Indicação espectral de desalinhamento na velocidade. \newline
 					Fonte: \citeonline{Sopcik2019}.} 
@@ -268,8 +269,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 		\begin{column}{0.5\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
-					\captionsetup{justification=justified}
-					\includegraphics[scale=.25]{../referencial/img/imbalance_analog_p2.png}
+					\includegraphics[scale=.31]{../referencial/img/imbalance_analog_p2.png}
 					\caption{Indicação espectral de desbalanceamento na velocidade. \newline
 					Fonte: \citeonline{Sopcik2019}.} 
 					\label{fig:imbalance_analog_p2}
@@ -286,7 +286,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
     	\begin{column}{0.50\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
-					\includegraphics[scale=.35]{../referencial/img/fault_freq_randall_p55.png}
+					\includegraphics[scale=.18]{../referencial/img/fault_freq_randall_p55.png}
 					\caption{Ilustração com as frequências associadas às falhas em rotores ou estatores de motores elétricos. \newline
 					Fonte: \citeonline{Wu2013}.} 
 					\label{fig:fault_freq_randall_p55}
@@ -297,7 +297,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 		\begin{column}{0.5\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
-					\includegraphics[scale=.5]{../referencial/img/current_benbouzid_p3.png}
+					\includegraphics[scale=.3]{../referencial/img/current_benbouzid_p3.png}
 					\caption{Indicação espectral de desbalanceamento na velocidade. \newline
 					Fonte: \citeonline{El1999}.} 
 					\label{fig:current_benbouzid_p3}
@@ -314,7 +314,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
     	\begin{column}{0.50\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
-					\includegraphics[scale=.5]{../referencial/img/monitoring_methods_rilski_p78.png}
+					\includegraphics[scale=.27]{../referencial/img/monitoring_methods_rilski_p78.png}
 					\caption{Árvore de métodos de monitoramento de falhas em motores elétricos. \newline
 					Fonte: \citeonline{Gorbounov2018}.} 
 					\label{fig:monitoring_methods_rilski_p78}
@@ -324,63 +324,243 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 		
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item FFT 
+				\item FFT (\textit{Fast Fourier Transform} - Transformada rápida de Fourier)
+				\item CNN (\textit{Convolutional Neural network} - rede neural convolucional)
+				\item ICA (\textit{Indepent Compoent Analysys} - análise de componentes independentes)
+				\item t-SNE (\textit{t-Distributed Stochastic Neighbor Embedding} - Incorporação Estocástica de Vizinhos com
+				Distribuição t)
+				\item K-means 
 			\end{itemize}			
 	 	\end{column}
 	 \end{columns}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Estado da Arte}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.25]{../referencial/img/cnn_ince_p2.png}
+					\caption{Diagrama de um sistema que utiliza CNN. \newline
+					Fonte: \citeonline{Ince2016}.} 
+					\label{fig:cnn_ince_p2}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.25]{../referencial/img/orbit_jeong_p3.png}
+					\caption{Diagrama de uma técnica que \newline 
+					utiliza classificação de orbitais com \newline
+					CNN. \newline
+					Fonte: \citeonline{Jeong2016}.} 
+					\label{fig:orbit_jeong_p3}
+				\end{center}
+			\end{figure}	
+	 	\end{column}
+	 \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Estado da Arte}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.27]{../referencial/img/proposta_zhang_p4.png}
+					\caption{Técnica proposta por \citeonline{Zhang2018}. \newline
+					Fonte: \citeonline{Zhang2018}.} 
+					\label{fig:cnn_ince_p2}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.25]{../referencial/img/results_zhang_p7.png}
+					\caption{Resultados da técnica proposta \newline
+					por \citeonline{Zhang2018}. \newline
+					Fonte: \citeonline{Zhang2018}.} 
+					\label{fig:orbit_jeong_p3}
+				\end{center}
+			\end{figure}	
+	 	\end{column}
+	 \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Estado da Arte}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.35]{../referencial/img/ica_bracamonte_p4.png}
+			\caption{Fluxograma de uma técnica que utiliza ICA. \newline
+			Fonte: \citeonline{Garcia-Bracamonte2019}.} 
+			\label{fig:ica_bracamonte_p4}
+		\end{center}
+	\end{figure}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metodologia}
-\begin{frame}{Metodologia - }
+\begin{frame}{Metodologia - Configurações dos Experimentos}
 	\begin{columns}
     	\begin{column}{0.50\textwidth}
 			\begin{figure}[HT]
 				\begin{center}
-				\includegraphics[scale=.25]{../referencial/img/ind_motor_petruzella_p115.png}
-				\caption{Motor elétrico de indução tipo gaiola de esquilo. \newline
-				Fonte: \citeonline{Petruzella1911}.}
-				\label{fig:ind_motor_petruzella_p115}
+					\includegraphics[scale=.2]{../metodologia/img/real_plant.jpeg}
+					\caption{Estrutura do simulador MFS ®. \newline
+					Fonte: \citeonline{SpectraQuest2011}.}
+					\label{fig:real_plant}
 				\end{center}
 			\end{figure}
      	\end{column}
 		
 		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item infos
-			\end{itemize}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.25]{../metodologia/img/lateral_desenho.png}
+					\caption{Desenho simplificado da \newline 
+					Planta. \newline 
+					Fonte: Elaborado pelo Autor.}
+					\label{fig:lateral_desenho}
+				\end{center}
+			\end{figure}
 	 	\end{column}
 	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Análise dos Resultados}
-\begin{frame}{Análise dos Resultados - }
-	\begin{columns}
-    	\begin{column}{0.50\textwidth}
-			\begin{figure}[HT]
-				\begin{center}
-				\includegraphics[scale=.25]{../referencial/img/ind_motor_petruzella_p115.png}
-				\caption{Motor elétrico de indução tipo gaiola de esquilo. \newline
-				Fonte: \citeonline{Petruzella1911}.}
-				\label{fig:ind_motor_petruzella_p115}
-				\end{center}
-			\end{figure}
-     	\end{column}
-		
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item infos
-			\end{itemize}
-	 	\end{column}
-	 \end{columns}
+\begin{frame}{Metodologia - Configurações dos Experimentos}
+	\begin{table}[H]
+		\label{tab:simulador}
+		\centering%
+		\begin{minipage}{\textwidth}
+		  \begin{tabular*}{\textwidth}{cccc}
+			\hline
+			{Nome}                   & Falha                     & Freq. do motor [Hz] & Amostragem [kHz]\\ \hline
+			\hline
+			Bom                      &  Sem                      &      60             &    25  \\ 
+			Misa15                   &  DA de 15 mils            &      60             &    10  \\
+			Misa35\_10k\_20Hz        &  DA de 35 mils            &      20             &    25  \\
+			Misa35\_10k\_20Hz\_unb   &  DA de 35 mils e DB       &      20             &    25  \\
+			Misa35\_10k\_30Hz\_unb   &  DA de 35 mils e DB       &      30             &    25  \\
+			Misa35\_10k\_40Hz        &  DA de 35 mils            &      40             &    25  \\
+			Misa35\_10k\_5Hz         &  DA de 35 mils            &      5              &    25  \\
+			Misa35\_10k\_80Hz        &  DA de 35 mils            &      80             &    25  \\
+			Misa35\_8k               &  DA de 35 mils            &      20             &    20  \\ \hline
+		  \end{tabular*}
+		  \caption{Testes realizados. \newline
+		  Fonte: Elaborado pelo Autor.} 
+		\end{minipage}
+	\end{table}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Conclusão}
-	\begin{frame}{Conclusão}
+\begin{frame}{Metodologia - T-SNE}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.42]{../metodologia/img/t-sne.png}
+			\caption{Fluxograma da técnica que utiliza t-SNE. \newline
+			Fonte: Elaborado pelo autor.}
+			\label{fig:t-sne}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Metodologia - K-Means}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.4]{../metodologia/img/k-means.png}
+			\caption{Fluxograma da técnica utilizando K-means. \newline
+			Fonte: Elaborado pelo autor.}
+			\label{fig:k-means}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Metodologia - ICA}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.38]{../metodologia/img/ica.png}
+			\caption{Fluxograma da técnica que utiliza ICA. \newline
+			Fonte: Elaborado pelo autor.}
+			\label{fig:ica}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Resultados Preliminares}
+\begin{frame}{Resultados Preliminares - t-SNE}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.19]{../resultados/img/t-sne-1.png}
+			\caption{Clusters resultantes utilizando a técnica t-SNE no domínio do tempo. \newline
+			Fonte: Elaborado pelo Autor.}
+			\label{fig:t-sne-1}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Resultados Preliminares}
+\begin{frame}{Resultados Preliminares - t-SNE}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.19]{../resultados/img/fft-t-sne-1.png}
+			\caption{Clusters resultantes utilizando a técnica t-SNE no domínio da frequência. \newline
+			Fonte: Elaborado pelo Autor.}
+			\label{fig:fft-t-sne-1}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Resultados Preliminares - K-means}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.45]{../resultados/img/kmeans2.png}
+			\caption{Clusters resultantes utilizando a técnica K-means. \newline
+			Fonte: Elaborado pelo Autor.}
+			\label{fig:kmeans2}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Resultados Preliminares - ICA}
+	\begin{figure}[HT]
+		\begin{center}
+			\includegraphics[scale=.27]{../resultados/img/ica.png}
+			\caption{Resultados da separação dos dados utilizando a técnica ICA. \newline
+			Fonte: Elaborado pelo Autor.}
+			\label{fig:ica}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Considerações Finais}
+	\begin{frame}{Considerações Finais}
     \begin{itemize}
         	\justifying
 			\item Perceptível influência da vibração dos motores na resposta do movimento de rotação do sumulador.
@@ -391,7 +571,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Conclusão - Trabalhos futuros}
+\begin{frame}{Considerações Finais - Trabalhos futuros}
     \begin{itemize}
         \justifying
 		\item Substituição do inercial simples por um absoluto com processamento integrado. 
@@ -404,7 +584,7 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Referências Bibliográficas}
-\begin{frame}{Referências Bibliográficas}
+\begin{frame}[allowframebreaks]{Referências Bibliográficas}
 	\bibliography{../referencial/references}
 \end{frame}
 
