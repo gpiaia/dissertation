@@ -2,12 +2,12 @@
 % Arquivo de apresentação
 % ||||||||||||||||||||||||||||||||||||||||||||||
 
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 {
 	\usetheme{Madrid}
     
-    \definecolor{unisinos}{RGB}{67,40,117}
+    \definecolor{unisinos}{RGB}{32,64,154}
     \usecolortheme[named=unisinos]{structure}
     
 	\usefonttheme{professionalfonts}
@@ -42,13 +42,13 @@
 	\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 	\usepackage{txfonts}			% Fontes virtuais
 
-	\usepackage{movie15}
-
-\title[ Desenvolvimento de um Controlador PID com Auto Sintonia usando Redes Neurais Artificiais e Regressão ...]{Desenvolvimento de um Controlador PID com Auto Sintonia usando Redes Neurais Artificiais e Regressão Não-Linear Robusta para o Controle de Atitude de um Simulador de Satélites com
-Rodas de Reação}
+\title[ Detecção e Diagnóstico Automático de Falhas em Motores Elétricos de Indução via Análise de Assinaturas na
+Corrente Elétrica Utilizando ...]
+{Detecção e Diagnóstico Automático de Falhas em Motores Elétricos de Indução via Análise de Assinaturas na
+Corrente Elétrica Utilizando Técnicas de Clusterização}
 \author[Piaia, G. A.]{
-	{\fontsize{10}{8}\selectfont \textbf{Aluno:} Guilherme Angelo Piaia} \\
-	{\fontsize{10}{8}\selectfont \textbf{Orientador}: Rodrigo Marques de Figueiredo}
+	{\fontsize{10}{8}\selectfont \textbf{Mestrando:} Guilherme Angelo Piaia} \\
+	{\fontsize{10}{8}\selectfont \textbf{Orientador:} Prof. Dr. Rodrigo Marques de Figueiredo}
 }
 %\institute[UNISINOS]{UNISINOS - Universidade do Vale do Rio dos Sinos \\ Engenharia de Controle e Automação}
 
@@ -61,7 +61,7 @@ Rodas de Reação}
 \begin{frame}
 	\begin{minipage}{1\linewidth}
 		\centering
-		    \textbf{UNISINOS - Universidade do Vale do Rio dos Sinos} \\ Engenharia de Controle e Automação
+		    \textbf{UNIVERSIDADE DO VALE DO RIO DOS SINOS - UNISINOS} \\ UNIDADE ACADÊMICA DE PESQUISA E PÓS-GRADUAÇÃO \\ PROGRAMA DE PÓS-GRADUAÇÃO EM ENGENHARIA ELÉTRICA \\ NÍVEL MESTRADO PROFISSIONAL
 	\end{minipage}
 	\titlepage
 \end{frame}
@@ -70,20 +70,6 @@ Rodas de Reação}
 
 \begin{frame}{Sumário}
 	\tableofcontents
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Introdução}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.42]{../referencial/img/rotational_brown_p256}
-        \caption{Movimento de translação de um satélite artificial. \newline
-        		 Fonte: Adaptado de \citeonline{Brown2002}.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -101,404 +87,294 @@ de um controlador com sintonia automática utilizando conceitos de controle inte
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referencial Teórico - Rodas de Reação}
+\begin{frame}{Referencial Teórico - Motores Elétricos de Inclusão}
 	\begin{columns}
-    \begin{column}{0.50\textwidth}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.35]{../referencial/img/satellite_controlhand_p1306}
-        \caption{Representação de um corpo rígido com rodas de reação. \newline
-        		 Fonte: Adaptado de \citeonline{Levine1996}.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-
-	\begin{itemize}
-		\justifying
-		\item Princípio da conservação do momento angular:
-    \end{itemize}
-
-	\begin{equation}\label{eq:ltot}
-		\vec{L}_{total}=\vec{L}_s+\vec{L}_{\omega}=constante 
-	\end{equation}
-
-	\end{column}
-\end{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.3]{../referencial/img/ind_motor_petruzella_p115.png}
+					\caption{Motor elétrico de indução tipo gaiola de esquilo. \newline
+					Fonte: \citeonline{Petruzella1911}.}
+					\label{fig:ind_motor_petruzella_p115}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item infos
+			\end{itemize}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referencial Teórico - Modelo}
-
- \begin{columns}
-    \begin{column}{0.50\textwidth}
-	\begin{itemize}
-		\justifying
-		\item Na sequência, temos a relação mais apropriada para a modelagem:
-    \end{itemize}
-    	\begin{equation}\label{eq:modeloA}
-	  \dot{\omega_{1}}=\frac{J_{\omega 1}\dot{\vec{\psi}}_{\omega 1}}{A}+\left(\frac{B-C}{A}\right)\omega_{2}\omega_{3}
-	\end{equation}
-
-	\begin{equation}\label{eq:modeloB}
-	  \dot{\omega_{2}}=\frac{J_{\omega 2}\dot{\vec{\psi}}_{\omega 2}}{B}+\left(\frac{C-A}{B}\right)\omega_{1}\omega_{3}
-	\end{equation}
-
-	\begin{equation}\label{eq:modeloC}
-	  \dot{\omega_{3}}=\frac{J_{\omega 3}\dot{\vec{\psi}}_{\omega 3}}{C}+\left(\frac{A-B}{C}\right)\omega_{1}\omega_{2}
-	\end{equation}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-
-	\begin{itemize}
-		\justifying
-		\item Onde  $J_{\omega 1}$, $J_{\omega 2}$ e $J_{\omega 3}$ são os momentos angulares das rodas, $\dot{\vec{\psi}}_{\omega 1}$, $\dot{\vec{\psi}}_{\omega 2}$, $\dot{\vec{\psi}}_{\omega 3}$ são as derivadas das velocidades das mesmas, $\dot{\omega_1}$, $\dot{\omega_2}$ e $\dot{\omega_3}$ são as derivadas das velocidades nos eixos cartesianos do satélite e A, B, C são os momentos de inércia do satélite nos respectivos eixos.
-    \end{itemize}
-	\end{column}
-\end{columns}
-
+\begin{frame}{Referencial Teórico - Motores Elétricos de Inclusão}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.25]{../referencial/img/circuit_fitzgerald_p354.png}
+					\caption{Circuito equivalente monofásico de um motor de indução polifásico. \newline
+					Fonte: \citeonline{Umans2003}.} 
+					\label{fig:circuit_fitzgerald_p354}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item infos
+			\end{itemize}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referencial Teórico - Controle}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.45]{../referencial/img/pid_controller_Snider_p35}
-        \caption{Representação do modelo paralelo de um controlador PID com distúrbios. \newline
-        		 Fonte: Elaborado pelo autor}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
+\begin{frame}{Referencial Teórico - Falhas em Motores Elétricos de Indução}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.25]{../referencial/img/motor_system_rilski_p2.png}
+					\caption{Visão geral de sistema com um motor elétrico. \newline
+					Fonte: \citeonline{Gorbounov2018}.} 
+					\label{fig:motor_system_rilski_p2}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.27]{../referencial/img/faults_rilski_p77.png}
+					\caption{Árvore dos principais tipos de \newline
+					falhas em motores elétricos. \newline
+					Fonte: \citeonline{Gorbounov2018}.} 
+					\label{fig:faults_rilski_p77}
+				\end{center}
+			\end{figure}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referencial Teórico - Método Clássico de Sintonia}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.3]{../referencial/img/pid_autotuning_relay_astrom_p239}
-        \caption{Modelo do método de auto sintonia via relé. \newline
-        		 Fonte: Adaptado de \citeonline{Astrom1995}.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\begin{columns}
-    \begin{column}{0.50\textwidth}
-	\begin{itemize}
-		\item O ganho crítico $K_u$ pode ser encontrado da seguinte forma:
-	\end{itemize}
-	\begin{equation}\label{eq:n(a)}
-	  K_u=\frac{4d}{\pi a}\left(\sqrt{1-\left(\frac{\varepsilon}{a}\right)^{2}}-i\frac{\varepsilon}{a}\right) 
-	\end{equation}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-
-	\begin{itemize}
-	\item Onde \textit{d} é a amplitude de oscilação do relé, \textit{$\varepsilon$} é a histerese do relé e \textit{$a$} é a amplitude de oscilação da saída \cite{Levine1996}.
-	\end{itemize}
-	\end{column}
-\end{columns}
+\begin{frame}{Referencial Teórico - Falhas em Motores Elétricos de Indução}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.25]{../referencial/img/misadraw_analog_p2.png}
+					\caption{Ilustração com os tipos de desalinhamento. \newline
+					Fonte: \citeonline{Sopcik2019}.} 
+					\label{fig:misadraw_analog_p2}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.3]{../referencial/img/bearing_analog_p3.png}
+					\caption{Imagens de rolamentos no \newline
+					topo, e falhas na parte de baixo. \newline
+					Fonte: \citeonline{Sopcik2019}.} 
+					\label{fig:faults_rilski_p77}
+				\end{center}
+			\end{figure}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referencial Teórico - Estado da Arte}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.42]{../referencial/img/pid_neural_chen_p212}
-        \caption{Controlador PID com rede neural. \newline
-        		 Fonte: Adaptado de \citeonline{Chen2004}.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
+\begin{frame}{Referencial Teórico - Análise de Vibração}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.25]{../referencial/img/fault_effect_randall_p54.png}
+					\caption{Variação da carga para distinção da causa do efeito observado. \newline
+					Fonte: \citeonline{Wu2013}.} 
+					\label{fig:fault_effect_randall_p54}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Infos
+			\end{itemize}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Análise de Vibração}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.28]{../referencial/img/iso10816-1_randall_p146.png}
+					\caption{Tabela de valores eficaz máximos de velocidade para cada porte de máquina indicados pela norma ISO 10816-1. \newline
+					Fonte: \citeonline{Wu2013}.} 
+					\label{fig:iso10816-1_randall_p146}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item A = bom estado
+				\item B = aceitável
+				\item C = apenas tolerável
+				\item D = não permitido
+				\item Classe I = pequenas máquinas (potência menor que $\SI{15}{\kilo\watt}$)
+				\item Classe II = máquinas médias sem uma fundação especial (potência entre $\SI{15}{\kilo\watt}$ e $\SI{75}{\kilo\watt}$)
+				\item Classe III = máquinas grandes sobre uma fundação rígida e pesada
+				\item Classe IV = máquinas grandes \newline
+				sobre uma fundação flexível (turbomáquinas) 
+			\end{itemize}			
+	 	\end{column}
+	 \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Análise de Vibração}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.25]{../referencial/img/misa_analog_p2.png}
+					\caption{Indicação espectral de desalinhamento na velocidade. \newline
+					Fonte: \citeonline{Sopcik2019}.} 
+					\label{fig:misa_analog_p2}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\captionsetup{justification=justified}
+					\includegraphics[scale=.25]{../referencial/img/imbalance_analog_p2.png}
+					\caption{Indicação espectral de desbalanceamento na velocidade. \newline
+					Fonte: \citeonline{Sopcik2019}.} 
+					\label{fig:imbalance_analog_p2}
+				\end{center}
+			\end{figure}
+	 	\end{column}
+	 \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Análise de Corrente Elétrica}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.35]{../referencial/img/fault_freq_randall_p55.png}
+					\caption{Ilustração com as frequências associadas às falhas em rotores ou estatores de motores elétricos. \newline
+					Fonte: \citeonline{Wu2013}.} 
+					\label{fig:fault_freq_randall_p55}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.5]{../referencial/img/current_benbouzid_p3.png}
+					\caption{Indicação espectral de desbalanceamento na velocidade. \newline
+					Fonte: \citeonline{El1999}.} 
+					\label{fig:current_benbouzid_p3}
+				\end{center}
+			\end{figure}
+	 	\end{column}
+	 \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referencial Teórico - Técnicas Modernas de Processamento de Sinais}
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+					\includegraphics[scale=.5]{../referencial/img/monitoring_methods_rilski_p78.png}
+					\caption{Árvore de métodos de monitoramento de falhas em motores elétricos. \newline
+					Fonte: \citeonline{Gorbounov2018}.} 
+					\label{fig:monitoring_methods_rilski_p78}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item FFT 
+			\end{itemize}			
+	 	\end{column}
+	 \end{columns}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metodologia}
-\begin{frame}{Metodologia - Hardware}
-
-\begin{columns}
-    \begin{column}{0.50\textwidth}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.3]{../metodologia/img/corpo_real}
-        \caption{Corpo do simulador de satélites prototipado. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-
-	\begin{itemize}
-    	\justifying
-    	\item Hx, Hy e Hz são as hastes nos 3 eixos cartesianos
-    	\item Hb é a haste da bateria
-    	\item ESC são os drivers para os motores sem escovas
-    	\item Rr são as rodas de reação
-    	\item Se é a esfera que compõe o mancal
-    	\item RPi é a Raspberry Pi Zero W
-    	\item Cm são as compensações de massa
-    	\item Gr é o giroscópio e B é a bateria
-    \end{itemize}
-    \end{column}
-\end{columns}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Hardware}
-	\begin{itemize}
-		\justifying
-    	\item \href{https://youtu.be/TpdmkFmt9iw}{\beamergotobutton{Vídeo do primeiro teste do mancal}}
-    \end{itemize}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.25]{../metodologia/img/base_real}
-        \caption{Base do simulador de satélites prototipado. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}	
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Hardware}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.3]{../metodologia/img/simulador_real}
-        \caption{Simulador de satélites prototipado. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Modelo do Motor-Roda}
-
-\begin{columns}
-    \begin{column}{0.40\textwidth}
-        \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.4]{../metodologia/img/modelo_motor_dc}
-        \caption{Modelo do motor DC. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-    \end{column}
-    \begin{column}{0.60\textwidth}
-
-	\begin{equation}\label{eq:motor_accel}
-	  	\frac{\dot{\omega}(s)}{V_a(s)} = \frac{K_wK_t s}{(R_a+ Las)(Js+B)+K_wK_t}  
-	\end{equation}
-	\begin{itemize}
-    	\justifying
-    	\item Onde $R_a$, $L_a$, $i_a$ e $e_a$ são a resistência, a indutância, a corrente e a tensão de armadura, respectivamente, $e_b$ é a tensão induzida. $\tau_{\omega}$ é o torque do motor, $\dot{\omega}$ é a derivada da velocidade angular, $K_t$ é a constante de torque, $K_w$ é a constante de velocidade contra-eletromotriz, J é i momento de inércia motor-roda, $V_a$ é tensão da fonte e B é o atrito viscoso.
-    \end{itemize}
-    \end{column}
-\end{columns}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Sistema de controle}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.42]{../metodologia/img/modelo_satelite_pid}
-        \caption{Modelo em malha fechada com um controlador PID. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Sistema de controle}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.25]{../metodologia/img/modelo_satelite_motor}
-        \caption{Função de transferência dos motores. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.25]{../metodologia/img/matlab_pid_antiwindup}
-        \caption{Digrama de blocos do controlador PID com Anti-Windup. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Software}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.45]{../metodologia/img/comunicacao_projeto}
-        \caption{Representação geral do sistema. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Software}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.45]{../metodologia/img/software_model}
-        \caption{Fluxograma do software de controle. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{fig:software_model}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - Software}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.17]{../metodologia/img/bias_correction}
-        \caption{Características dos sinais amostrados pelo giroscópio. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Metodologia - RNA e Regressão Não-Linear}
-    \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.5]{../metodologia/img/neural_regression}
-        \caption{Diagrama de blocos do sintonizador e otimizador. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{fig:neural_regression}
-        \end{center}
-	\end{figure}
+\begin{frame}{Metodologia - }
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+				\includegraphics[scale=.25]{../referencial/img/ind_motor_petruzella_p115.png}
+				\caption{Motor elétrico de indução tipo gaiola de esquilo. \newline
+				Fonte: \citeonline{Petruzella1911}.}
+				\label{fig:ind_motor_petruzella_p115}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item infos
+			\end{itemize}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Análise dos Resultados}
-\begin{frame}{Análise dos Resultados}
-	\begin{itemize}
-		\justifying
-		\item Passos executados durante os testes:
-		\begin{itemize}
-			\item Treinamento da RNA com um ganho proporcional unitário e posterior otimização dos parâmetros para uma operação inicial.
-			\item Método clássico de sintonia usando o método do relé.
-			\item Execução de ensaios com todos os parâmetros calculados.
-		\end{itemize}
-
-		\item \href{https://youtu.be/cbJlq2HjHKE}{\beamergotobutton{Vídeo do sistema marginalmente estável}} \newline
-		\item \href{https://youtu.be/Aj6VIQYChpI}{\beamergotobutton{Vídeo da resposta ao degrau}}
-	\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Análise dos Resultados - Treinamento da RNA}
-     \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.22]{../resultados/img/neural_output}
-        \caption{Saída da RNA treinada e o sinal real. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Análise dos Resultados - Treinamento da RNA}
-	\begin{itemize}
-		\item Após o treinamento, podemos calcular o RMSE (Root Mean Square Error - Erro quadrático médio) entre os valores preditos e os amostrados, isso se dá da seguinte forma:
-	\end{itemize}
-\begin{equation}
-RMSE = \sqrt{\frac{\sum_{t=1}^{T}(\hat{y}_t-y_t)^2}{T}}
-\end{equation}
-	\begin{itemize}
-		\item Onde T o número de amostras, $\hat{y}_t$ são os valores preditos pela RNA e $y_t$ são os valores reais. Assim obtemos o seguinte RMSE para a rede treinada:
-	\end{itemize}
-\begin{equation}
-RMSE \approx 1.0112
-\end{equation}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Análise dos Resultados - Método do Relé}
-     \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.22]{../resultados/img/relay}
-        \caption{Resultados do método do relé. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Análise dos Resultados - Respostas ao degrau}
-     \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.18]{../resultados/img/pid_result}
-        \caption{Respostas ao degrau com sintonia via método do relé. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Análise dos Resultados - Respostas ao degrau}
-     \begin{figure}[HT]
-		\begin{center}
-		\captionsetup{justification=centering}
-        \includegraphics[scale=.18]{../resultados/img/pid_result_controller}
-        \caption{Velocidade angular instantânea e sinal de controle. \newline
-        		 Fonte: Elaborado pelo autor.}
-		\label{FIG_ADAPTATIVO}
-        \end{center}
-	\end{figure}
+\begin{frame}{Análise dos Resultados - }
+	\begin{columns}
+    	\begin{column}{0.50\textwidth}
+			\begin{figure}[HT]
+				\begin{center}
+				\includegraphics[scale=.25]{../referencial/img/ind_motor_petruzella_p115.png}
+				\caption{Motor elétrico de indução tipo gaiola de esquilo. \newline
+				Fonte: \citeonline{Petruzella1911}.}
+				\label{fig:ind_motor_petruzella_p115}
+				\end{center}
+			\end{figure}
+     	\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item infos
+			\end{itemize}
+	 	\end{column}
+	 \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -531,19 +407,6 @@ RMSE \approx 1.0112
 \begin{frame}{Referências Bibliográficas}
 	\bibliography{../referencial/references}
 \end{frame}
-        
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Agradecimentos}
-	\begin{itemize}
-        \justifying
-        	\item Ao meu orientador Rodrigo Marques de Figueiredo. 
-        	\item Aos professores Walter Andrey Fontana e Dilson Jose Aguiar de Souza.
-			\item Aos laboratoristas dos laboratórios da Eng. Mecânica.
-			\item Aos laboratoristas dos laboratórios da Eng. Elétrica.
-			\item Aos demais amigos e familiares que, de alguma forma, ajudaram na elaboração desse trabalho.  
-		\end{itemize}
-	\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
