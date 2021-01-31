@@ -94,7 +94,7 @@ A figura \ref{fig:faults_rilski_p77} apresenta uma árvore das principais falhas
 em mecânicas e elétricas. 
 
 \begin{figure}[H]
-    \caption{Árvo dos principais tipos de falhas em motores elétricos.}
+    \caption{Árvore dos principais tipos de falhas em motores elétricos.}
     \begin{center}
         \includegraphics[scale=.45]{referencial/img/faults_rilski_p77.png}
     \end{center}
@@ -104,7 +104,7 @@ em mecânicas e elétricas.
 
 Dentre todas essas falhas, o trabalho aborda com maior foco as falhas mecânicas, mais especificamente desalinhamento, rolamentos 
 e desbalanceamento que causam um aumento na vibração do sistema. O desalinhamento ocorre quando o motor e o sistema não estão perfeitamente alinhados, podendo ter dois tipos:
-paralelo e angulas, os quais podem ser vistos na figura \ref{fig:misadraw_analog_p2}, respectivamente na parte a) e b) 
+paralelo e angular, os quais podem ser vistos na figura \ref{fig:misadraw_analog_p2}, respectivamente na parte a) e b) 
 \cite{Sopcik2019}.
 
 \begin{figure}[H]
@@ -309,10 +309,10 @@ utilizadas para detecção e diagnóstico de falhas.
     \label{fig:monitoring_methods_rilski_p78}
 \end{figure}
 
-Dentre essas, a transformada rápida de Fourier (FFT) e CNN (\textit{Convolutional Neural network} - rede neural convolucional) 
-serão descritas na sequência, adicionando mais uma técnica de análise de assinaturas que é a ICA (\textit{Indepent Compoent Analysys}
- - análise de componentes independentes). Além disso, o presente trabalho também aborda duas técnicas de aprendizado de máquina, que 
- é a t-SNE (\textit{t-Distributed Stochastic Neighbor Embedding} - Incorporação Estocástica de Vizinhos com Distribuição t) e, por último, 
+Dentre essas, a FFT (\textit{Fast Fourier Transform - transformada rápida de Fourier}), que será descritas na sequência, 
+adicionando mais uma técnica de análise de assinaturas que é a ICA (\textit{Indepent Compoent Analysys} - análise de componentes independentes).
+Além disso, o presente trabalho também aborda duas técnicas de aprendizado de máquina, que  é a t-SNE 
+(\textit{t-Distributed Stochastic Neighbor Embedding} - Incorporação Estocástica de Vizinhos com Distribuição t) e, por último, 
  a técnica K-means.
 
 
@@ -336,30 +336,6 @@ pode ser descrita da seguinte forma \cite{Wu2013}:
 Esta ferramenta é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
 possibilita analisar as assinaturas no espectro desses sinais, conforme descrito na seção anterior.
 
-
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{CNN}
-
-CNNs são redes neurais artificiais (RNA) sem realimentação, inspiradas em redes neurais que compõe o córtex visual de mamíferos. Essa
-técnica é largamente utilizada em processamento de imagens, principalmente em sistemas de reconhecimento em imagens e vídeos. Um exemplo
-pode ser visto na figura \ref{fig:cnn_image_ince_p5}, onde um modelo que aceita uma imagem com 28 x 28 pixel. Cada camada subsequente é
-subamostrada, dizimando a propagação 2D da camada anterior. O filtro 2D do kernel pe otimizado pelo algoritmo de retropropagação do erro, 
-e os principais parâmetros de uma CNN são o tamanho do kernel e o fator de subamostragem \cite{Ince2016}.
-
-\begin{figure}[H]
-    \caption{Rede neural convolucional.}
-    \begin{center}
-        \includegraphics[scale=.4]{referencial/img/cnn_image_ince_p5.png}
-    \end{center}
-    \fonte{\citeonline{Ince2016}.} 
-    \label{fig:cnn_image_ince_p5}
-\end{figure}
-
-Após a apresentação da técnica que permite reconhecer imagens, será apresentada a primeira técnica de aprendizado de máquina, que se
-encontra na próxima subseção.
 
 
 %----------------------------------------------------------------
@@ -453,6 +429,15 @@ A presente técnica é a primeira sobre aprendizado de máquina, onde a segunda 
 % 
 %----------------------------------------------------------------
 
+\subsection{Aprendizado de Máquina}
+
+
+<<< estatística e algumas regras>>>
+
+%----------------------------------------------------------------
+% 
+%----------------------------------------------------------------
+
 \subsection{K-Means}
 
 K-means é uma das técnicas mais populares de clusterização de dados, sendo publicada pela primeira vez em 1955. Sendo $X=\{x_i\}, i=1, ..., n$
@@ -480,92 +465,9 @@ modernas para detecção e diagnóstico de falhas em motores elétricos.
 \section{Estado da Arte}
 
 O estado da arte em detecção e diagnóstico de falhas em motores elétricos está no emprego de diversas técnicas numa mesma solução. Algumas 
-utilizam técnicas clássicas com CNNs, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contem
+utilizam técnicas clássicas, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contem
 algum exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente.
 
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{RNA}
-
-O emprego de CNNs em classificação de imagens é muito utilizado para se classificar as assinaturas que foram geradas por alguma técnica
-de processamento de sinais. A primeira solução que será apresentada, processa os sinais de corrente do motor via uma CNN de 1 dimensão,
-conforme a figura \ref{fig:cnn_ince_p2}. Uma das principais características dessa técnica, é o emprego unicamente de uma CNN adaptativa,
-não utilizando outras técnicas de processamento de sinais.
-
-
-\begin{figure}[H]
-    \caption{Diagrama de um sistema que utiliza CNN.}
-    \begin{center}
-        \includegraphics[scale=.45]{referencial/img/cnn_ince_p2.png}
-    \end{center}
-    \fonte{\citeonline{Ince2016}.} 
-    \label{fig:cnn_ince_p2}
-\end{figure}
-
-Outra técnica que utiliza CNN é a que foi desenvolvida por \cite{Jeong2016}, onde uma imagem é gerada por um pré-processamento, que nada
-mais é do que a criação de orbitais que são criados pela combinação de dois sensores que devem ter $\ang{90}$ entre eles. As expressões
-que geram esses orbitais são as seguintes:
-
-\begin{equation}\label{eq:}
-    z(n) = x(n)+y(n)\dot j
-\end{equation}
-
-Onde x e y são os dados de vibração. E
-
-\begin{equation}\label{eq:}
-    Z(k) = \sum_{n=0}^{N-1}{z(n)e^{-j\frac{2\pi}{N}nk}}
-\end{equation}
-
-Uma aproximação para z(n), quando $\omega$ [e a velocidade angular, m é positivo e inteiro, $R_{m\omega_+}$ e $R_{m\omega_1}$ são números
-complexos. 
-
-\begin{equation}\label{eq:orbit}
-    \hat{z}(n) = \sum_{m=1}^{N}(R_{m\omega_+}e^{jm\omega n}+R_{m\omega_-}e^{-jm\omega n})
-\end{equation}
-
-O offset pode ser removido via a subtração da média dos valores. Um exemplo de orbitais e suas falhas características pode ser visto
-na figura \ref{fig:orbit_jeong_p3}.
-
-
-\begin{figure}[H]
-    \caption{Diagrama de uma técnica que utiliza classificação de orbitais com CNN.}
-    \begin{center}
-        \includegraphics[scale=.45]{referencial/img/orbit_jeong_p3.png}
-    \end{center}
-    \fonte{\citeonline{Jeong2016}.} 
-    \label{fig:orbit_jeong_p3}
-\end{figure}
-
-Após a obtenção desses orbitais e suas respectivas falhas, os autores treinaram uma CNN para reconhecer o orbital e classificar qual 
-falha está se manifestando.
-
-Outra técnica que emprega RNA, é a que está representada na figura \ref{fig:back-programation-zhang-p5}. Foram
-testados vários tipos de RNAs com o objetivo de comparar o desempenho de cada uma delas, inclusive o proposto pelos autores \cite{Zhang2018}.
-
-\begin{figure}[H]
-    \caption{Técnica proposta por \citeonline{Zhang2018}.}
-    \begin{center}
-        \includegraphics[scale=.35]{referencial/img/proposta_zhang_p4.png}
-    \end{center}
-    \fonte{\citeonline{Zhang2018}.} 
-    \label{fig:proposta_zhang_p4.png}
-\end{figure}
-
-Ao testarem, obtiveram os seguintes resultados comparativos:
-
-\begin{figure}[H]
-    \caption{Resultados da técnica proposta por \citeonline{Zhang2018}.}
-    \begin{center}
-        \includegraphics[scale=.35]{referencial/img/results_zhang_p7.png}
-    \end{center}
-    \fonte{\citeonline{Zhang2018}.} 
-    \label{fig:back-programation-zhang-p5}
-\end{figure}
-
-Esses foram os principais casos de uso de RNA, com foco em CNN, onde é possível ver o melhor desempenho desse método sobre os demais
-tipos de RNA. Na sequência, temos um método que combina FFT e ICA para detectar e classificar falhas.
 
 %----------------------------------------------------------------
 % 
@@ -590,3 +492,12 @@ a saída é aplicada em um RNA com o objetivo de classificar a saída.
 Após elucidados os conceitos básicos sobre motores elétricos de indução, suas falhas, técnicas modernas de processamento de sinais e as 
 técnicas que estão sendo empregadas na atualidade para se detectar e diagnosticar falhas, a proposta de solução do presente trabalho 
 pode ser apresentada, que se encontra no próximo capítulo.
+
+%----------------------------------------------------------------
+% 
+%----------------------------------------------------------------
+
+\subsection{Aprendizado de Máquina}
+
+
+<<< estatística e algumas regras aplicada a vibração (meu código implementado)>>>
