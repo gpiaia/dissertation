@@ -250,45 +250,6 @@ Após a análise das falhas utilizando a vibração do sistema, é necessário f
 que será apresenta na subseção na sequência.
 
 
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{Análise de Corrente Elétrica }\label{sec:}
-
-Como apresentado no circuito da figura \ref{fig:circuit_fitzgerald_p354}, variações na constituição mecânica de um motor elétrico de 
-indução ocasionam variações na corrente e na tensão de entrada. Por exemplo o desbalanceamento, que pode ser uma anomalia no rotor,
-tem uma assinatura específica no espectro da corrente de entrada \cite{Wu2013}.  A figura \ref{fig:fault_freq_randall_p55} contém as
-frequências que estão associadas Às falhas em um rotor.
-
-\begin{figure}[H]
-    \caption{Ilustração com as frequências associadas às falhas em rotores ou estatores de motores elétricos.}
-    \begin{center}
-        \includegraphics[scale=.35]{referencial/img/fault_freq_randall_p55.png}
-    \end{center}
-    \fonte{\citeonline{Wu2013}.} 
-    \label{fig:fault_freq_randall_p55}
-\end{figure}
-
-Como é possível se estimar as frequências características de uma falha no rotor, é viável se criar um sistema que é capaz de detectar uma 
-falha e indicá-la em tempo real se o espectro for analisado por algum algoritmo \cite{El1999}. A figura \ref{fig:current_benbouzid_p3} apresenta uma
-técnica que utiliza esse conceito.
-
-\begin{figure}[H]
-    \caption{Proposta de sistema de diagnóstico utilizando a corrente do estator.}
-    \begin{center}
-        \includegraphics[scale=.5]{referencial/img/current_benbouzid_p3.png}
-    \end{center}
-    \fonte{\citeonline{El1999}.} 
-    \label{fig:current_benbouzid_p3}
-\end{figure}
-
-Onde FFT é a transformada rápida de Fourier (\textit{Fast Fourier Transform}), que possibilita a obtenção do espectro com poucos recursos
-computacionais e boa velocidade.
-
-Após a apresentação das principais assinaturas que aparecem nos dados amostrados de motores elétricos de indução, técnicas de processamento
-destes sinais são necessárias para a criação de um sistema autônomo e em tempo real. Estas técnicas estão descritas na próxima seção.
-
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
@@ -337,94 +298,6 @@ Esta ferramenta é utilizada para se se representar no domínio da frequência, 
 possibilita analisar as assinaturas no espectro desses sinais, conforme descrito na seção anterior.
 
 
-
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{ICA}
-
-ICA foi criada para resolver o problema de separação de fontes desconhecidas, quando estes estão mixados. A técnica ICA utiliza o conceito
-que as fontes estão estaticamente separadas. Se considerarmos o vetor de fontes de sinal $s=[s,...,s_i]^T$ e as observações
-$X = [x_1,...,x_m]^T$ que geram uma matriz mixada A, seguindo a relação \cite{Duan2017}:
-
-\begin{equation}\label{eq:ica_1}
-    x = As
-\end{equation}
-
-A técnica ICA busca pela matriz W separadora, a qual pode recuperar as fontes estimadas, sendo representa da seguinte forma: 
-
-\begin{equation}\label{eq:ica_2}
-    s = A^{-1}X = WX
-\end{equation}
-
-A implementação escolhida para a ICA é a FastICA, a qual busca a maximização não Gaussiana da expressão $w^Tx$, onde w é o vetor linha
-da matriz W, e $w_T$ é a sua transposta. Através do método Newton, podemos obter a matriz w da seguinte forma \cite{Duan2017}:
-
-\begin{equation}\label{eq:ica_3}
-    w_+ = w - \mu[E\{xg(w_Tx)-\beta w\}] /[E\{\hat{g}(w_Tx)-\beta\}]
-\end{equation}
-
-\begin{equation}\label{eq:ica_4}
-    w^* = w^+/\parallel w^+\parallel
-\end{equation}
-
-Onde $w^*$ é o novo valor de w; $\mu$ é o passo da interação; $E\{.\}$ é o valor esperado; $g(.)$ é a derivada de $G(.)$; $G$ é uma
-função constante e $\beta = E\{w^T Xg(w^T X)\}$.
-Apresentadas as principais equações, o algoritmo pode ser visto na figura \ref{fig:fatica_fang_p3}.
-
-\begin{figure}[H]
-    \caption{Fluxograma do algoritmo FastICA.}
-    \begin{center}
-        \includegraphics[scale=.5]{referencial/img/fatica_fang_p3.png}
-    \end{center}
-    \fonte{\citeonline{Duan2017}.} 
-    \label{fig:fatica_fang_p3}
-\end{figure}
-
-A segunda técnica de aprendizado de máquina encontra-se na subseção da sequência.
-
-
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{t-SNE}
-
-É uma técnica não linear com o objetivo de reduzir a dimensionalidade de uma massa de dados. t-SNE é particularmente melhor que 
-outras técnicas existentes para criar um único mapa que pode revelar estruturas de diferentes escalas. A técnica t-SNE começa com a 
-conversão de dimensões superiores de distâncias Euclidianas entre dois dados em uma probabilidade condicional
-$p_{j|i}$. A equação \ref{eq:t-sne_1} representa o cálculo, onde $\sigma$ é a variância \cite{VanDerMaaten2008}.
-
-\begin{equation}\label{eq:t-sne_1}
-    p_{j|i}=\frac{exp(-\parallel x_i-x_j\parallel^2/2\sigma_i^2)}{\sum_{k\ne i}{exp(-\parallel x_i-x_k\parallel^2/2\sigma_i^2)}}
-\end{equation}
-
-t-SNE utiliza a distribuição do tipo t com um grau de liberdade, com essa distribuição, a probabilidade $q_{ij}$ pode ser calculada como:
-
-\begin{equation}\label{eq:t-sne_4}
-    q_{ij}=\frac{(1+\parallel y_i-y_j\parallel^2)^{-1})}{\sum_{k\ne l}{(1 + \parallel y_k-y_l\parallel^2)^{-1}}}
-\end{equation}
-
-Com as duas equações, é possível calcular o gradiente de Kullback-Leibler  divergente entre P e a probabilidade Q, da seguinte forma:
-
-\begin{equation}\label{eq:t-sne_5}
-    \frac{\delta C}{\delta y_i} = 4 \sum_j{(p_{ij}-q_{ij})(y_i - y_j)(1+\parallel y_i-y_j\parallel^2)^{-1}}
-\end{equation}
-
-Após esclarecidas as equações, é possível apresentar o algoritmo que implementa a técnica, que está na figura \ref{fig:t-sne_algorithm_maaten_p9}.
-\begin{figure}[H]
-    \caption{Algoritmo simplificado da técnica t-SNE.}
-    \begin{center}
-        \includegraphics[scale=.45]{referencial/img/t-sne_algorithm_maaten_p9.png}
-    \end{center}
-    \fonte{\citeonline{VanDerMaaten2008}.} 
-    \label{fig:t-sne_algorithm_maaten_p9}
-\end{figure}
-
-A presente técnica é a primeira sobre aprendizado de máquina, onde a segunda está descrita na próxima subseção.
-
-
 %----------------------------------------------------------------
 % 
 %----------------------------------------------------------------
@@ -468,30 +341,6 @@ O estado da arte em detecção e diagnóstico de falhas em motores elétricos es
 utilizam técnicas clássicas, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contem
 algum exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente.
 
-
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{ICA}
-
-Essa técnica emprega 3 assuntos que já foram explicados anteriormente, incluindo FFT, ICA e RNA sobre o sinal de corrente
-do motor. Os sinais que são aplicados no algoritmo FastICA, são o a saída da FFT normalizados e com um tamanho de 1024 amostras. 
-A topologia se encontra na figura \ref{fig:ica_bracamonte_p4}. Por fim, ao se obter as características extra[idas pelo algoritmo FastICA,
-a saída é aplicada em um RNA com o objetivo de classificar a saída.
-
-\begin{figure}[H]
-    \caption{Fluxograma de uma técnica que utiliza ICA.}
-    \begin{center}
-        \includegraphics[scale=.5]{referencial/img/ica_bracamonte_p4.png}
-    \end{center}
-    \fonte{\citeonline{Garcia-Bracamonte2019}.} 
-    \label{fig:ica_bracamonte_p4}
-\end{figure}
-
-Após elucidados os conceitos básicos sobre motores elétricos de indução, suas falhas, técnicas modernas de processamento de sinais e as 
-técnicas que estão sendo empregadas na atualidade para se detectar e diagnosticar falhas, a proposta de solução do presente trabalho 
-pode ser apresentada, que se encontra no próximo capítulo.
 
 %----------------------------------------------------------------
 % 

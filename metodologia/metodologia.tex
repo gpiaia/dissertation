@@ -4,19 +4,34 @@
 
 \chapter{Metodologia}
 
-O presente capítulo descreve todas as etapas do desenvolvimento da proposta, indo desde a configuração do simulador de falhas MFS \textsuperscript \textregistered, da
-empresa SpectraQuest \textsuperscript \textregistered, até as técnicas de processamento que foram utilizadas.
+O presente capítulo descreve todas as etapas do desenvolvimento do projeto, indo desde a configuração do simulador de falhas MFS 
+\textsuperscript \textregistered, da empresa SpectraQuest \textsuperscript \textregistered, até a implementação em campo. A metodologia do
+desenvolvimento se encontra na figura \ref{fig:metodologia}, onde as etapas estão descritas em forma de fluxo de trabalho.
+
+\begin{figure}[H]
+    \caption{Metodologia do Projeto}
+    \begin{center}
+        \includegraphics[scale=1.1, page=3]{metodologia/img/software.pdf}
+    \end{center}
+    \fonte{Elaborado pelo autor.} 
+    \label{fig:metodologia}
+\end{figure}
+
+Dentre as etapas descritas na imagem anterior, a simulação, desenvolvimento do software, integração de SH (Software e Hardware) e implementação
+estão descritas com detalhes nos subcapítulos a seguir.
+
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Configurações dos Experimentos em Laboratório}
+\section{Configurações das Simulações}
 
-Como dito anteriormente, fui utilizado um simulador de falhas em motores elétricos de indução e sistemas mancalizados, denominado
-MFS \textsuperscript \textregistered (\textit{Machinery Fault Simulator} - simulador de falhas em máquinas), que pode ser visto na figura \ref{fig:real_plant}. O
-simulador é composto por um motor elétrico de indução trifásico de 1 HP, o qual está conectado com um eixo via um acoplamento.
-Esse eixo possui dois discos dourados furado, onde é possível se colocar cargas para criar um desbalanceamento no sistema.
+Como dito anteriormente no fluxo de desenvolvimento, fez se o uso de simulações antes da implementação do sistema.
+Para isso, fui utilizado um simulador de falhas em motores elétricos de indução e sistemas mancalizados, denominado
+MFS \textsuperscript \textregistered (\textit{Machinery Fault Simulator} - simulador de falhas em máquinas), que pode ser visto na figura 
+\ref{fig:real_plant}. O simulador é composto por um motor elétrico de indução trifásico de 1 HP, o qual está conectado com um eixo via um 
+acoplamento. Esse eixo possui dois discos dourados furado, onde é possível se colocar cargas para criar um desbalanceamento no sistema.
 
 \begin{figure}[H]
     \caption{Estrutura do simulador MFS \textsuperscript \textregistered.}
@@ -66,17 +81,106 @@ corrente.
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}
-\end{table}
+  \end{table}
   
 Após a apresentação de como foram realizados os testes no simulador, é possível aplicar as topologias propostas no presente trabalho nos
-dados gerados. Esse assunto será abordado na próxima seção.
+dados gerados. Após a etapa de simulação e análise dos dados, com os resultados obtidos, foi possível o início do desenvolvimento do software,
+que será descrito na próxima etapa. 
 
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Configurações dos Experimentos em Campo}
+\section{Desenvolvimento do Software}
+
+Com a escrita dos requisitos, simulações e análise dos dados das simulações, foi possível o início da etapa de desenvolvimento de software,
+que agrega várias ferramentas para entregar um sistema de tempo real para o monitoramento da saúde de motor elétricos de indução. A 
+implementação foi dividida em três principais tarefas: Aquisição dos dados, Machine Learning e o monitoramento. A duas primeiras estão
+descritas na imagem a seguir.
+
+\begin{figure}[H]
+    \caption{Tarefas de Aquisição e Machine Learning}
+    \begin{center}
+        \includegraphics[scale=1, page=1]{metodologia/img/software.pdf}
+    \end{center}
+    \fonte{Elaborado pelo autor.} 
+    \label{fig:tarefa_aq_ml}
+\end{figure}
+
+Como podemos ver ******************** falar detalhes do ML
+gancho do monitoramento *******************************
+
+\begin{figure}[H]
+    \caption{Tarefa de monitoramento}
+    \begin{center}
+        \includegraphics[scale=1, page=2]{metodologia/img/software.pdf}
+    \end{center}
+    \fonte{Elaborado pelo autor.} 
+    \label{fig:k-means}
+\end{figure}
+
+
+alguns detalhes do monitoramento *********************************
+gancho das telas *******************************
+
+
+\begin{figure}[H]
+    \caption{Fluxo de acesso do Software.}
+    \begin{center}
+        \includegraphics[scale=0.25, page=2]{metodologia/img/fluxo_layout.pdf}
+    \end{center}
+    \fonte{Elaborado pelo autor.} 
+    \label{fig:sensor_exaustor}
+\end{figure}
+
+Como podemos ver ******************** falar detalhes do dashboard
+gancho pro prox subchapter *******************************
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% 
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\section{Integração entre Software e Hardware}
+
+
+\begin{table}[H]
+    \caption{Especificações do Sensor QM30VT2}
+    \label{tab:simulador}
+    \centering%
+    \begin{minipage}{.45\textwidth}
+      \begin{tabular*}{\textwidth}{c|c}
+        \hline
+        Especificação            & Valores                                     \\ \hline
+        \hline
+        intervalo de medição     &  0 a $\SI{46}{\milli\metre\per\second}$     \\
+        Largura de banda         &  10 a $\SI{4}{\kilo\hertz}$                 \\ 
+        Acurácia                 &  $\mp 10 \%$ a $\SI{25}{\celsius}$          \\
+        Amostragem               &  $\SI{20}{\kilo\hertz}$                     \\
+        Tempo de Amostragem      &  $\SI{0.4}{\second}$                        \\
+        Grau de Certificação     &  IP67                                       \\
+      \end{tabular*}
+      \fonte{Elaborado pelo Autor.} 
+    \end{minipage}
+  \end{table}
+
+
+
+\begin{figure}[H]
+    \caption{Diagrama de integração entre sensores e Software.}
+    \begin{center}
+        \includegraphics[scale=0.25, page=1]{metodologia/img/fluxo_layout.pdf}
+    \end{center}
+    \fonte{Adaptado pelo autor.} 
+    \label{fig:sensor_exaustor}
+\end{figure}
+
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% 
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\section{Configurações e Implementação em Campo}
 
 Além do ambiente controlado, os conceitos foram aplicados em equipamentos reais e funcionais, que operam 24 horas por dia, 7 dias por semana. 
 No decorrer do trabalho, foi possível aplicar em mais de 2 empresas a aplicação. A figura \ref{fig:exautor} representa um exaustor industrial,
@@ -86,7 +190,7 @@ em uma parada de produção, impactando diretamente no financeiro da empresa.
 \begin{figure}[H]
     \caption{Fotografia externa de um exaustor industrical.}
     \begin{center}
-        \includegraphics[scale=1]{metodologia/img/exaustor.png}
+        \includegraphics[scale=1.25]{metodologia/img/exaustor.png}
     \end{center}
     \fonte{Forncecida pela empresa.} 
     \label{fig:exautor}
@@ -98,115 +202,38 @@ dados, criando um dashboard com o estado de saúde deste motor. A figura \ref{fi
 \begin{figure}[H]
     \caption{Fotografia externa do sensor instalado em um exaustor industrical.}
     \begin{center}
-        \includegraphics[scale=1]{metodologia/img/sensor_exaustor.jpg}
+        \includegraphics[scale=1.1]{metodologia/img/sensor_exaustor.jpg}
     \end{center}
     \fonte{Forncecida pela empresa.} 
     \label{fig:sensor_exaustor}
 \end{figure}
 
 
-\begin{figure}[H]
-    \caption{Diagrama de integração entre sensores e Software.}
-    \begin{center}
-        \includegraphics[scale=0.5]{metodologia/img/layout.PNG}
-    \end{center}
-    \fonte{Adaptado pelo autor.} 
-    \label{fig:sensor_exaustor}
-\end{figure}
-
-\begin{figure}[H]
-    \caption{Fluxo de acesso do Software.}
-    \begin{center}
-        \includegraphics[scale=0.8]{metodologia/img/fluxo_software.PNG}
-    \end{center}
-    \fonte{Elaborado pelo autor.} 
-    \label{fig:sensor_exaustor}
-\end{figure}
-
-
-%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-% 
-%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-\section{Processamento dos Sinais - Topologias Propostas}
-
-Com o estudo dos conceitos básicos sobre os motores elétricos de indução, das técnicas de processamento de sinais e de como os dados foram
-obtidos no simulador MFS \textsuperscript \textregistered, é possível aplicar essas técnicas de acordo com as topologias propostas no presente trabalho. As técnicas
-bases que foram utilizadas são: t-SNE, K-means e ICA respectivamente.
-
 
 %----------------------------------------------------------------
 %  
 %----------------------------------------------------------------
 
-\subsection{T-SNE}
+% \subsection{K-Means}
 
-A ideia de se utilizar essa técnica surgiu do fato de que todas as simulações geraram uma quantidade muito grande de dados, e o interesse
-de se visualizar todas essas informações em um único gráfico foi a estratégia usada para concentrar essas informações em um único 
-gráfico, aparecendo o conceito de clusterização. Saber se era possível agrupar dados em clusters específicos de falhas. A figura 
-\ref{fig:t-sne} apresenta a primeira rodada de testes com a técnica t-SNE. Já a segunda, foi fornecer exatamente os mesmo sinais, só que
-processados antes pela FFT, passando do domínio do tempo para o domínio da frequência.
-
-\begin{figure}[H]
-    \caption{Fluxograma da técnica que utiliza t-SNE.}
-    \begin{center}
-        \includegraphics[scale=.65]{metodologia/img/t-sne.png}
-    \end{center}
-    \fonte{Elaborado pelo autor.} 
-    \label{fig:t-sne}
-\end{figure}
-
-A implementação dessa técnica foi feita na linguagem de programação Python utilizando o pacote scikit-learn. Além disso, o software foi 
-executado em uma máquina Linux de forma offline.
+% Seguindo a mesma linha da técnica anterior, a técnica K-means foi utilizada com o objetivo de clusterizar os dados em grupos de 4 
+% (K=4), pois existem dados de motor bom, com desalinhamento de 15 mils, 35 mils e desbalanceamento. A figura \ref{fig:k-means} apresenta
+% a topologia da implementação.
 
 
-%----------------------------------------------------------------
-%  
-%----------------------------------------------------------------
+% \begin{figure}[H]
+%     \caption{Fluxograma da técnica utilizando K-means.}
+%     \begin{center}
+%         \includegraphics[scale=.65]{metodologia/img/k-means.png}
+%     \end{center}
+%     \fonte{Elaborado pelo autor.} 
+%     \label{fig:k-means}
+% \end{figure}
 
-\subsection{K-Means}
-
-Seguindo a mesma linha da técnica anterior, a técnica K-means foi utilizada com o objetivo de clusterizar os dados em grupos de 4 
-(K=4), pois existem dados de motor bom, com desalinhamento de 15 mils, 35 mils e desbalanceamento. A figura \ref{fig:k-means} apresenta
-a topologia da implementação.
-
-
-\begin{figure}[H]
-    \caption{Fluxograma da técnica utilizando K-means.}
-    \begin{center}
-        \includegraphics[scale=.65]{metodologia/img/k-means.png}
-    \end{center}
-    \fonte{Elaborado pelo autor.} 
-    \label{fig:k-means}
-\end{figure}
-
-Já na implementação dessa técnica, foi utilizada a linguagem de programação R, muito difundida dentro da área de aprendizado de máquina.
-O algoritmo também foi executado em uma máquina Linux e de forma offline.
+% Já na implementação dessa técnica, foi utilizada a linguagem de programação R, muito difundida dentro da área de aprendizado de máquina.
+% O algoritmo também foi executado em uma máquina Linux e de forma offline.
 
 
 %----------------------------------------------------------------
 %  
 %----------------------------------------------------------------
-
-\subsection{ICA}
-
-Diferente das duas propostas anteriores, essa não aborda o conceito de clusterização, mas o de separar as fontes de sinais de vibração.
-Para isso, utilizamos apenas três sinais amostrados da planta, sendo eles: a corrente, a aceleração na lateral do primeiro mancal e 
-na lateral do motor. O objetivo dessa técnica é buscar na corrente os sinais de vibração que estão presentes na estrutura do simulador,
-possibilitando além da detecção e do diagnóstico de uma falha, dizer em qual parte da máquina está o elemento que está em eminência de 
-falhar. A figura \ref{fig:ica}
-
-\begin{figure}[H]
-    \caption{Fluxograma da técnica que utiliza ICA.}
-    \begin{center}
-        \includegraphics[scale=.65]{metodologia/img/ica.png}
-    \end{center}
-    \fonte{Elaborado pelo autor.} 
-    \label{fig:ica}
-\end{figure}
-
-
-A implementação dessa técnica se deu no mesmo ambiente que a t-SNE.
-
-Agora que todas todos os elementos das técnicas implementadas já foram apresentadas, os resultados preliminares podem ser descritos, os 
-quais estão no próximo capítulo.
