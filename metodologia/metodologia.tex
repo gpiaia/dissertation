@@ -4,7 +4,7 @@
 
 \chapter{Metodologia}
 
-O presente capítulo descreve todas as etapas do desenvolvimento do projeto, indo desde a configuração do simulador de falhas MFS 
+O presente capítulo descreve todas as etapas do desenvolvimento do projeto, começando pela configuração do simulador de falhas MFS 
 \textsuperscript \textregistered, da empresa SpectraQuest \textsuperscript \textregistered, até a implementação em campo. A metodologia do
 desenvolvimento se encontra na figura \ref{fig:metodologia}, onde as etapas estão descritas em forma de fluxo de trabalho.
 
@@ -17,7 +17,7 @@ desenvolvimento se encontra na figura \ref{fig:metodologia}, onde as etapas est�
     \label{fig:metodologia}
 \end{figure}
 
-Dentre as etapas descritas na imagem anterior, a simulação, desenvolvimento do software, integração de SH (Software e Hardware) e implementação
+Dentre as etapas descritas na imagem anterior, a simulação, o desenvolvimento do software, a integração do software com o hardware e a implementação
 estão descritas com detalhes nos subcapítulos a seguir.
 
 
@@ -28,10 +28,10 @@ estão descritas com detalhes nos subcapítulos a seguir.
 \section{Configurações das Simulações}
 
 Como dito anteriormente no fluxo de desenvolvimento, fez se o uso de simulações antes da implementação do sistema.
-Para isso, fui utilizado um simulador de falhas em motores elétricos de indução e sistemas mancalizados, denominado
+Para isso, foi utilizado um simulador de falhas em motores elétricos de indução e sistemas mancalizados, denominado
 MFS \textsuperscript \textregistered (\textit{Machinery Fault Simulator} - simulador de falhas em máquinas), que pode ser visto na figura 
 \ref{fig:real_plant}. O simulador é composto por um motor elétrico de indução trifásico de 1 HP, o qual está conectado com um eixo via um 
-acoplamento. Esse eixo possui dois discos dourados furado, onde é possível se colocar cargas para criar um desbalanceamento no sistema.
+acoplamento. Esse eixo possui dois discos dourados e furados, onde é possível se colocar cargas para criar um desbalanceamento no sistema.
 
 \begin{figure}[H]
     \caption{Estrutura do simulador MFS \textsuperscript \textregistered.}
@@ -42,9 +42,9 @@ acoplamento. Esse eixo possui dois discos dourados furado, onde é possível se 
     \label{fig:real_plant}
 \end{figure}
 
-Para a realização dos testes, diversas combinações de falhas, frequências do inversor de frequências e frequências de amostragem foram
-utilizadas, para se entender as dinâmicas das falhas diferentes condições de testes. A planta possui diversos acelerômetros e um sensor
-de corrente, que está amostra uma das fases da alimentação. As falhas que foram inseridas nos testes foram a de desalinhamento dos
+Para a realização dos testes, diversas combinações de falhas, frequências do inversor e frequências de amostragem foram
+utilizadas, para se entender as dinâmicas das falhas em diferentes condições de testes. A planta possui diversos acelerômetros e um sensor
+de corrente, que está amostra uma das fases da alimentação. As falhas que foram inseridas nos testes foram: desalinhamento dos
 mancais e o desbalanceamento das cargas. Essas partes podem ser vistas na figura \ref{fig:lateral_desenho}.
 
 \begin{figure}[H]
@@ -95,8 +95,8 @@ que será descrito na próxima etapa.
 \section{Desenvolvimento do Software}
 
 Com a escrita dos requisitos, simulações e análise dos dados das simulações, foi possível o início da etapa de desenvolvimento de software,
-que agrega várias ferramentas para entregar um sistema de tempo real para o monitoramento da saúde de motor elétricos de indução. A 
-implementação foi dividida em três principais tarefas: Aquisição dos dados, Machine Learning e o monitoramento. A duas primeiras estão
+que agrega várias ferramentas para entregar um sistema de tempo real para o monitoramento da saúde de motores elétricos de indução. A 
+implementação foi dividida em três principais tarefas: aquisição dos dados, machine learning e o monitoramento. As duas primeiras estão
 descritas na imagem a seguir.
 
 \begin{figure}[H]
@@ -108,8 +108,44 @@ descritas na imagem a seguir.
     \label{fig:tarefa_aq_ml}
 \end{figure}
 
-Como podemos ver ******************** falar detalhes do ML
-gancho do monitoramento *******************************
+Na tarefa de aquisição de dados, a qual foi desenvolvida utilizando a linguagem de programação Python, o protocolo utilizado foi o Modbus, 
+muito comum na indústria e de fácil utilização, principalmente porque a leitura é feita de forma periódica e com um intervalo de até 
+\SI{5}{\minute} entre cada uma, que é um dos conceitos básicos do protocolo. O banco de dados utilizado é o InfluxDB, um baco de dados não 
+relacional para armazenamento de séries temporais, que também é uma característica dos dados amostrados.
+Já na tarefa de aprendizado de máquina, ela  manipula banco de dados e variáveis de ambiente da aplicação para encontrar as linhas de base e
+os limiares de alerta e perigo, basicamente encontrando as seguintes relações:
+
+\begin{equation}\label{eq:ml}
+    \bar{X}_{n+1} = \bar{X}_{n} + \frac{x + \bar{X}_n}{n}
+\end{equation}
+
+Onde $\bar{X}_{n+1}$ é a média aritmética para os $n+1$ elementos, $ \bar{X}_{n}$ é a média aritmética anterior,
+$x$ é o novo dado adquirido. Já a relação da variância, pode ser calculada da seguinte forma:
+
+
+\begin{equation}\label{eq:ml2}
+    n \cdot var_{n+1} = var_{n} + (x - \bar{X}_{n+1})(x-\bar{X}_n)
+\end{equation}
+
+E por fim, o desvio padrão $\sigma_{n+1}$ para um novo elemento:
+\begin{equation}\label{eq:ml3}
+    \sigma_{n+1} = \sqrt{\frac{var}{n}}
+\end{equation}
+
+Assumimos que a região de alerta ($A$), a qual significa uma moderada tendência à falha, pode ser calculada da seguinte forma: 
+\begin{equation}\label{eq:ml4}
+    A = \bar{X}_{n+1} + 2 \sigma
+\end{equation}
+
+Segundo a mesma regra, a região onde há uma falha eminente ($P$), um comportamento ambiental ou regime de funcionamento atípico, 
+pode ser calculado da seguinte forma:
+
+\begin{equation}\label{eq:ml5}
+    P = \bar{X}_{n+1} + 3 \sigma
+\end{equation}
+
+Após os valores das linhas de base, alerta e perigo, a aplicação pode ficar encarregada de monitorar os novos dados e aplicar um conjunto
+de regras para classificar se o motor elétrico de indução tem um comportamento normal. O fluxograma da sequência descreve tal tarefa.
 
 \begin{figure}[H]
     \caption{Tarefa de monitoramento}
@@ -120,10 +156,15 @@ gancho do monitoramento *******************************
     \label{fig:k-means}
 \end{figure}
 
+Os critérios elencados para se decidir sinalizar uma tendência de falhas, como podem ser vistos no fluxograma anterior, pode ser divididos
+em duas partes. A primeira, para evitar que dados espúrios ou alguma vibração atípica interfira no sistema, somente se 5 amostras apresentarem 
+valores maiores ou iguais aos limites um sinal de alerta, ou perigo, um sinal será gerado. No segundo caso, se a média dos últimos 100 elementos
+for maior, eliminando os casos em que o motor pode ter um regime não contínuo dentro das 5 amostras, tendo apenas 4 ou menos amostras com valores
+excedentes.
 
-alguns detalhes do monitoramento *********************************
-gancho das telas *******************************
-
+Para uma interface entre homem e máquina, utilizamos a ferramenta Node-Red parta prototipar a presente aplicação. A imagem da sequência mostra 
+a estrutura básica das telas do sofware, que é uma ferramenta baseada em web que pode ser acessada por qualquer dispositivo com navegador web que esteja
+na rede.
 
 \begin{figure}[H]
     \caption{Fluxo de acesso do Software.}
@@ -134,8 +175,11 @@ gancho das telas *******************************
     \label{fig:sensor_exaustor}
 \end{figure}
 
-Como podemos ver ******************** falar detalhes do dashboard
-gancho pro prox subchapter *******************************
+Como vemos, a aplicação possui uma tela de login que protege o acesso ao dashboard principal, que contém imagens que facilitam a identificação
+visual de algum problema com o motor ou com o sistema de aquisição de dados. Ao se selecionar um dos motores, a aplicação é redirecionada para
+uma tela que contém um grupo de gráfico e configurações. A aplicação também permite a configuração manual dos limites de alerta e perigo.
+Após a conclusão e aprovação do software, foi possível executar a integração entre hardware e software, para finalizar o desenvolvimento. Esta
+etapa está descrita na sequência.
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
@@ -143,6 +187,8 @@ gancho pro prox subchapter *******************************
 
 \section{Integração entre Software e Hardware}
 
+Para a aquisição das grandezas físicas, as quais alimentam a aplicação de software, foi selecionado o sensor de vibração e temperatura QM30VT2, 
+da Banner Engineering, que possui as seguintes característica:
 
 \begin{table}[H]
     \caption{Especificações do Sensor QM30VT2}
@@ -164,10 +210,15 @@ gancho pro prox subchapter *******************************
     \end{minipage}
   \end{table}
 
-
+Como podemos ver, ele possui uma largura de banda de até $\SI{4}{\kilo\hertz}$, propícia até para detecção de falhas em rolamentos, como 
+descrito no referencial teórico. Os dados são adquiridos via Modbus RTU (\textit{Remote Terminal Unit} - Unidade de terminal remoto) diretamente
+do sendor, ou ainda, via Modbus TCP (\textit{Transmission Control Protocol} - Protocolo de Controle de Transmissão) a partir de um gateway
+wireless e um nó, facilitando a implantação por não utilizar cabos entre os sensores e a unidade de processamento. O diagrama da figura a seguir
+representa o fluxo básico dos sinais, indo do sensor até o sistema embarcado, o qual processa, armazena e disponibiliza a visualização em 
+tempo real dos dados. 
 
 \begin{figure}[H]
-    \caption{Diagrama de integração entre sensores e Software.}
+    \caption{Diagrama de integração  entre sensores e Software.}
     \begin{center}
         \includegraphics[scale=0.25, page=1]{metodologia/img/fluxo_layout.pdf}
     \end{center}
@@ -176,16 +227,24 @@ gancho pro prox subchapter *******************************
 \end{figure}
 
 
+O sistema embarcado, o qual é a unidade de processamento da aplicação, é composto por uma Raspberry Pi 3 Modelo B+, que é um dispositivo muito 
+conhecido e confiável, executando uma distribuição Linux baseada em Debian. Após o desenvolvimento de software, da integração com o hardware, 
+prototipação, o projeto foi executado em campo em uma empresa da região metropolitana de Porto Alegre - RS, seguindo o fluxograma da 
+figura \ref{fig:metodologia}, que está descrito na próxima etapa.
+
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Configurações e Implementação em Campo}
+\section{Configurações e Implementação do Teste em Campo}
 
-Além do ambiente controlado, os conceitos foram aplicados em equipamentos reais e funcionais, que operam 24 horas por dia, 7 dias por semana. 
-No decorrer do trabalho, foi possível aplicar em mais de 2 empresas a aplicação. A figura \ref{fig:exautor} representa um exaustor industrial,
-um dispositivo que apresenta severas falhas em decorrência do acumulo de partículas que estão no ar. Uma falha num dispositivo desses, acarreta
-em uma parada de produção, impactando diretamente no financeiro da empresa.
+
+Como descrito no fluxograma do projeto, a etapa final do desenvolvimento é a de testes em campo, com o objetivo de analisar a robustez do
+produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de software. Para aplicar a solução,
+foram escolhidos equipamentos reais e funcionais, que operam 24 horas por dia, 7 dias por semana em uma empresa parceira, que é uma montadora 
+da região metropolitana de Porto Alegre - RS. A figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer
+do uso, apresenta severas falhas com o acumulo de partículas que estão suspensas no ar. Uma falha num dispositivo como este, acarreta uma parada de 
+produção, impactando diretamente no financeiro da empresa, justificando facilmente o investimento da tecnologia desenvolvida neste trabalho.
 
 \begin{figure}[H]
     \caption{Fotografia externa de um exaustor industrical.}
@@ -196,8 +255,14 @@ em uma parada de produção, impactando diretamente no financeiro da empresa.
     \label{fig:exautor}
 \end{figure}
 
-Em um deste dispositivo foi instalado um sensor industrial de vibração e temperatura, com o objetivo de coletar, processar e armazenar esses
-dados, criando um dashboard com o estado de saúde deste motor. A figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
+Em um destes dispositivos, foi instalado um sensor industrial de vibração e temperatura, com o objetivo de coletar, processar e armazenar os
+dados, criando um dashboard com o estado de saúde do motor elétrico de indução. A figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
+O motor já se encontrava em uso há algum tempo antes dos testes em campo, significando que já existe uma base de vibração maior do que se fosse
+um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de Machine Learning, reduzindo os limites criados pelo software, que
+consideram que o motor está em perfeito estado de saúde para começar a criação dos limites. Já estava previsto na etapa de análise de mercado, 
+a possibilidade de se ajustar os resultados do Machine Learning, devido a grande frequência de instalações em motores que possuem médio ou
+elevado MTBF (\textit{mean time between failures} - tempo médio entre falhas), mas que ainda oferecem prejuízos se a falha acorrer de forma 
+imprevista.
 
 \begin{figure}[H]
     \caption{Fotografia externa do sensor instalado em um exaustor industrical.}
@@ -208,32 +273,6 @@ dados, criando um dashboard com o estado de saúde deste motor. A figura \ref{fi
     \label{fig:sensor_exaustor}
 \end{figure}
 
-
-
-%----------------------------------------------------------------
-%  
-%----------------------------------------------------------------
-
-% \subsection{K-Means}
-
-% Seguindo a mesma linha da técnica anterior, a técnica K-means foi utilizada com o objetivo de clusterizar os dados em grupos de 4 
-% (K=4), pois existem dados de motor bom, com desalinhamento de 15 mils, 35 mils e desbalanceamento. A figura \ref{fig:k-means} apresenta
-% a topologia da implementação.
-
-
-% \begin{figure}[H]
-%     \caption{Fluxograma da técnica utilizando K-means.}
-%     \begin{center}
-%         \includegraphics[scale=.65]{metodologia/img/k-means.png}
-%     \end{center}
-%     \fonte{Elaborado pelo autor.} 
-%     \label{fig:k-means}
-% \end{figure}
-
-% Já na implementação dessa técnica, foi utilizada a linguagem de programação R, muito difundida dentro da área de aprendizado de máquina.
-% O algoritmo também foi executado em uma máquina Linux e de forma offline.
-
-
-%----------------------------------------------------------------
-%  
-%----------------------------------------------------------------
+Após a descrição de toda a metodologia do presente trabalho, iniciando pela estrutura básica da metodologia, das simulações, do desenvolvimento
+do software, da integração de software e hardware, e por fim, a instalação do protótipo em uma empresa parceira, para validar o produto, podemos
+apresentar os resultados, que se encontram no próximo capítulo.
