@@ -24,9 +24,9 @@ com rotor do tipo gaiola resultam em motores relativamente baratos e confiáveis
 \begin{figure}[H]
     \caption{Motor elétrico de indução tipo gaiola de esquilo.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/ind_motor_petruzella_p115.png}
+        \includegraphics[scale=0.8, page=1]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Petruzella1911}.} 
+    \fonte{Adaptado de \citeonline{Petruzella1911}.} 
     \label{fig:ind_motor_petruzella_p115}
 \end{figure}
 
@@ -84,9 +84,9 @@ para o processo, e isso é normalmente provocado por uma instalação inapropria
 \begin{figure}[H]
     \caption{Visão geral de sistema com um motor elétrico.}
     \begin{center}
-        \includegraphics[scale=.45]{referencial/img/motor_system_rilski_p2.png}
+        \includegraphics[scale=0.9, page=2]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Gorbounov2018}.} 
+    \fonte{Adaptado de \citeonline{Gorbounov2018}.} 
     \label{fig:motor_system_rilski_p2}
 \end{figure}
 
@@ -96,9 +96,9 @@ em mecânicas e elétricas.
 \begin{figure}[H]
     \caption{Árvore dos principais tipos de falhas em motores elétricos.}
     \begin{center}
-        \includegraphics[scale=.45]{referencial/img/faults_rilski_p77.png}
+        \includegraphics[scale=1, page=3]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Gorbounov2018}.} 
+    \fonte{Adaptado de \citeonline{Gorbounov2018}.} 
     \label{fig:faults_rilski_p77}
 \end{figure}
 
@@ -124,9 +124,9 @@ vibração \cite{Sopcik2019}.
 \begin{figure}[H]
     \caption{Imagens de rolamentos no topo, e falhas na parte de baixo.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/bearing_analog_p3.png}
+        \includegraphics[scale=1, page=4]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Sopcik2019}.} 
+    \fonte{Adaptado de \citeonline{Sopcik2019}.} 
     \label{fig:bearing_analog_p3}
 \end{figure}
 
@@ -174,9 +174,9 @@ severo \citeonline{Wu2013}.
 \begin{figure}[H]
     \caption{Variação da carga para distinção da causa do efeito observado.}
     \begin{center}
-        \includegraphics[scale=.45]{referencial/img/fault_effect_randall_p54.png}
+        \includegraphics[scale=0.8, page=5]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Wu2013}.} 
+    \fonte{Adaptado de \citeonline{Wu2013}.} 
     \label{fig:fault_effect_randall_p54}
 \end{figure}
 
@@ -186,14 +186,30 @@ ao se analisar a vibração, sendo possível diagnosticar se o motor e o sistema
 Uma das primeiras técnicas para classificar o estado de saúde de uma máquina, é a norma ISO 10816-1, que recomenda níveis de vibração 
 em valores eficaz de acordo com o porte da máquina, que pode ser visto na figura \ref{fig:iso10816-1_randall_p146}.
 
-\begin{figure}[H]
+\begin{table}[H]
     \caption{Tabela de valores eficaz máximos de velocidade para cada porte de máquina indicados pela norma ISO 10816-1.}
-    \begin{center}
-        \includegraphics[scale=.5]{referencial/img/iso10816-1_randall_p146.png}
-    \end{center}
-    \fonte{\citeonline{Wu2013}.} 
     \label{fig:iso10816-1_randall_p146}
-\end{figure}
+    \centering%
+    \begin{minipage}{.9\textwidth}
+        \begin{tabular*}{\textwidth}{|c|c|c|c|c|}
+            \hline
+            \multicolumn{1}{|c|}{Velocidade de vibração RMS [\SI{}{\milli\metre\per\second}] }& Classe I                                                         & Classe II                                                        & Classe III                                                       & Classe IV                                                        \\ \hline
+            \multicolumn{1}{|c|}{0.25}            & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    \\ \cline{1-1}
+            \multicolumn{1}{|c|}{0.45}            & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    \\ \cline{1-1}
+            \multicolumn{1}{|c|}{0.71}            & \multicolumn{1}{c|}{\multirow{-3}{*}{\cellcolor[HTML]{00FF02}A}} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    \\ \cline{1-2}
+            \multicolumn{1}{|c|}{1.12}            & \multicolumn{1}{c|}{\cellcolor[HTML]{00D2CB}}                    & \multicolumn{1}{c|}{\multirow{-4}{*}{\cellcolor[HTML]{00FF02}A}} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    \\ \cline{1-1} \cline{3-3}
+            \multicolumn{1}{|c|}{1.8}             & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{00D2CB}B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{00D2CB}}                    & \multicolumn{1}{c|}{\multirow{-5}{*}{\cellcolor[HTML]{00FF02}A}} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF02}}                    \\ \cline{1-2} \cline{4-4}
+            \multicolumn{1}{|c|}{2.8}             & \multicolumn{1}{c|}{\cellcolor[HTML]{F8FF00}}                    & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{00D2CB}B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{00D2CB}}                    & \multicolumn{1}{c|}{\multirow{-6}{*}{\cellcolor[HTML]{00FF02}A}} \\ \cline{1-1} \cline{3-3} \cline{5-5} 
+            \multicolumn{1}{|c|}{4.5}             & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{F8FF00}C}} & \multicolumn{1}{c|}{\cellcolor[HTML]{F8FF00}}                    & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{00D2CB}B}} & \multicolumn{1}{c|}{\cellcolor[HTML]{00D2CB}}                    \\ \cline{1-2} \cline{4-4}
+            \multicolumn{1}{|c|}{7.1}             & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{F8FF00}C}} & \multicolumn{1}{c|}{\cellcolor[HTML]{F8FF00}}                    & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{00D2CB}B}} \\ \cline{1-1} \cline{3-3} \cline{5-5} 
+            \multicolumn{1}{|c|}{11.2}            & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{F8FF00}C}} & \multicolumn{1}{c|}{\cellcolor[HTML]{F8FF00}}                    \\ \cline{1-1} \cline{4-4}
+            \multicolumn{1}{|c|}{18}              & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{F8FF00}C}} \\ \cline{1-1} \cline{5-5} 
+            \multicolumn{1}{|c|}{28}              & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    & \multicolumn{1}{c|}{\cellcolor[HTML]{FE0000}}                    \\ \cline{1-1} \cline{5-5} 
+            \multicolumn{1}{|c|}{45}              & \multicolumn{1}{c|}{\multirow{-5}{*}{\cellcolor[HTML]{FE0000}D}} & \multicolumn{1}{c|}{\multirow{-4}{*}{\cellcolor[HTML]{FE0000}D}} & \multicolumn{1}{c|}{\multirow{-3}{*}{\cellcolor[HTML]{FE0000}D}} & \multicolumn{1}{c|}{\multirow{-2}{*}{\cellcolor[HTML]{FE0000}D}} \\ \cline{1-1} \cline{5-5}
+        \end{tabular*}
+      \fonte{Adaptado de \citeonline{Wu2013}.} 
+    \end{minipage}
+  \end{table}
 
 Onde
 
@@ -215,9 +231,9 @@ frequência, como pode ser visto na figura \ref{fig:misa_analog_p2} \cite{Sopcik
 \begin{figure}[H]
     \caption{Indicação espectral de desalinhamento na velocidade.}
     \begin{center}
-        \includegraphics[scale=.4]{referencial/img/misa_analog_p2.png}
+        \includegraphics[scale=0.7, page=6]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Sopcik2019}.} 
+    \fonte{Adaptado de \citeonline{Sopcik2019}.} 
     \label{fig:misa_analog_p2}
 \end{figure}
 
@@ -227,26 +243,14 @@ A figura \ref{fig:imbalance_analog_p2} exemplifica.
 \begin{figure}[H]
     \caption{Indicação espectral de desbalanceamento na velocidade.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/imbalance_analog_p2.png}
+        \includegraphics[scale=0.8, page=7]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Sopcik2019}.} 
+    \fonte{Adaptado de \citeonline{Sopcik2019}.} 
     \label{fig:imbalance_analog_p2}
 \end{figure}
 
 No mesmo conceito, é possível identificar a assinatura de uma falha de rolamentos de acordo com o tipo de rolamento, velocidade de rotação
-do motor, entre outras características. Uma tabela com estas frequências, se encontra na sequência na figura \ref{fig:bearing_table_analog_p3}
-
-
-\begin{figure}[H]
-    \caption{Tabela de frequências para falhas em rolamentos.}
-    \begin{center}
-        \includegraphics[scale=.7]{referencial/img/bearing_table_analog_p3.png}
-    \end{center}
-    \fonte{\citeonline{Sopcik2019}.} 
-    \label{fig:bearing_table_analog_p3}
-\end{figure}
-
-Após a análise das falhas utilizando a vibração do sistema, é necessário fazer a mesma análise com a corrente elétrica na armadura, 
+do motor, entre outras características. Após a análise das falhas utilizando a vibração do sistema, é necessário fazer a mesma análise com a corrente elétrica na armadura, 
 que será apresenta na subseção na sequência.
 
 
@@ -264,9 +268,9 @@ utilizadas para detecção e diagnóstico de falhas.
 \begin{figure}[H]
     \caption{Árvore de métodos de monitoramento de falhas em motores elétricos.}
     \begin{center}
-        \includegraphics[scale=.5]{referencial/img/monitoring_methods_rilski_p78.png}
+        \includegraphics[scale=0.9, page=8]{referencial/img/imagens_referencial.pdf}
     \end{center}
-    \fonte{\citeonline{Gorbounov2018}.} 
+    \fonte{Adaptado de \citeonline{Gorbounov2018}.} 
     \label{fig:monitoring_methods_rilski_p78}
 \end{figure}
 
@@ -275,27 +279,6 @@ adicionando mais uma técnica de análise de assinaturas que é a ICA (\textit{I
 Além disso, o presente trabalho também aborda duas técnicas de aprendizado de máquina, que  é a t-SNE 
 (\textit{t-Distributed Stochastic Neighbor Embedding} - Incorporação Estocástica de Vizinhos com Distribuição t) e, por último, 
  a técnica K-means.
-
-
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{FFT}
-
-FFT é um algoritmo muito eficiente que calcula a DFT (\textit{Discrete Fourier Transform} - Transformada discreta de Fourier), a qual 
-pode ser descrita da seguinte forma \cite{Wu2013}:
-
-\begin{equation}\label{eq:dft}
-    G(k)=\frac{1}{N}\sum_{k=0}^{N-1} g(n)exp(-j2\pi kn/N)
-\end{equation}
-
-\begin{equation}\label{eq:dft}
-    g(n)=\sum_{k=0}^{N-1} G(k)exp(j2\pi kn/N)
-\end{equation}
-
-Esta ferramenta é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
-possibilita analisar as assinaturas no espectro desses sinais, conforme descrito na seção anterior.
 
 
 %----------------------------------------------------------------
