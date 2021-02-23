@@ -169,7 +169,7 @@ na rede.
 \begin{figure}[H]
     \caption{Fluxo de acesso do Software.}
     \begin{center}
-        \includegraphics[scale=0.25, page=2]{metodologia/img/fluxo_layout.pdf}
+        \includegraphics[scale=0.8, page=2]{metodologia/img/fluxo_layout.pdf}
     \end{center}
     \fonte{Elaborado pelo autor.} 
     \label{fig:sensor_exaustor}
@@ -199,12 +199,12 @@ da Banner Engineering, que possui as seguintes característica:
         \hline
         Especificação            & Valores                                     \\ \hline
         \hline
-        intervalo de medição     &  0 a $\SI{46}{\milli\metre\per\second}$     \\
+        Intervalo de medição     &  0 a $\SI{46}{\milli\metre\per\second}$     \\
         Largura de banda         &  10 a $\SI{4}{\kilo\hertz}$                 \\ 
         Acurácia                 &  $\mp 10 \%$ a $\SI{25}{\celsius}$          \\
         Amostragem               &  $\SI{20}{\kilo\hertz}$                     \\
         Tempo de Amostragem      &  $\SI{0.4}{\second}$                        \\
-        Grau de Certificação     &  IP67                                       \\
+        Grau de Certificação     &  IP67                                       \\ \hline
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}
@@ -220,7 +220,7 @@ tempo real dos dados.
 \begin{figure}[H]
     \caption{Diagrama de integração  entre sensores e Software.}
     \begin{center}
-        \includegraphics[scale=0.25, page=1]{metodologia/img/fluxo_layout.pdf}
+        \includegraphics[scale=0.8, page=1]{metodologia/img/fluxo_layout.pdf}
     \end{center}
     \fonte{Adaptado pelo autor.} 
     \label{fig:sensor_exaustor}
@@ -229,22 +229,23 @@ tempo real dos dados.
 
 O sistema embarcado, o qual é a unidade de processamento da aplicação, é composto por uma Raspberry Pi 3 Modelo B+, que é um dispositivo muito 
 conhecido e confiável, executando uma distribuição Linux baseada em Debian. Após o desenvolvimento de software, da integração com o hardware, 
-prototipação, o projeto foi executado em campo em uma empresa da região metropolitana de Porto Alegre - RS, seguindo o fluxograma da 
-figura \ref{fig:metodologia}, que está descrito na próxima etapa.
+prototipação, o projeto foi executado em campo, em forma de estudo de caso, em uma empresa da região metropolitana de Porto Alegre - RS, seguindo o fluxograma da 
+figura \ref{fig:metodologia}, que será descrito na próxima etapa.
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Configurações e Implementação do Teste em Campo}
+\section{Estudos de Casos}
 
 
-Como descrito no fluxograma do projeto, a etapa final do desenvolvimento é a de testes em campo, com o objetivo de analisar a robustez do
-produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de software. Para aplicar a solução,
-foram escolhidos equipamentos reais e funcionais, que operam 24 horas por dia, 7 dias por semana em uma empresa parceira, que é uma montadora 
-da região metropolitana de Porto Alegre - RS. A figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer
-do uso, apresenta severas falhas com o acumulo de partículas que estão suspensas no ar. Uma falha num dispositivo como este, acarreta uma parada de 
-produção, impactando diretamente no financeiro da empresa, justificando facilmente o investimento da tecnologia desenvolvida neste trabalho.
+Como descrito no fluxograma do projeto, a etapa final do desenvolvimento é a de testes em campo, em forma de estudo de caso, com o objetivo 
+de analisar a robustez do produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de software. 
+Para aplicar a solução, foram escolhidos equipamentos reais e funcionais, que operam 24 horas por dia, 7 dias por semana em empresas parceiras,
+com o objetivo de prova de conceito e posterior aquisição pelas mesmas. Para isto, um exaustor industrial foi escolhidos em uma delas, que é 
+uma montadora da região metropolitana de Porto Alegre - RS. A figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer do uso, apresenta severas falhas com o acumulo 
+de partículas que estão suspensas no ar. Uma falha num dispositivo como este, acarreta uma parada de  produção, impactando diretamente no 
+financeiro da empresa, justificando facilmente o investimento da tecnologia desenvolvida neste trabalho.
 
 \begin{figure}[H]
     \caption{Fotografia externa de um exaustor industrical.}
@@ -273,6 +274,58 @@ imprevista.
     \label{fig:sensor_exaustor}
 \end{figure}
 
+Já as característica dos testes, que podem ser vistas na tabela \ref{tab:exautor}, 
+
+\begin{table}[H]
+    \caption{Características da prova de conceito no exaustor}
+    \label{tab:exautor}
+    \centering%
+    \begin{minipage}{.55\textwidth}
+      \begin{tabular*}{\textwidth}{c|c}
+        \hline
+        Característica                          & Valores                                    \\ \hline
+        \hline
+        Tempo entre cada amostragem             &  $\SI{5}{\minute}$                         \\
+        Número de sensores                      &  1                                         \\ 
+        Potência do motor                       &  yyyy$\SI{}{\kilo\watt}$                      \\
+        Classe do motor segundo a  ISO 10816-1  &  I                                         \\
+        Rotação                                 & $\SI{30}{\hertz}$                          \\ \hline
+      \end{tabular*}
+      \fonte{Elaborado pelo Autor.} 
+    \end{minipage}
+  \end{table}
+
+
+Já na outra empresa, que é uma produtora de tabaco e seus derivados, também no estado do Rio grande do sul, o sistema foi instalado em uma 
+seladora, não especificamente em um motor elétrico de indução, mas em 5 pontos estratégicos, distribuindo os 5 sensores nos principais pontos 
+de falhas: acoplamentos, redutores e nas proximidades de polias. Esta seladora tem um papel muito importante na produção, sendo um dos gargalos
+da produção. Qualquer falha imprevista, também impacta na produção diária, distorcendo toda a produção. A tabela \ref{tab:seladora} apresenta 
+as características da prova de conceito na seladora.
+
+\begin{table}[H]
+    \caption{Características da prova de conceito na seladora}
+    \label{tab:seladora}
+    \centering%
+    \begin{minipage}{.55\textwidth}
+      \begin{tabular*}{\textwidth}{c|c}
+        \hline
+        Característica                          & Valores                                    \\ \hline
+        \hline
+        Tempo entre cada amostragem             &  $\SI{30}{\second}$                        \\
+        Número de sensores                      &  5                                         \\ 
+        Potência do motor                       &  yyyyy $\SI{}{\kilo\watt}$                 \\
+        Classe do motor segundo a  ISO 10816-1  &  yyyy                                      \\
+        Rotação                                 & yyyyy $\SI{}{\hertz}$                      \\ \hline
+      \end{tabular*}
+      \fonte{Elaborado pelo Autor.} 
+    \end{minipage}
+  \end{table}
+
+Como podemos ver, a amostragem e o número de sensores são as principais diferenças. A amostragem com 10 vezes mais elementos, foi uma exigência
+da empresa, além do mais, o equipamento tem variações de ciclos, não sendo um processo contínuo, inviabilizando amostras com intervalo de 
+$\SI{5}{\minute}$. Imagens da instalação dos senores, e nem da máquina, foram liberadas pela empresa, mas os resultados foram 
+disponibilizados na íntegra.
+
 Após a descrição de toda a metodologia do presente trabalho, iniciando pela estrutura básica da metodologia, das simulações, do desenvolvimento
-do software, da integração de software e hardware, e por fim, a instalação do protótipo em uma empresa parceira, para validar o produto, podemos
-apresentar os resultados, que se encontram no próximo capítulo.
+do software, da integração de software e hardware, e por fim, a instalação do protótipo nas empresas parceiras, para a prova de conceito, 
+podemos apresentar os resultados, que se encontram no próximo capítulo.

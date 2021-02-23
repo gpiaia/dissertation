@@ -124,7 +124,7 @@ vibração \cite{Sopcik2019}.
 \begin{figure}[H]
     \caption{Imagens de rolamentos no topo, e falhas na parte de baixo.}
     \begin{center}
-        \includegraphics[scale=1, page=4]{referencial/img/imagens_referencial.pdf}
+        \includegraphics[scale=0.85, page=4]{referencial/img/imagens_referencial.pdf}
     \end{center}
     \fonte{Adaptado de \citeonline{Sopcik2019}.} 
     \label{fig:bearing_analog_p3}
@@ -188,7 +188,7 @@ em valores eficaz de acordo com o porte da máquina, que pode ser visto na figur
 
 \begin{table}[H]
     \caption{Tabela de valores eficaz máximos de velocidade para cada porte de máquina indicados pela norma ISO 10816-1.}
-    \label{fig:iso10816-1_randall_p146}
+    \label{tab:iso10816-1_randall_p146}
     \centering%
     \begin{minipage}{.9\textwidth}
         \begin{tabular*}{\textwidth}{|c|c|c|c|c|}
@@ -289,29 +289,6 @@ Além disso, o presente trabalho também aborda duas técnicas de aprendizado de
 
 
 <<< estatística e algumas regras>>>
-
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
-
-\subsection{K-Means}
-
-K-means é uma das técnicas mais populares de clusterização de dados, sendo publicada pela primeira vez em 1955. Sendo $X=\{x_i\}, i=1, ..., n$
-n d-dimensões pontos para serem clusterizados em K clusters, onde $C = \{c_k, k=1, ..., K\}$. O algoritmo K-means encontra uma partição onde o erro quadrático entre a média 
-empírica de um cluster e os pontos no cluster sejam minimizados. A média do cluster $c_k$ é $\mu_k$, definido da seguinte forma \cite{Jain2010}:
-
-\begin{equation}\label{eq:k-means}
-    J(c_k) = \sum_{x_j\in c_k} {\parallel x_i-\mu_k \parallel^2}
-\end{equation}
-
-E o objetivo é minimizar a seguinte expressão:
-
-\begin{equation}\label{eq:k-means}
-    J(c_k) = \sum_{k=1}^{K}\sum_{x_j\in c_k} {\parallel x_i-\mu_k \parallel^2}
-\end{equation}
-
-Com isso, os conceitos básicos das técnicas de processamento de sinais foram apresentados. A próxima seção contém algumas soluções
-modernas para detecção e diagnóstico de falhas em motores elétricos.
 
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
