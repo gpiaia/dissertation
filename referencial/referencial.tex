@@ -17,7 +17,7 @@ detecção e diagnóstico de falhas em motores elétricos de indução.
 
 Motores elétricos de indução são um dos tipos de máquinas elétricas, as quais convertem energia elétrica em mecânica. 
 Nos motores elétricos de indução, uma corrente elétrica é induzida no rotor através da corrente de armadura que circula
-no estator. Contudo, um rotor do tipo gaiola de esquilo, pode ser visto na figura \ref{fig:ind_motor_petruzella_p115}, 
+no estator. Contudo, um rotor do tipo gaiola de esquilo, pode ser visto na Figura \ref{fig:ind_motor_petruzella_p115}, 
 é um curto-circuito formado por barras e lâminas de alumínio. Por essa constituição simples, motores elétricos de indução
 com rotor do tipo gaiola resultam em motores relativamente baratos e confiáveis, contribuindo para sua popularidade \cite{Umans2003}.
  
@@ -32,7 +32,7 @@ com rotor do tipo gaiola resultam em motores relativamente baratos e confiáveis
 
 Uma das formas de se modelar um motor elétrico de indução, é através de uma representação em forma de um circuito 
 elétrico, onde todas as variáveis podem ser representadas por componentes elétricos simples, facilitando a compreensão, modelagem e
-prever possíveis variações nos elementos mecânicos e elétricos. O circuito representado na figura \ref{fig:circuit_fitzgerald_p354},
+prever possíveis variações nos elementos mecânicos e elétricos. O circuito representado na Figura \ref{fig:circuit_fitzgerald_p354},
 é um circuito equivalente monofásico de um motor elétrico indutivo polifásico, o que simplifica toda a análise em um único circuito,
 onde é trivial isolar a tensão em um terminal e a sua corrente. Para se saber as demais correntes e tensões, basta deslocar as fases
 em $\pm\ang{120}$ \cite{Umans2003}.
@@ -73,8 +73,8 @@ acometem as partes mecânicas e elétricas de um motor elétrico.
 \section{Falhas em Motores Elétricos de Indução}\label{sec:}
 
 Como dito anteriormente, um motor elétrico é utilizado para transformar energia elétrica em mecânica, sendo empregado em máquinas que podem
-realizar diversas atividades. A figura \ref{fig:monitoring_methods_rilski_p78} representa uma generalização de um sistema em que um motor
-elétrico é empregado. Nesta figura, podemos ver os elementos que constituem a parte elétrica: a fonte de energia, o inversor de frequência e
+realizar diversas atividades. A Figura \ref{fig:monitoring_methods_rilski_p78} representa uma generalização de um sistema em que um motor
+elétrico é empregado. Nesta Figura, podemos ver os elementos que constituem a parte elétrica: a fonte de energia, o inversor de frequência e
 o próprio motor. Também é possível ver a parte mecânica: a estrutura do motor, o acoplamento mecânico, a carga e as bases. Todos esses
 elementos podem induzir falhas no motor, começando pelo acionamento, onde pode ocorrer uma falha e fazer o motor perder uma fase, ou ainda, 
 oscilações na tensão e sobre carga. Todas essas falhas inevitavelmente alteram o espectro da fonte de energia \citeonline{Gorbounov2018}. 
@@ -90,7 +90,7 @@ para o processo, e isso é normalmente provocado por uma instalação inapropria
     \label{fig:motor_system_rilski_p2}
 \end{figure}
 
-A figura \ref{fig:faults_rilski_p77} apresenta uma árvore das principais falhas que acometem os motores elétricos, sendo também divididas
+A Figura \ref{fig:faults_rilski_p77} apresenta uma árvore das principais falhas que acometem os motores elétricos, sendo também divididas
 em mecânicas e elétricas. 
 
 \begin{figure}[H]
@@ -104,7 +104,7 @@ em mecânicas e elétricas.
 
 Dentre todas essas falhas, o trabalho aborda com maior foco as falhas mecânicas, mais especificamente desalinhamento, rolamentos 
 e desbalanceamento que causam um aumento na vibração do sistema. O desalinhamento ocorre quando o motor e o sistema não estão perfeitamente alinhados, podendo ter dois tipos:
-paralelo e angular, os quais podem ser vistos na figura \ref{fig:misadraw_analog_p2}, respectivamente na parte a) e b) 
+paralelo e angular, os quais podem ser vistos na Figura \ref{fig:misadraw_analog_p2}, respectivamente na parte a) e b) 
 \cite{Sopcik2019}.
 
 \begin{figure}[H]
@@ -118,7 +118,7 @@ paralelo e angular, os quais podem ser vistos na figura \ref{fig:misadraw_analog
 
 Já a falha de desbalanceamento, pode ocorrer em qualquer parte rotativa do sistema, que vai desde o motor até a carga, compreendida por
 algum problema na disposição das massas. Por último, os rolamentos, que são utilizados em diversas partes de um sistema e que podem
-apresentar pequenas rachaduras na falta de lubrificação, que podem ser vistas na figura \ref{fig:bearing_analog_p3}, aumentando a 
+apresentar pequenas rachaduras na falta de lubrificação, que podem ser vistas na Figura \ref{fig:bearing_analog_p3}, aumentando a 
 vibração \cite{Sopcik2019}.
 
 \begin{figure}[H]
@@ -184,7 +184,7 @@ severo \citeonline{Wu2013}.
 Essa vibração possui um característica específica, que depende de qual falha ela é oriunda, que acaba criando uma assinatura
 ao se analisar a vibração, sendo possível diagnosticar se o motor e o sistema em que ele está inserido está com boa saúde \cite{Wu2013}.
 Uma das primeiras técnicas para classificar o estado de saúde de uma máquina, é a norma ISO 10816-1, que recomenda níveis de vibração 
-em valores eficaz de acordo com o porte da máquina, que pode ser visto na figura \ref{fig:iso10816-1_randall_p146}.
+em valores eficaz de acordo com o porte da máquina, que pode ser visto na Tabela \ref{tab:iso10816-1_randall_p146}.
 
 \begin{table}[H]
     \caption{Tabela de valores eficaz máximos de velocidade para cada porte de máquina indicados pela norma ISO 10816-1.}
@@ -226,7 +226,7 @@ Onde
 
 Relembrando o que foi escrito anteriormente, é possível ver as assinaturas das falhas no espectro da vibração captada por um transdutor
 que está acoplado no sistema. Quando uma falha de desalinhamento está presente, há um aumento de até duas vezes nas harmônicas de alta 
-frequência, como pode ser visto na figura \ref{fig:misa_analog_p2} \cite{Sopcik2019}.
+frequência, como pode ser visto na Figura \ref{fig:misa_analog_p2} \cite{Sopcik2019}.
 
 \begin{figure}[H]
     \caption{Indicação espectral de desalinhamento na velocidade.}
@@ -238,7 +238,7 @@ frequência, como pode ser visto na figura \ref{fig:misa_analog_p2} \cite{Sopcik
 \end{figure}
 
 Já quando uma falha de desbalanceamento está presente, há um aumento na harmônica principal da velocidade, em relação ao valor de base.
-A figura \ref{fig:imbalance_analog_p2} exemplifica.
+A Figura \ref{fig:imbalance_analog_p2} exemplifica.
 
 \begin{figure}[H]
     \caption{Indicação espectral de desbalanceamento na velocidade.}
@@ -262,7 +262,7 @@ que será apresenta na subseção na sequência.
 \section{Técnicas Modernas de Processamento de Sinais}\label{sec:}
 
 Com o objetivo de se detectar falhas e se obter um diagnóstico das mesmas, muitas técnicas já foram implementadas. Essas técnicas podem ser
-não invasivas ou invasivas \cite{Gorbounov2018}. A figura \ref{fig:monitoring_methods_rilski_p78} apresenta algumas técnicas que são
+não invasivas ou invasivas \cite{Gorbounov2018}. A Figura \ref{fig:monitoring_methods_rilski_p78} apresenta algumas técnicas que são
 utilizadas para detecção e diagnóstico de falhas.
 
 \begin{figure}[H]

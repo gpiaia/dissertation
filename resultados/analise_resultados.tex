@@ -12,26 +12,9 @@ comparações em diferentes condições, mostrando a relação de causa e efeito
 dos elementos, e também comparações entre os mesmos.
 
 Para a apresentação dos resultados do exaustor, foram feitas capturas de tela do software do sistema que estava instalado no motor, de forma
-remota e supervisionada pelos responsáveis pela manutenção dos mesmos. A figura \ref{fig:exaustor_1} é a captura de tela do sistema no dia
+remota e supervisionada pelos responsáveis pela manutenção dos mesmos. A Figura \ref{fig:exaustor_1} é a captura de tela do sistema no dia
 em que um relatório sobre a saúde dos exautores foi gerado, com os dados daquele momento, e com os limites gerados pelo machine learning
 no momento da instalação (06/12/2020).
-
-As principais informações que podem ser vistas na captura de tela são: 
-
-\begin{itemize}
-    \item Configurações de visualização: campos para selecionar se o gráfico será em tempo real, ou os dados serão exibidos dentro de um
-intervalo, além de permitir selecionar qual eixo se deseja visualizar;
-    \item Configurações de de Alerta e Perigo: possui o botão para ativação e desativação do machine learning, além dos campos para se editar
-os valores de alerta e perigo, conforme desejo do usuário;
-    \item Gráfico de Velocidade RMS em $\SI{}{\milli\metre\per\second}$, que contém: reta da linha de base em azul-escuro, dados de velocidade
-amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
-    \item Gráfico de Pico de frequência da velocidade em $\SI{}{\hertz}$, que contém: dados do pico de frequência da velocidade amostrados em 
-    azul-claro; 
-    \item Gráfico de Velocidade RMS em $\SI{}{\milli\metre\per\second}$, que contém: reta da linha de base em azul-escuro, dados de velocidade
-amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
-    \item Gráfico de Temperatura em $\SI{}{\celsius}$, que contém: reta da linha de base em azul-escuro, dados de temperatura
-amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
-\end{itemize}
 
 \begin{figure}[H]
     \caption{Captura de tela do sistema instalado no exaustor.}
@@ -46,7 +29,7 @@ A captura de tela está com os dados de velocidade e aceleração do eixo Z, com
 ultrapassam os limites estabelecidos pelo machine learning, somente no estado de alerta, mas isso não significa que o motor esteja em bom estado.
 Se consultarmos a tabela \ref{tab:iso10816-1_randall_p146}, veremos que os valores para um motor de Classe I, segundo norma  ISO 10816-1, está 
 entre apenas tolerável e não permitido, dependendo do regime de funcionamento. 
-Se olharmos o eixo z, que se encontra na figura \ref{fig:exaustor_xz}, os valores não permitidos, deixando claro o risco de falha iminente do 
+Se olharmos o eixo z, que se encontra na Figura \ref{fig:exaustor_xz}, os valores não permitidos, deixando claro o risco de falha iminente do 
 motor.
 
 \begin{figure}[H]
@@ -58,7 +41,7 @@ motor.
     \label{fig:exaustor_xz}
 \end{figure}
 
-Como ficou claro, o eixo z se encontra em estado severo de vibração, não entrando em alarme devido ao machine learning tardio executado
+O eixo z se encontra em estado severo de vibração, não entrando em alarme devido ao machine learning tardio executado
 pelo do operador, sendo agora uma tarefa de gestão do sistema, de se executar da maneira mais adequada, que é logo após o recondicionamento 
 ou ajustar manualmente os limites de acordo com a norma ISO 10816-1. Outra característica importante é a temperatura, que pode ser vista na 
 figura \ref{fig:exaustor_temperatura}, que teve uma dinâmica bem comportada e com característica de um sistema linear de primeira ordem.
@@ -81,7 +64,7 @@ problema grave reportado, funcionando dentro das especificações e dentro do es
 para a empresa, contendo todos os dados e explicações, o qual foi aceito e sinalizaram o desejo de instalar em mais equipamentos.
 
 A segunda prova de conceito foi realizada em uma seleira universal, como descrito anteriormente, onde 5 sensores foram distribuídos pela máquina, com o 
-objetivo de monitorar os pontos críticos. Como no caso do exaustor, foram realizadas capturas de telas do sistema, onde a figura
+objetivo de monitorar os pontos críticos. Como no caso do exaustor, foram realizadas capturas de telas do sistema, onde a Figura
 \ref{fig:seleira_universal} representa a captura dos dados do sensor 5, 4 dias antes de uma falha (08/12/2020). 
 
 \begin{figure}[H]
@@ -98,7 +81,7 @@ funcionamento. Estes sensores foram instalados no dia 13/11/2020, mas os dados c
 ferramenta de machine learning fui usada e os limites foram criados. 
 A ferramenta foi aplicada em todos os 5 sensores, que foram instalados em acoplamentos, nas proximidades de polias e moto-redutores.
 Cada um destes monitorou um comportamento diferente, mas o sensor mais importante se mostrou ser o 5, onde os resultados foram mais nítidos. 
-Os outros sensores, pelo menos mais 3 apresentaram comportamento anômalos, mas nenhum como este. A figura \ref{fig:seleira_universal_antes_depois}
+Os outros sensores, pelo menos mais 3 apresentaram comportamento anômalos, mas nenhum como este. A Figura \ref{fig:seleira_universal_antes_depois}
 apresenta uma comparação dos dados de velocidade logo após a instalação, com os dados na iminência de uma falha.
 
 \begin{figure}[H]
@@ -111,7 +94,7 @@ apresenta uma comparação dos dados de velocidade logo após a instalação, co
     \label{fig:seleira_universal_antes_depois}
 \end{figure}
 
-Como é perceptível, os dados coletados na iminência da falha ultrapassam os limites de alerta e perigo, mesmo que não continuamente, mas
+Como podemos ver, os dados coletados na iminência da falha ultrapassam os limites de alerta e perigo, mesmo que não continuamente, mas
 como a regra estabelecida na metodologia, da existência de 5 picos ou média acima dos limites, caracterizando uma alerta. Como são muitos dados,
 um a cada $\SI{30}{\second}$, a visualização das retas de limites ficam comprometidas, e só é possível ver pela parte da tela onde se edita os
 valores, ou pelos pontos azuis-escuros, amarelos e vermelhos no lado direito do gráfico. Além disso, é possível notar que no início do processo,
@@ -121,7 +104,7 @@ correia alguns dias após estes dados serem coletados e visualmente alertar uma 
 mais um equipamento, independente de ser um motor ou outro sistema mecânico. A aplicação funcionou perfeitamente, similar ao estudo de caso do
 exaustor, apresentando apenas uma falha de salvar repetidas vezes os limites, que foi resolvida remotamente e incorporada ao software do projeto.
 Uma peculiaridade de um sistema mancalizado, que difere de uma instalação em um motor elétrico de indução, é o comportamento da temperatura,
-que pode ser visto na figura \ref{fig:seleira_universal_temperatura}. 
+que pode ser visto na Figura \ref{fig:seleira_universal_temperatura}. 
 Ela tem um perfil mais discreto, e não seguindo um sistema de primeira ordem, por não estar próximo de uma fonte de calor significativa, por isso
 os limites gerados para algo com pouca variância, são limites muito próximos dos dados amostrados, ocorrendo falsos positivos apenas com a
 variação da temperatura ambiente. A solução para isso, já prevista no início do projeto, é a possibilidade do operador alterar os limites, de 

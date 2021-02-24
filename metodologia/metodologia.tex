@@ -6,7 +6,7 @@
 
 O presente capítulo descreve todas as etapas do desenvolvimento do projeto, começando pela configuração do simulador de falhas MFS 
 \textsuperscript \textregistered, da empresa SpectraQuest \textsuperscript \textregistered, até a implementação em campo. A metodologia do
-desenvolvimento se encontra na figura \ref{fig:metodologia}, onde as etapas estão descritas em forma de fluxo de trabalho.
+desenvolvimento se encontra na Figura \ref{fig:metodologia}, onde as etapas estão descritas em forma de fluxo de trabalho.
 
 \begin{figure}[H]
     \caption{Metodologia do Projeto}
@@ -29,7 +29,7 @@ estão descritas com detalhes nos subcapítulos a seguir.
 
 Como dito anteriormente no fluxo de desenvolvimento, fez se o uso de simulações antes da implementação do sistema.
 Para isso, foi utilizado um simulador de falhas em motores elétricos de indução e sistemas mancalizados, denominado
-MFS \textsuperscript \textregistered (\textit{Machinery Fault Simulator} - simulador de falhas em máquinas), que pode ser visto na figura 
+MFS \textsuperscript \textregistered (\textit{Machinery Fault Simulator} - simulador de falhas em máquinas), que pode ser visto na Figura 
 \ref{fig:real_plant}. O simulador é composto por um motor elétrico de indução trifásico de 1 HP, o qual está conectado com um eixo via um 
 acoplamento. Esse eixo possui dois discos dourados e furados, onde é possível se colocar cargas para criar um desbalanceamento no sistema.
 
@@ -45,7 +45,7 @@ acoplamento. Esse eixo possui dois discos dourados e furados, onde é possível 
 Para a realização dos testes, diversas combinações de falhas, frequências do inversor e frequências de amostragem foram
 utilizadas, para se entender as dinâmicas das falhas em diferentes condições de testes. A planta possui diversos acelerômetros e um sensor
 de corrente, que está amostra uma das fases da alimentação. As falhas que foram inseridas nos testes foram: desalinhamento dos
-mancais e o desbalanceamento das cargas. Essas partes podem ser vistas na figura \ref{fig:lateral_desenho}.
+mancais e o desbalanceamento das cargas. Essas partes podem ser vistas na Figura \ref{fig:lateral_desenho}.
 
 \begin{figure}[H]
     \caption{Desenho simplificado da Planta.}
@@ -56,7 +56,7 @@ mancais e o desbalanceamento das cargas. Essas partes podem ser vistas na figura
     \label{fig:lateral_desenho}
 \end{figure}
 
-A tabela \ref{tab:simulador} contem as combinações de testes que foram realizados. Onde DA é desalinhamento e DB é desbalanceamento.
+A Tabela \ref{tab:simulador} contem as combinações de testes que foram realizados. Onde DA é desalinhamento e DB é desbalanceamento.
 Cada um destes arquivos gerados possuem 9 colunas de dados, que correspondem aos 7 acelerômetros, 1 tacógrafo e um transformador de
 corrente.
 
@@ -177,7 +177,24 @@ na rede.
 
 Como vemos, a aplicação possui uma tela de login que protege o acesso ao dashboard principal, que contém imagens que facilitam a identificação
 visual de algum problema com o motor ou com o sistema de aquisição de dados. Ao se selecionar um dos motores, a aplicação é redirecionada para
-uma tela que contém um grupo de gráfico e configurações. A aplicação também permite a configuração manual dos limites de alerta e perigo.
+uma tela que contém um grupo de gráfico e configurações. A aplicação também permite a configuração manual dos limites de alerta e perigo. As 
+principais informações que podem ser vistas nesta tela são: 
+
+\begin{itemize}
+    \item Configurações de visualização: campos para selecionar se o gráfico será em tempo real, ou os dados serão exibidos dentro de um
+intervalo, além de permitir selecionar qual eixo se deseja visualizar;
+    \item Configurações de de Alerta e Perigo: possui o botão para ativação e desativação do machine learning, além dos campos para se editar
+os valores de alerta e perigo, conforme desejo do usuário;
+    \item Gráfico de Velocidade RMS em $\SI{}{\milli\metre\per\second}$, que contém: reta da linha de base em azul-escuro, dados de velocidade
+amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
+    \item Gráfico de Pico de frequência da velocidade em $\SI{}{\hertz}$, que contém: dados do pico de frequência da velocidade amostrados em 
+    azul-claro; 
+    \item Gráfico de Velocidade RMS em $\SI{}{\milli\metre\per\second}$, que contém: reta da linha de base em azul-escuro, dados de velocidade
+amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
+    \item Gráfico de Temperatura em $\SI{}{\celsius}$, que contém: reta da linha de base em azul-escuro, dados de temperatura
+amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
+\end{itemize}
+
 Após a conclusão e aprovação do software, foi possível executar a integração entre hardware e software, para finalizar o desenvolvimento. Esta
 etapa está descrita na sequência.
 
@@ -213,7 +230,7 @@ da Banner Engineering, que possui as seguintes característica:
 Como podemos ver, ele possui uma largura de banda de até $\SI{4}{\kilo\hertz}$, propícia até para detecção de falhas em rolamentos, como 
 descrito no referencial teórico. Os dados são adquiridos via Modbus RTU (\textit{Remote Terminal Unit} - Unidade de terminal remoto) diretamente
 do sendor, ou ainda, via Modbus TCP (\textit{Transmission Control Protocol} - Protocolo de Controle de Transmissão) a partir de um gateway
-wireless e um nó, facilitando a implantação por não utilizar cabos entre os sensores e a unidade de processamento. O diagrama da figura a seguir
+wireless e um nó, facilitando a implantação por não utilizar cabos entre os sensores e a unidade de processamento. O diagrama da Figura a seguir
 representa o fluxo básico dos sinais, indo do sensor até o sistema embarcado, o qual processa, armazena e disponibiliza a visualização em 
 tempo real dos dados. 
 
@@ -243,7 +260,7 @@ Como descrito no fluxograma do projeto, a etapa final do desenvolvimento é a de
 de analisar a robustez do produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de software. 
 Para aplicar a solução, foram escolhidos equipamentos reais e funcionais, que operam 24 horas, 7 dias por semana em empresas parceiras,
 com o objetivo de prova de conceito e posterior aquisição pelas mesmas. Para isto, um exaustor industrial foi escolhido em uma delas, que é 
-uma montadora da região metropolitana de Porto Alegre - RS. A figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer do uso, apresenta severas falhas com o acumulo 
+uma montadora da região metropolitana de Porto Alegre - RS. A Figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer do uso, apresenta severas falhas com o acumulo 
 de partículas que estão suspensas no ar. Uma falha num dispositivo como este, acarreta uma parada de  produção, impactando diretamente no 
 financeiro da empresa, justificando facilmente o investimento da tecnologia desenvolvida neste trabalho.
 
@@ -257,12 +274,12 @@ financeiro da empresa, justificando facilmente o investimento da tecnologia dese
 \end{figure}
 
 Em um destes dispositivos, foi instalado um sensor industrial de vibração e temperatura, com o objetivo de coletar, processar e armazenar os
-dados, criando um dashboard com o estado de saúde do motor elétrico de indução. A figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
+dados, criando um dashboard com o estado de saúde do motor elétrico de indução. A Figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
 O motor já se encontrava em uso há algum tempo antes dos testes em campo, significando que já existe uma base de vibração maior do que se fosse
 um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de machine learning, reduzindo os limites criados pelo software, que
 consideram que o motor está em perfeito estado de saúde para começar a criação dos limites. Já estava previsto na etapa de análise de mercado, 
 a possibilidade de se ajustar os resultados do machine learning, devido a grande frequência de instalações em motores que possuem médio ou
-elevado MTBF (\textit{mean time between failures} - tempo médio entre falhas), mas que ainda oferecem prejuízos se a falha acorrer de forma 
+elevado MTBF (\textit{Mean Time Between Failures} - tempo médio entre falhas), mas que ainda oferecem prejuízos se a falha acorrer de forma 
 imprevista.
 
 \begin{figure}[H]
@@ -274,7 +291,7 @@ imprevista.
     \label{fig:sensor_exaustor}
 \end{figure}
 
-Já as características dos testes, que podem ser vistas na tabela \ref{tab:exautor}, 
+Já as características dos testes, que podem ser vistas na Tabela \ref{tab:exautor}, 
 
 \begin{table}[H]
     \caption{Características da prova de conceito no exaustor}
@@ -298,7 +315,7 @@ Já as características dos testes, que podem ser vistas na tabela \ref{tab:exau
 Já na outra empresa, que é uma produtora de tabaco e seus derivados, também no estado do Rio grande do sul, o sistema foi instalado em uma 
 seleira universal, não especificamente em um motor elétrico de indução, mas em 5 pontos estratégicos, distribuindo os 5 sensores nos principais pontos 
 de falhas: acoplamentos, moto-redutores e nas proximidades de polias. Esta seleira universal tem um papel muito importante na produção, sendo um dos gargalos
-da produção. Qualquer falha imprevista, também impacta na produção diária, distorcendo toda a produção. A tabela \ref{tab:seleira_universal} apresenta 
+da produção. Qualquer falha imprevista, também impacta na produção diária, distorcendo toda a produção. A Tabela \ref{tab:seleira_universal} apresenta 
 as características da prova de conceito na seleira universal.
 
 \begin{table}[H]
