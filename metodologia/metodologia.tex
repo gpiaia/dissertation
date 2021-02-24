@@ -137,7 +137,7 @@ Assumimos que a região de alerta ($A$), a qual significa uma moderada tendênci
     A = \bar{X}_{n+1} + 2 \sigma
 \end{equation}
 
-Segundo a mesma regra, a região onde há uma falha eminente ($P$), um comportamento ambiental ou regime de funcionamento atípico, 
+Segundo a mesma regra, a região onde há uma falha iminente ($P$), um comportamento ambiental ou regime de funcionamento atípico, 
 pode ser calculado da seguinte forma:
 
 \begin{equation}\label{eq:ml5}
@@ -153,7 +153,7 @@ de regras para classificar se o motor elétrico de indução tem um comportament
         \includegraphics[scale=1, page=2]{metodologia/img/software.pdf}
     \end{center}
     \fonte{Elaborado pelo autor.} 
-    \label{fig:k-means}
+    \label{fig:monitoramento}
 \end{figure}
 
 Os critérios elencados para se decidir sinalizar uma tendência de falhas, como podem ser vistos no fluxograma anterior, pode ser divididos
@@ -172,7 +172,7 @@ na rede.
         \includegraphics[scale=0.8, page=2]{metodologia/img/fluxo_layout.pdf}
     \end{center}
     \fonte{Elaborado pelo autor.} 
-    \label{fig:sensor_exaustor}
+    \label{fig:fluxo_software}
 \end{figure}
 
 Como vemos, a aplicação possui uma tela de login que protege o acesso ao dashboard principal, que contém imagens que facilitam a identificação
@@ -192,7 +192,7 @@ da Banner Engineering, que possui as seguintes característica:
 
 \begin{table}[H]
     \caption{Especificações do Sensor QM30VT2}
-    \label{tab:simulador}
+    \label{tab:espec_sensor}
     \centering%
     \begin{minipage}{.45\textwidth}
       \begin{tabular*}{\textwidth}{c|c}
@@ -223,7 +223,7 @@ tempo real dos dados.
         \includegraphics[scale=0.8, page=1]{metodologia/img/fluxo_layout.pdf}
     \end{center}
     \fonte{Adaptado pelo autor.} 
-    \label{fig:sensor_exaustor}
+    \label{fig:fluxo_integracao}
 \end{figure}
 
 
@@ -241,32 +241,32 @@ figura \ref{fig:metodologia}, que será descrito na próxima etapa.
 
 Como descrito no fluxograma do projeto, a etapa final do desenvolvimento é a de testes em campo, em forma de estudo de caso, com o objetivo 
 de analisar a robustez do produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de software. 
-Para aplicar a solução, foram escolhidos equipamentos reais e funcionais, que operam 24 horas por dia, 7 dias por semana em empresas parceiras,
-com o objetivo de prova de conceito e posterior aquisição pelas mesmas. Para isto, um exaustor industrial foi escolhidos em uma delas, que é 
+Para aplicar a solução, foram escolhidos equipamentos reais e funcionais, que operam 24 horas, 7 dias por semana em empresas parceiras,
+com o objetivo de prova de conceito e posterior aquisição pelas mesmas. Para isto, um exaustor industrial foi escolhido em uma delas, que é 
 uma montadora da região metropolitana de Porto Alegre - RS. A figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer do uso, apresenta severas falhas com o acumulo 
 de partículas que estão suspensas no ar. Uma falha num dispositivo como este, acarreta uma parada de  produção, impactando diretamente no 
 financeiro da empresa, justificando facilmente o investimento da tecnologia desenvolvida neste trabalho.
 
 \begin{figure}[H]
-    \caption{Fotografia externa de um exaustor industrical.}
+    \caption{Fotografia externa de um exaustor industrial.}
     \begin{center}
         \includegraphics[scale=1.25]{metodologia/img/exaustor.png}
     \end{center}
-    \fonte{Forncecida pela empresa.} 
+    \fonte{Fornececida pela empresa.} 
     \label{fig:exautor}
 \end{figure}
 
 Em um destes dispositivos, foi instalado um sensor industrial de vibração e temperatura, com o objetivo de coletar, processar e armazenar os
 dados, criando um dashboard com o estado de saúde do motor elétrico de indução. A figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
 O motor já se encontrava em uso há algum tempo antes dos testes em campo, significando que já existe uma base de vibração maior do que se fosse
-um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de Machine Learning, reduzindo os limites criados pelo software, que
+um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de machine learning, reduzindo os limites criados pelo software, que
 consideram que o motor está em perfeito estado de saúde para começar a criação dos limites. Já estava previsto na etapa de análise de mercado, 
-a possibilidade de se ajustar os resultados do Machine Learning, devido a grande frequência de instalações em motores que possuem médio ou
+a possibilidade de se ajustar os resultados do machine learning, devido a grande frequência de instalações em motores que possuem médio ou
 elevado MTBF (\textit{mean time between failures} - tempo médio entre falhas), mas que ainda oferecem prejuízos se a falha acorrer de forma 
 imprevista.
 
 \begin{figure}[H]
-    \caption{Fotografia externa do sensor instalado em um exaustor industrical.}
+    \caption{Fotografia externa do sensor instalado em um exaustor industrial.}
     \begin{center}
         \includegraphics[scale=1.1]{metodologia/img/sensor_exaustor.jpg}
     \end{center}
@@ -274,7 +274,7 @@ imprevista.
     \label{fig:sensor_exaustor}
 \end{figure}
 
-Já as característica dos testes, que podem ser vistas na tabela \ref{tab:exautor}, 
+Já as características dos testes, que podem ser vistas na tabela \ref{tab:exautor}, 
 
 \begin{table}[H]
     \caption{Características da prova de conceito no exaustor}
@@ -289,7 +289,6 @@ Já as característica dos testes, que podem ser vistas na tabela \ref{tab:exaut
         Número de sensores                      &  1                                         \\ 
         Potência do motor                       &  yyyy$\SI{}{\kilo\watt}$                      \\
         Classe do motor segundo a  ISO 10816-1  &  I                                         \\
-        Rotação                                 & $\SI{30}{\hertz}$                          \\ \hline
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}
@@ -297,14 +296,14 @@ Já as característica dos testes, que podem ser vistas na tabela \ref{tab:exaut
 
 
 Já na outra empresa, que é uma produtora de tabaco e seus derivados, também no estado do Rio grande do sul, o sistema foi instalado em uma 
-seladora, não especificamente em um motor elétrico de indução, mas em 5 pontos estratégicos, distribuindo os 5 sensores nos principais pontos 
-de falhas: acoplamentos, redutores e nas proximidades de polias. Esta seladora tem um papel muito importante na produção, sendo um dos gargalos
-da produção. Qualquer falha imprevista, também impacta na produção diária, distorcendo toda a produção. A tabela \ref{tab:seladora} apresenta 
-as características da prova de conceito na seladora.
+seleira universal, não especificamente em um motor elétrico de indução, mas em 5 pontos estratégicos, distribuindo os 5 sensores nos principais pontos 
+de falhas: acoplamentos, moto-redutores e nas proximidades de polias. Esta seleira universal tem um papel muito importante na produção, sendo um dos gargalos
+da produção. Qualquer falha imprevista, também impacta na produção diária, distorcendo toda a produção. A tabela \ref{tab:seleira_universal} apresenta 
+as características da prova de conceito na seleira universal.
 
 \begin{table}[H]
-    \caption{Características da prova de conceito na seladora}
-    \label{tab:seladora}
+    \caption{Características da prova de conceito na seleira universal}
+    \label{tab:seleira_universal}
     \centering%
     \begin{minipage}{.55\textwidth}
       \begin{tabular*}{\textwidth}{c|c}
@@ -313,9 +312,8 @@ as características da prova de conceito na seladora.
         \hline
         Tempo entre cada amostragem             &  $\SI{30}{\second}$                        \\
         Número de sensores                      &  5                                         \\ 
-        Potência do motor                       &  yyyyy $\SI{}{\kilo\watt}$                 \\
-        Classe do motor segundo a  ISO 10816-1  &  yyyy                                      \\
-        Rotação                                 & yyyyy $\SI{}{\hertz}$                      \\ \hline
+        Potência do motor                       &  $\SI{1.1185}{\kilo\watt}$                 \\
+        Classe do motor segundo a  ISO 10816-1  &  I                                         \\
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}
@@ -323,7 +321,7 @@ as características da prova de conceito na seladora.
 
 Como podemos ver, a amostragem e o número de sensores são as principais diferenças. A amostragem com 10 vezes mais elementos, foi uma exigência
 da empresa, além do mais, o equipamento tem variações de ciclos, não sendo um processo contínuo, inviabilizando amostras com intervalo de 
-$\SI{5}{\minute}$. Imagens da instalação dos senores, e nem da máquina, foram liberadas pela empresa, mas os resultados foram 
+$\SI{5}{\minute}$. Imagens da instalação dos sensores, e nem da máquina, foram liberadas pela empresa, mas os resultados foram 
 disponibilizados na íntegra.
 
 Após a descrição de toda a metodologia do presente trabalho, iniciando pela estrutura básica da metodologia, das simulações, do desenvolvimento
