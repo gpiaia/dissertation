@@ -259,7 +259,7 @@ que será apresenta na subseção na sequência.
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Técnicas Modernas de Processamento de Sinais}\label{sec:}
+\section{Técnicas de Processamento de Sinais}\label{sec:signal_process}
 
 Com o objetivo de se detectar falhas e se obter um diagnóstico das mesmas, muitas técnicas já foram implementadas. Essas técnicas podem ser
 não invasivas ou invasivas \cite{Gorbounov2018}. A Figura \ref{fig:monitoring_methods_rilski_p78} apresenta algumas técnicas que são
@@ -274,21 +274,75 @@ utilizadas para detecção e diagnóstico de falhas.
     \label{fig:monitoring_methods_rilski_p78}
 \end{figure}
 
-Dentre essas, a FFT (\textit{Fast Fourier Transform - transformada rápida de Fourier}), que será descritas na sequência, 
-adicionando mais uma técnica de análise de assinaturas que é a ICA (\textit{Indepent Compoent Analysys} - análise de componentes independentes).
-Além disso, o presente trabalho também aborda duas técnicas de aprendizado de máquina, que  é a t-SNE 
-(\textit{t-Distributed Stochastic Neighbor Embedding} - Incorporação Estocástica de Vizinhos com Distribuição t) e, por último, 
- a técnica K-means.
+Dentre estas, a FFT (\textit{Fast Fourier Transform - transformada rápida de Fourier}), Valor RMS (\textit{Root Mean Square} - valor quarático 
+médio) e ML \textit{machine learning} (aprendizado de máquina) serão utilizadas de forma direta ou indireta neste trabalho.
+FFT é um algoritmo muito eficiente que calcula a DFT (\textit{Discrete Fourier Transform} - Transformada  discreta de Fourier), a qual pode ser
+descrita da seguinte forma \cite{Wu2013}:
 
+\begin{equation}\label{eq:dft}
+    G(k)=\frac{1}{N}\sum_{k=0}^{N-1} g(n)exp(-j2\pi kn/N)
+\end{equation}
 
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
+\begin{equation}\label{eq:dft2}
+    g(n)=\sum_{k=0}^{N-1} G(k)exp(j2\pi kn/N)
+\end{equation}
 
-\subsection{Aprendizado de Máquina}
+Esta ferramenta é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
+possibilita extrair informações do espectro desses sinais, conforme descrito na seção anterior. 
 
+Já o Valor RMS, que é a forma mais comum de se descrever a energia que um sinal  $x(t)$ carrega em qualquer período \cite{Cryer2010}, que pode
+ser representado da seguinte forma:
 
-<<< estatística e algumas regras>>>
+\begin{equation}\label{eq:rms_int}
+    X_{RMS} = \sqrt{\frac{1}{T}\int_{0}^{T}{x(t)^2dt}}
+\end{equation}
+
+A ideia de se caracterizar a energia de um sinal através do Valor RMS \cite{Cryer2010}, vem da seguinte expressão :
+
+\begin{equation}\label{eq:energia}
+    E = \int_{0}^{T}{[x(t)]^2dt}
+\end{equation}
+
+Onde $E$ é a energia carregada pelo sinal x(t) \cite{Oppenheim2016}. Expandindo, se calcularmos a potência dissipada em um resistor de
+$\SI{1}{\ohm}$ num intervalo de tempo T, temos a seguinte expressão:
+
+\begin{equation}\label{eq:power}
+    P = \frac{1}{T}\int_{0}^{T}{[x(t)]^2dt}
+\end{equation}
+
+Se compararmos as equações \ref{eq:rms_int} e \ref{eq:power}, podemos ver que o valor RMS está relacionado com a raiz quadrada da potência do 
+sinal. Ao se utilizar sinais discretos, o valor RMS pode ser representado da seguinte forma:
+
+\begin{equation}\label{eq:rms_disc}
+    x_{RMS} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}{X^2(i)}}
+\end{equation}
+
+A última das técnicas utilizadas neste trabalho, ML, que nasceu dentro da ciência da computação, e que veio ao encontro do reconhecimento de 
+padrões, já este, oriundo das engenharias, para formar um ferramenta importantíssima para as ciências, com as mais diversas
+aplicações. No campo do reconhecimento de padrões, a palavra chave é a incerteza. Teoria da probabilidade é uma ferramenta matemática sólida
+para quantificar e manipular incertezas, formando a fundamentação para o recondicionamento de padrões. O estudo da 
+distribuição de probabilidades em variáveis contínuas é essencial para entender a dinÂmica destes dados. A distribuição de probabilidades mais
+conhecida é a Gaussiana, que também é chamada de distribuição normal \cite{Andersen1986}. Três dos principais parâmetros para se analisar
+em uma distribuição normal são: média, variância e desvio padrão,onde a média de um sinal $x(t)$ num período T,pode ser calculado da seguinte
+forma \cite{Dinardo}:
+
+\begin{equation}\label{eq:X_lim}
+    \bar{x} = \lim_{T\rightarrow\infty}{\frac{1}{T^*}} \int_{0}^{T}{x(t)dt}
+\end{equation}
+
+% \begin{equation}\label{eq:XX_lim}
+%     \bar{x^2} = \lim_{T^{*}\rightarrow\infty}{\frac{1}{T^*}} \int_{0}^{T}{[x(t)]^2dt}
+% \end{equation}
+Já a variância:
+
+\begin{equation}\label{eq:variancia}
+    \sigma^2 = \lim_{T^{*}\rightarrow\infty}{\frac{1}{T^*}} \int_{0}^{T}{[x(t)-\bar{x}]^2dt}
+\end{equation}
+
+Onde $\sigma$ é o desvio padrão, que representa a dispersão, em outras palavras, o quão distânte os dados amostrados estão da média. Um dado
+amostrado que se encontra disperso, ou seja, com elevado desvio padrão, pode significar que houve um ganho ou perda de energia, se esse dado
+for um valor RMS, caracterizando uma anomalia. Assim que os conceitos básicos foram apresentados, podemos relacionar os trabalhos correlatos,
+os quais serão descritos na próxima etapa.
 
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -299,14 +353,49 @@ Além disso, o presente trabalho também aborda duas técnicas de aprendizado de
 
 O estado da arte em detecção e diagnóstico de falhas em motores elétricos está no emprego de diversas técnicas numa mesma solução. Algumas 
 utilizam técnicas clássicas, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contem
-algum exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente.
+algum exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente. A tabela 
 
 
-%----------------------------------------------------------------
-% 
-%----------------------------------------------------------------
+\begin{table}[H]
+    \caption{Tabela de trabalhos correlatos.}
+    \label{tab:correlatos}
+    \centering%
+    % \begin{minipage}{\textwidth}
+        \begin{tabular*}{\textwidth}{|p{0.1\textwidth}|p{0.2\textwidth}|p{0.35\textwidth}|p{0.35\textwidth}|}
+            \hline
+            Ano  & Autores                                       & Trabalho Realizado             & Relação                        \\ \hline
+            2016 & \cite{Jeong2016}             & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2016 & \cite{Ince2016}              & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2016 & \cite{Hemmati2016a}          & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2017 & \cite{Hatami2017}            & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2017 & \cite{Caesarendra2017}       & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2018 & \cite{Zhang2018}             & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2019 & \cite{Zhu2019}               & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2019 & \cite{Garcia-Bracamonte2019} & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2019 & \cite{Azeem2019}             & asdfasdfasdf & asdfasdfasdf \\ \hline
+            2019 & \cite{Zhang2019}             & asdfasdfasdf & asdfasdfasdf \\ \hline        
+        \end{tabular*}
+      \fonte{Elaborado pelo autor.} 
+    % \end{minipage}
+  \end{table}
 
-\subsection{Aprendizado de Máquina}
+% \cite{Jeong2016} Deep Learning Based Diagnostics of Orbit Patterns in Rotating Machinery
+% Haedong
 
+% \cite{Ince2016} Real-Time Motor Fault Detection by 1-D Convolutional Neural Networks
 
-<<< estatística e algumas regras aplicada a vibração (meu código implementado)>>>
+% \cite{Hemmati2016a} Roller bearing acoustic signature extraction by wavelet packet transform, applications in fault detection and size estimation
+
+% \cite{Hatami2017} Classification of Time-Series Images Using Deep Convolutional Neural Networks
+
+% \cite{Caesarendra2017} A Review of Feature Extraction Methods in Vibration-Based Condition Monitoring and Its Application for Degradation Trend Estimation of Low-Speed Slew Bearing
+
+% \cite{Zhang2018} Deep residual learning-based fault diagnosis method for rotating machinery
+
+% \cite{Zhu2019} Rotor fault diagnosis using a convolutional neural network with symmetrized dot pattern images
+
+% \cite{Garcia-Bracamonte2019} An Approach on MCSA-Based Fault Detection Using Independent Component Analysis and Neural Networks
+
+% \cite{Azeem2019} Experimental condition monitoring for the detection ofmisaligned and cracked shafts by order analysis
+
+% \cite{Zhang2019} Online monitoring research of transformer vibration based on labview

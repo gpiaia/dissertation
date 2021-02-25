@@ -96,11 +96,11 @@ que será descrito na próxima etapa.
 
 Com a escrita dos requisitos, simulações e análise dos dados das simulações, foi possível o início da etapa de desenvolvimento de software,
 que agrega várias ferramentas para entregar um sistema de tempo real para o monitoramento da saúde de motores elétricos de indução. A 
-implementação foi dividida em três principais tarefas: aquisição dos dados, machine learning e o monitoramento. As duas primeiras estão
+implementação foi dividida em três principais tarefas: aquisição dos dados, ML e o monitoramento. As duas primeiras estão
 descritas na imagem a seguir.
 
 \begin{figure}[H]
-    \caption{Tarefas de Aquisição e Machine Learning}
+    \caption{Tarefas de Aquisição e ML}
     \begin{center}
         \includegraphics[scale=1, page=1]{metodologia/img/software.pdf}
     \end{center}
@@ -183,7 +183,7 @@ principais informações que podem ser vistas nesta tela são:
 \begin{itemize}
     \item Configurações de visualização: campos para selecionar se o gráfico será em tempo real, ou os dados serão exibidos dentro de um
 intervalo, além de permitir selecionar qual eixo se deseja visualizar;
-    \item Configurações de de Alerta e Perigo: possui o botão para ativação e desativação do machine learning, além dos campos para se editar
+    \item Configurações de de Alerta e Perigo: possui o botão para ativação e desativação do ML, além dos campos para se editar
 os valores de alerta e perigo, conforme desejo do usuário;
     \item Gráfico de Velocidade RMS em $\SI{}{\milli\metre\per\second}$, que contém: reta da linha de base em azul-escuro, dados de velocidade
 amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
@@ -276,9 +276,9 @@ financeiro da empresa, justificando facilmente o investimento da tecnologia dese
 Em um destes dispositivos, foi instalado um sensor industrial de vibração e temperatura, com o objetivo de coletar, processar e armazenar os
 dados, criando um dashboard com o estado de saúde do motor elétrico de indução. A Figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
 O motor já se encontrava em uso há algum tempo antes dos testes em campo, significando que já existe uma base de vibração maior do que se fosse
-um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de machine learning, reduzindo os limites criados pelo software, que
+um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de ML, reduzindo os limites criados pelo software, que
 consideram que o motor está em perfeito estado de saúde para começar a criação dos limites. Já estava previsto na etapa de análise de mercado, 
-a possibilidade de se ajustar os resultados do machine learning, devido a grande frequência de instalações em motores que possuem médio ou
+a possibilidade de se ajustar os resultados do ML, devido a grande frequência de instalações em motores que possuem médio ou
 elevado MTBF (\textit{Mean Time Between Failures} - tempo médio entre falhas), mas que ainda oferecem prejuízos se a falha acorrer de forma 
 imprevista.
 
@@ -304,7 +304,7 @@ Já as características dos testes, que podem ser vistas na Tabela \ref{tab:exau
         \hline
         Tempo entre cada amostragem             &  $\SI{5}{\minute}$                         \\
         Número de sensores                      &  1                                         \\ 
-        Potência do motor                       &  yyyy$\SI{}{\kilo\watt}$                      \\
+        Potência do motor                       &  $\SI{22.065}{\kilo\watt}$                      \\
         Classe do motor segundo a  ISO 10816-1  &  I                                         \\
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
@@ -330,7 +330,7 @@ as características da prova de conceito na seleira universal.
         Tempo entre cada amostragem             &  $\SI{30}{\second}$                        \\
         Número de sensores                      &  5                                         \\ 
         Potência do motor                       &  $\SI{1.1185}{\kilo\watt}$                 \\
-        Classe do motor segundo a  ISO 10816-1  &  I                                         \\
+        Classe do motor segundo a  ISO 10816-1  &  II                                         \\
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}

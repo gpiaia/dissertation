@@ -13,7 +13,7 @@ dos elementos, e também comparações entre os mesmos.
 
 Para a apresentação dos resultados do exaustor, foram feitas capturas de tela do software do sistema que estava instalado no motor, de forma
 remota e supervisionada pelos responsáveis pela manutenção dos mesmos. A Figura \ref{fig:exaustor_1} é a captura de tela do sistema no dia
-em que um relatório sobre a saúde dos exautores foi gerado, com os dados daquele momento, e com os limites gerados pelo machine learning
+em que um relatório sobre a saúde dos exautores foi gerado, com os dados daquele momento, e com os limites gerados pelo ML
 no momento da instalação (06/12/2020).
 
 \begin{figure}[H]
@@ -26,8 +26,8 @@ no momento da instalação (06/12/2020).
 \end{figure}
 
 A captura de tela está com os dados de velocidade e aceleração do eixo Z, como podemos ver. Fica claro que as grandezas físicas
-ultrapassam os limites estabelecidos pelo machine learning, somente no estado de alerta, mas isso não significa que o motor esteja em bom estado.
-Se consultarmos a tabela \ref{tab:iso10816-1_randall_p146}, veremos que os valores para um motor de Classe I, segundo norma  ISO 10816-1, está 
+ultrapassam os limites estabelecidos pelo ML, somente no estado de alerta, mas isso não significa que o motor esteja em bom estado.
+Se consultarmos a tabela \ref{tab:iso10816-1_randall_p146}, veremos que os valores para um motor de Classe II, segundo norma  ISO 10816-1, está 
 entre apenas tolerável e não permitido, dependendo do regime de funcionamento. 
 Se olharmos o eixo z, que se encontra na Figura \ref{fig:exaustor_xz}, os valores não permitidos, deixando claro o risco de falha iminente do 
 motor.
@@ -41,7 +41,7 @@ motor.
     \label{fig:exaustor_xz}
 \end{figure}
 
-O eixo z se encontra em estado severo de vibração, não entrando em alarme devido ao machine learning tardio executado
+O eixo z se encontra em estado severo de vibração, não entrando em alarme devido ao ML tardio executado
 pelo do operador, sendo agora uma tarefa de gestão do sistema, de se executar da maneira mais adequada, que é logo após o recondicionamento 
 ou ajustar manualmente os limites de acordo com a norma ISO 10816-1. Outra característica importante é a temperatura, que pode ser vista na 
 figura \ref{fig:exaustor_temperatura}, que teve uma dinâmica bem comportada e com característica de um sistema linear de primeira ordem.
@@ -58,7 +58,7 @@ figura \ref{fig:exaustor_temperatura}, que teve uma dinâmica bem comportada e c
 
 Fica nítido também o processo de aquecimento do dispositivo, seguindo os ciclos de funcionamento, que são bem regulares. O estudo de caso do 
 exaustor se mostrou um ótimo caso para se analisar o comportamento do sistema em um dispositivo que já estava em funcionamento por um bom tempo 
-após o recondicionamento, onde a técnica de machine learning, como esperado, não contribuiu com o objetivo de se detectar falhas, pois, as
+após o recondicionamento, onde a técnica de ML, como esperado, não contribuiu com o objetivo de se detectar falhas, pois, as
 condições iniciais não eram as ideais e os limites ficaram além dos permitidos. Mas o funcionamento geral da ferramenta foi excelente, sem nenhum
 problema grave reportado, funcionando dentro das especificações e dentro do esperado pela empresa parceira. Um relatório foi gerado e entregue
 para a empresa, contendo todos os dados e explicações, o qual foi aceito e sinalizaram o desejo de instalar em mais equipamentos.
@@ -78,7 +78,7 @@ objetivo de monitorar os pontos críticos. Como no caso do exaustor, foram reali
 
 Esta máquina não apresenta um processo contínuo como o exaustor, exigindo uma amostragem maior para se captar todas as características do 
 funcionamento. Estes sensores foram instalados no dia 13/11/2020, mas os dados começaram a ser coletados apenas no dia 16/11/2020, onde a 
-ferramenta de machine learning fui usada e os limites foram criados. 
+ferramenta de ML fui usada e os limites foram criados. 
 A ferramenta foi aplicada em todos os 5 sensores, que foram instalados em acoplamentos, nas proximidades de polias e moto-redutores.
 Cada um destes monitorou um comportamento diferente, mas o sensor mais importante se mostrou ser o 5, onde os resultados foram mais nítidos. 
 Os outros sensores, pelo menos mais 3 apresentaram comportamento anômalos, mas nenhum como este. A Figura \ref{fig:seleira_universal_antes_depois}
@@ -108,7 +108,7 @@ que pode ser visto na Figura \ref{fig:seleira_universal_temperatura}.
 Ela tem um perfil mais discreto, e não seguindo um sistema de primeira ordem, por não estar próximo de uma fonte de calor significativa, por isso
 os limites gerados para algo com pouca variância, são limites muito próximos dos dados amostrados, ocorrendo falsos positivos apenas com a
 variação da temperatura ambiente. A solução para isso, já prevista no início do projeto, é a possibilidade do operador alterar os limites, de 
-acordo com a dinâmica que o sistema está inserido, não cabendo utilizar  machine learning onde há pouca variância ou o equipamento já se 
+acordo com a dinâmica que o sistema está inserido, não cabendo utilizar  ML onde há pouca variância ou o equipamento já se 
 encontra em severo desgaste. 
 
 \begin{figure}[H]
