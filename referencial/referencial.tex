@@ -104,7 +104,7 @@ em mecânicas e elétricas.
 
 Dentre todas essas falhas, o trabalho aborda com maior foco as falhas mecânicas, mais especificamente desalinhamento, rolamentos 
 e desbalanceamento que causam um aumento na vibração do sistema. O desalinhamento ocorre quando o motor e o sistema não estão perfeitamente alinhados, podendo ter dois tipos:
-paralelo e angular, os quais podem ser vistos na Figura \ref{fig:misadraw_analog_p2}, respectivamente na parte a) e b) 
+paralelo e angular, os quais podem ser vistos na Figura \ref{fig:misadraw_analog_p2}, respectivamente na parte (a) e (b) 
 \cite{Sopcik2019}.
 
 \begin{figure}[H]
@@ -140,7 +140,7 @@ manutenção é realizada. Possui diversas desvantagens, principalmente pelo fat
 deixar a máquina parada por horas, causando grande prejuízo;
     \item Manutenção Preventiva: é baseada em manutenções em intervalos regulares antes da falha se manifestar. Quando a frequência das
 falhas é conhecida, pode ser uma boa estratégia, mas possibilita a troca de componentes que ainda teriam uma sobrevida, ou ainda, a falha
-ocorrer antes do previsto, devido à alterações não esperada no processo;
+ocorrer antes do previsto, devido às alterações não esperada no processo;
     \item Manutenção Preditiva: quando é detectado que uma falha está próxima, antes de acontecer e com tempo ótimo para se fazer a 
 manutenção sem afetar a produtividade e danificar mais o equipamento. Essa estratégia é baseada em um monitoramento do equipamento,
 permitindo acompanhar o estado de saúde da máquina. Se bem implementa essa estratégia, pode reduzir em até 65\% os custos de manutenção
@@ -274,7 +274,7 @@ utilizadas para detecção e diagnóstico de falhas.
     \label{fig:monitoring_methods_rilski_p78}
 \end{figure}
 
-Dentre estas, a FFT (\textit{Fast Fourier Transform - transformada rápida de Fourier}), Valor RMS (\textit{Root Mean Square} - valor quarático 
+Dentre estas, a FFT (\textit{Fast Fourier Transform - transformada rápida de Fourier}), Valor RMS (\textit{Root Mean Square} - valor quadrático 
 médio) e ML \textit{machine learning} (aprendizado de máquina) serão utilizadas de forma direta ou indireta neste trabalho.
 FFT é um algoritmo muito eficiente que calcula a DFT (\textit{Discrete Fourier Transform} - Transformada  discreta de Fourier), a qual pode ser
 descrita da seguinte forma \cite{Wu2013}:
@@ -290,14 +290,14 @@ descrita da seguinte forma \cite{Wu2013}:
 Esta ferramenta é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
 possibilita extrair informações do espectro desses sinais, conforme descrito na seção anterior. 
 
-Já o Valor RMS, que é a forma mais comum de se descrever a energia que um sinal  $x(t)$ carrega em qualquer período \cite{Cryer2010}, que pode
-ser representado da seguinte forma:
+Já o Valor RMS, que é a representação mais comum de se descrever a energia que um sinal  $x(t)$ carrega em qualquer período \cite{Cryer2010}, 
+que pode ser representado da seguinte forma:
 
 \begin{equation}\label{eq:rms_int}
     X_{RMS} = \sqrt{\frac{1}{T}\int_{0}^{T}{x(t)^2dt}}
 \end{equation}
 
-A ideia de se caracterizar a energia de um sinal através do Valor RMS \cite{Cryer2010}, vem da seguinte expressão :
+A ideia de se caracterizar a energia de um sinal através do Valor RMS \cite{Cryer2010}, vem da seguinte expressão:
 
 \begin{equation}\label{eq:energia}
     E = \int_{0}^{T}{[x(t)]^2dt}
@@ -310,7 +310,7 @@ $\SI{1}{\ohm}$ num intervalo de tempo T, temos a seguinte expressão:
     P = \frac{1}{T}\int_{0}^{T}{[x(t)]^2dt}
 \end{equation}
 
-Se compararmos as equações \ref{eq:rms_int} e \ref{eq:power}, podemos ver que o valor RMS está relacionado com a raiz quadrada da potência do 
+Se compararmos as equações \ref{eq:rms_int} e \ref{eq:power}, vemos que o valor RMS está relacionado com a raiz quadrada da potência do 
 sinal. Ao se utilizar sinais discretos, o valor RMS pode ser representado da seguinte forma:
 
 \begin{equation}\label{eq:rms_disc}
@@ -318,28 +318,25 @@ sinal. Ao se utilizar sinais discretos, o valor RMS pode ser representado da seg
 \end{equation}
 
 A última das técnicas utilizadas neste trabalho, ML, que nasceu dentro da ciência da computação, e que veio ao encontro do reconhecimento de 
-padrões, já este, oriundo das engenharias, para formar um ferramenta importantíssima para as ciências, com as mais diversas
-aplicações. No campo do reconhecimento de padrões, a palavra chave é a incerteza. Teoria da probabilidade é uma ferramenta matemática sólida
+padrões, já este, oriundo das engenharias, para formar uma ferramenta importantíssima para as ciências, com as mais diversas
+aplicações. No campo do reconhecimento de padrões, a palavra-chave é a incerteza. Teoria da probabilidade é uma ferramenta matemática sólida
 para quantificar e manipular incertezas, formando a fundamentação para o recondicionamento de padrões. O estudo da 
-distribuição de probabilidades em variáveis contínuas é essencial para entender a dinÂmica destes dados. A distribuição de probabilidades mais
+distribuição de probabilidades em variáveis contínuas é essencial para entender a dinâmica destes dados. A distribuição de probabilidades mais
 conhecida é a Gaussiana, que também é chamada de distribuição normal \cite{Andersen1986}. Três dos principais parâmetros para se analisar
-em uma distribuição normal são: média, variância e desvio padrão,onde a média de um sinal $x(t)$ num período T,pode ser calculado da seguinte
+em uma distribuição normal são: média, variância e desvio padrão, onde a média de um sinal $x(t)$ num período T, pode ser calculado da seguinte
 forma \cite{Dinardo}:
 
 \begin{equation}\label{eq:X_lim}
     \bar{x} = \lim_{T\rightarrow\infty}{\frac{1}{T^*}} \int_{0}^{T}{x(t)dt}
 \end{equation}
 
-% \begin{equation}\label{eq:XX_lim}
-%     \bar{x^2} = \lim_{T^{*}\rightarrow\infty}{\frac{1}{T^*}} \int_{0}^{T}{[x(t)]^2dt}
-% \end{equation}
 Já a variância:
 
 \begin{equation}\label{eq:variancia}
     \sigma^2 = \lim_{T^{*}\rightarrow\infty}{\frac{1}{T^*}} \int_{0}^{T}{[x(t)-\bar{x}]^2dt}
 \end{equation}
 
-Onde $\sigma$ é o desvio padrão, que representa a dispersão, em outras palavras, o quão distânte os dados amostrados estão da média. Um dado
+Onde $\sigma$ é o desvio padrão, que representa a dispersão, em outras palavras, o quão distante os dados amostrados estão da média. Um dado
 amostrado que se encontra disperso, ou seja, com elevado desvio padrão, pode significar que houve um ganho ou perda de energia, se esse dado
 for um valor RMS, caracterizando uma anomalia. Assim que os conceitos básicos foram apresentados, podemos relacionar os trabalhos correlatos,
 os quais serão descritos na próxima etapa.
@@ -352,50 +349,68 @@ os quais serão descritos na próxima etapa.
 \section{Estado da Arte}
 
 O estado da arte em detecção e diagnóstico de falhas em motores elétricos está no emprego de diversas técnicas numa mesma solução. Algumas 
-utilizam técnicas clássicas, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contem
-algum exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente. A tabela 
+utilizam técnicas clássicas, outras empregam diversas técnicas modernas para se obter o resultado ótimo. A presente seção contém
+alguns exemplos que empregam novos arranjos de técnicas, as quais já foram discutidas anteriormente. 
 
+A busca pela compreensão dos padrões das falhas em máquinas rotativas e não rotativas, com o foco na análise dos níveis de vibração. O artigo
+\cite{Jeong2016} busca encontrar e entender estes padrões em orbitais gerados pela vibração conjugada entre dois eixos, o axial e o radial. A
+vibração é tratada no plano complexo, e imagens são geradas a partir desta representação e classificadas por uma 
+CNN (\textit{Convolutional Neural network} - rede neural convolucional), que apresentou erro de \SI{1.3}{\percent} na classificação das falhas.
+Este foi o primeiro trabalho estudado, influenciando  diretamente os primeiros meses do desenvolvimento do presente trabalho, onde a busca se
+deu pela detecção e classificação das falhas.
+
+Outra forma de detecção de falhas e diagnóstico utilizando rede neural convolucional, é através do processamento dos sinais de corrente. O 
+artigo \cite{Ince2016} trata deste tema ao utilizar uma CNN unidimensional para classificar as falhas. Como o método anterior, o treinamento
+ocorre de forma \textit{offline}, além de tratar os sinais de corrente, que possuem limitações na amostragem e na construção dos sensores, que
+precisam ser não invasivos e não influenciáveis pelos inversores de frequência, encarecendo o hardware, ou até limitando o uso. Os
+resultados foram bem satisfatórios, com acurácia de mais de \SI{97}{\percent}, com tempo de processamento inferior a \SI{450}{\milli\second}.
+
+Outra técnica aplicada na detecção e diagnóstico de falhas, é a transformada Wavelet, conforme a figura \ref{fig:monitoring_methods_rilski_p78}.
+O artigo \cite{Hemmati2016a} trata deste assunto. No artigo, características de um sinal de vibração são levantadas e comparadas,
+onde uma delas é o estudo do valor RMS, tratado anteriormente na etapa de conceitos básicos. Uma das principais conclusões do trabalho, é que o 
+valor RMS é o melhor parâmetro estatístico para detectar uma falha incipiente.
+
+Contribuindo com a tendência ao processamento de imagens para a detecção e diagnóstico de falhas, o artigo \cite{Hatami2017} trata deste tema
+utilizando CNN, mas com a transformação das séries temporais em imagens em duas dimensões e após isso, aplicadas em uma CNN. Estas imagens são
+texturizadas de acordo com as características dos sinais. Este trabalho também apresentou resultado satisfatório.
+
+Outro trabalho importante \cite{Caesarendra2017} , é o qual realizou uma pesquisa sistemática com as principais técnicas de detecção de 
+falhas que são estatísticas. Neste trabalho foram analisadas ferramentas como Kurtosis, Variância e valor RMS. As técnicas foram aplicadas em 
+dados gerados em laboratório, e resultados foram elencados. Levanta a questão que o valor RMS é relevante para detectar iminentes falhas, mas
+limitado para se diagnosticar falhas.
+
+A técnica ICA (\textit{Indepent Compoent Analysys}- análise de componentes independentes) também está muito presente nos trabalhos atuais. O 
+artigo \cite{Garcia-Bracamonte2019} utiliza essa técnica combinada com uma rede neural artificial para fazer a detecção e diagnóstico, 
+nesta ordem, utilizando sinais de corrente. O trabalho é muito rico de análise estatística, com resultados satisfatórios, tendo
+um protótipo e um estudo de caso do método desenvolvido.
+
+O uso da ferramenta FFT pura também foi listado durante as pesquisas. O artigo \cite{Azeem2019} a utiliza para detectar desalinhamento, e o
+estudo experimental aconteceu com o uso do mesmo modelo de simulador de falhas que foi utilizado neste trabalho, que será explicado no próximo
+capítulo. Ao analisar o espectro e levantar as assinaturas, os resultados deste trabalho também se mostraram satisfatórios. 
+
+Outro exemplo de trabalho importante, mesmo que não se tratando da análise de vibração de motores, e sim de transformadores, é o artigo \cite{Zhang2019}.
+Ele apresenta um software para monitorar em tempo real a vibração de transformadores, utilizando algumas ferramentas estatísticas e transformada
+Wavelet. Utilizou o software labview para a implementação da metodologia desenvolvida, obtendo os resultados esperados. A tabela
+\ref{tab:correlatos} relaciona todos os trabalhos anteriormente discutidos.
 
 \begin{table}[H]
     \caption{Tabela de trabalhos correlatos.}
     \label{tab:correlatos}
     \centering%
-    % \begin{minipage}{\textwidth}
-        \begin{tabular*}{\textwidth}{|p{0.1\textwidth}|p{0.2\textwidth}|p{0.35\textwidth}|p{0.35\textwidth}|}
+        \begin{tabular}{|p{0.06\textwidth}|p{0.2\textwidth}|p{0.32\textwidth}|p{0.32\textwidth}|}
             \hline
-            Ano  & Autores                                       & Trabalho Realizado             & Relação                        \\ \hline
-            2016 & \cite{Jeong2016}             & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2016 & \cite{Ince2016}              & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2016 & \cite{Hemmati2016a}          & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2017 & \cite{Hatami2017}            & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2017 & \cite{Caesarendra2017}       & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2018 & \cite{Zhang2018}             & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2019 & \cite{Zhu2019}               & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2019 & \cite{Garcia-Bracamonte2019} & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2019 & \cite{Azeem2019}             & asdfasdfasdf & asdfasdfasdf \\ \hline
-            2019 & \cite{Zhang2019}             & asdfasdfasdf & asdfasdfasdf \\ \hline        
-        \end{tabular*}
+            Ano  & Autores                      & Trabalho Realizado                                                                    & Relação                        \\ \hline
+            2016 & \cite{Jeong2016}             & Detecção e classificação de falhas pela geração de orbitais                           & Motivação inicial e emprego de ML \\ \hline
+            2016 & \cite{Ince2016}              & Detecção de falhas através da análise da corrente elétrica via CNN                    & Estudo da viabilidade do uso da corrente elétrica \\ \hline
+            2016 & \cite{Hemmati2016a}          & Estração de assinaturas via transformada Wavelet                                      & Estudo do valor RMS na detecção de falhas \\ \hline
+            2017 & \cite{Hatami2017}            & Criação de imagens 2D texturizadas e classificadas via CNN                            & Alternativa para análise de falhas em sinais de vibração \\ \hline
+            2017 & \cite{Caesarendra2017}       & Revisão sistemática de ferramentas estatísticas para detecção e diagnóstico de falhas & Valor RMS \\ \hline
+            2019 & \cite{Garcia-Bracamonte2019} & Emprego de ICA para detecção e diagnóstico através de sinais de corrente.             & Estudo estatístico e criação de um protótipo \\ \hline
+            2019 & \cite{Azeem2019}             & Emprego da FFT                                                                        & FFT e simulador de falhas \\ \hline
+            2019 & \cite{Zhang2019}             & Sistema para monitoramento em tempo real utilizando ferramentas estatísticas          & Ferramentas estatísticas e software para monitoramento em tempo real \\ \hline        
+        \end{tabular}
       \fonte{Elaborado pelo autor.} 
-    % \end{minipage}
   \end{table}
 
-% \cite{Jeong2016} Deep Learning Based Diagnostics of Orbit Patterns in Rotating Machinery
-% Haedong
-
-% \cite{Ince2016} Real-Time Motor Fault Detection by 1-D Convolutional Neural Networks
-
-% \cite{Hemmati2016a} Roller bearing acoustic signature extraction by wavelet packet transform, applications in fault detection and size estimation
-
-% \cite{Hatami2017} Classification of Time-Series Images Using Deep Convolutional Neural Networks
-
-% \cite{Caesarendra2017} A Review of Feature Extraction Methods in Vibration-Based Condition Monitoring and Its Application for Degradation Trend Estimation of Low-Speed Slew Bearing
-
-% \cite{Zhang2018} Deep residual learning-based fault diagnosis method for rotating machinery
-
-% \cite{Zhu2019} Rotor fault diagnosis using a convolutional neural network with symmetrized dot pattern images
-
-% \cite{Garcia-Bracamonte2019} An Approach on MCSA-Based Fault Detection Using Independent Component Analysis and Neural Networks
-
-% \cite{Azeem2019} Experimental condition monitoring for the detection ofmisaligned and cracked shafts by order analysis
-
-% \cite{Zhang2019} Online monitoring research of transformer vibration based on labview
+Concluída a apresentação de alguns trabalhos que contém alguma relação com o presente trabalho, onde características importantes e resultados 
+foram apresentados, podemos prosseguir para o próximo capítulo, etapa esta em que a proposta do atual trabalho é apresentada e implementada.

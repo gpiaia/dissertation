@@ -134,17 +134,19 @@ E por fim, o desvio padrão $\sigma_{n+1}$ para um novo elemento:
 
 Assumimos que a região de alerta ($A$), a qual significa uma moderada tendência à falha, pode ser calculada da seguinte forma: 
 \begin{equation}\label{eq:ml4}
-    A = \bar{X}_{n+1} + 2 \sigma
+    A = \bar{X}_{n+1} + \alpha \sigma_{n+1} 
 \end{equation}
 
-Segundo a mesma regra, a região onde há uma falha iminente ($P$), um comportamento ambiental ou regime de funcionamento atípico, 
+Onde $\alpha$ é um ganho ajustável. Segundo a mesma regra, a região onde há uma falha iminente ($P$), um comportamento ambiental ou regime de funcionamento atípico, 
 pode ser calculado da seguinte forma:
 
 \begin{equation}\label{eq:ml5}
-    P = \bar{X}_{n+1} + 3 \sigma
+    P = \bar{X}_{n+1} + \beta \sigma_{n+1} 
 \end{equation}
 
-Após os valores das linhas de base, alerta e perigo, a aplicação pode ficar encarregada de monitorar os novos dados e aplicar um conjunto
+Onde $\beta$ é outro ganho ajustável, que deve ser necessariamente maior do que $\alpha$. Por resultados empíricos, o uso de 2 para $\alpha$ e 
+3 para $\beta$, se mostraram valores aceitáveis para motores e máquinas em perfeitas condições, necessitando de ajuste manual se já se encontravam
+em uso por um longo período. Após os valores das linhas de base, alerta e perigo, a aplicação pode ficar encarregada de monitorar os novos dados e aplicar um conjunto
 de regras para classificar se o motor elétrico de indução tem um comportamento normal. O fluxograma da sequência descreve tal tarefa.
 
 \begin{figure}[H]
@@ -305,7 +307,7 @@ Já as características dos testes, que podem ser vistas na Tabela \ref{tab:exau
         Tempo entre cada amostragem             &  $\SI{5}{\minute}$                         \\
         Número de sensores                      &  1                                         \\ 
         Potência do motor                       &  $\SI{22.065}{\kilo\watt}$                      \\
-        Classe do motor segundo a  ISO 10816-1  &  I                                         \\
+        Classe do motor segundo a  ISO 10816-1  &  II                                         \\
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}
@@ -330,7 +332,7 @@ as características da prova de conceito na seleira universal.
         Tempo entre cada amostragem             &  $\SI{30}{\second}$                        \\
         Número de sensores                      &  5                                         \\ 
         Potência do motor                       &  $\SI{1.1185}{\kilo\watt}$                 \\
-        Classe do motor segundo a  ISO 10816-1  &  II                                         \\
+        Classe do motor segundo a  ISO 10816-1  &  I                                         \\
       \end{tabular*}
       \fonte{Elaborado pelo Autor.} 
     \end{minipage}
