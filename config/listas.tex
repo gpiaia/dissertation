@@ -15,9 +15,9 @@
 % ----------------------------------------------
 % inserir lista de tabelas
 % ----------------------------------------------
-% \pdfbookmark[0]{\listtablename}{lot}
-% \listoftables*
-% \cleardoublepage
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
 % ----------------------------------------------
 % inserir lista de abreviaturas e siglas
 % ----------------------------------------------
@@ -31,11 +31,12 @@
 \item[RNA] Rede Neural Artificial
 \item[ICA] \textit{Indepent Compoent Analysys} (Análise de componentes independentes)
 \item[RMS] \textit{Root Mean Square} (Raiz do valor quadrático médio)
-\item[T-SNE] \textit{t-Distributed Stochastic Neighbor Embedding} (Incorporação
-Estocástica de Vizinhos com Distribuição t)
+\item[ML]  \textit{Machine Learning} (Aprendizado de máquina) 
 \item[DFT] \textit{Discrete Fourier Transform} (Transformada discreta de Fourie)
-\item[MFS] \textit{Machinery Fault Simulator} (simulador de falhas em máquinas)
-\item[HP] \textit{Horse Power} (Cavalo-vapor)
+\item[MFS] \textit{Machinery Fault Simulator} (Simulador de falhas em máquinas)
+\item[RTU] \textit{Remote Terminal Unit} (Unidade de terminal remoto)
+\item[TCP] \textit{Transmission Control Protocol}  (Protocolo de Controle de Transmissão) 
+\item[MTBF]\textit{Mean Time Between Failures} (Tempo médio entre falhas) 
 \item[DA] Desalinhamento
 \item[DB] Desbalanceamento
 
@@ -43,8 +44,29 @@ Estocástica de Vizinhos com Distribuição t)
 % ----------------------------------------------
 % inserir lista de símbolos
 % ----------------------------------------------
-% \begin{simbolos}
-%   \item[$F$] Força
-%   \item[$m$] Massa
-%   \item[$t$] Tempo
-% \end{simbolos}
+\begin{simbolos}
+  \item[$\hat{V}_1$] Tensão no estator
+  \item[$\hat{E}_2$] Força eletromotriz contrária gerada pelo fluxo no entreferro
+  \item[$\hat{I}_1$] corrente do estator
+  \item[$\hat{R}_1$] Resistência efetiva do estator
+  \item[$\hat{X}_1$] Reatância de vazamento do estator
+  \item[$R_c$] Resistência às perdas no núcleo
+  \item[$X_m$] Reatância magnetizante
+  \item[$\hat{I}_2$] Componente de corrente gerada pela carga
+  \item[$\hat{X}_2$] Reatância de vazamento do rotor no estator na frequência de escorregamento
+  \item[$R_2$] Resistência do rotor
+  \item[$\hat{I}_\varphi$] Componente de corrente excitada no estator
+  \item[$X_{RMS}$] Valor RMS da função x(t)
+  \item[$T$] Período
+  \item[$E$] Energia 
+  \item[$P$] Potência
+  \item[$N$] Número de amostras de um sinal
+  \item[$\bar{x}$] Média aritmética do sinal x(t)
+  \item[$\sigma$] Desvio padrão
+  \item[$var$] Variância
+  \item[$n$] Enésimo elemento
+  \item[$A$] Nível de alerta de vibração
+  \item[$Pe$] Nível de perigo de vibração  
+  \item[$\alpha$] Coeficiente de alerta
+  \item[$\beta$] Coeficiente de perigo      
+\end{simbolos}

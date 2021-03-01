@@ -249,7 +249,7 @@ A Figura \ref{fig:imbalance_analog_p2} exemplifica.
     \label{fig:imbalance_analog_p2}
 \end{figure}
 
-No mesmo conceito, é possível identificar a assinatura de uma falha de rolamentos de acordo com o tipo de rolamento, velocidade de rotação
+No mesmo conceito, é possível identificar a assinatura de uma falha de rolamentos de acordo com a categoria de rolamento, velocidade de rotação
 do motor, entre outras características. Após a análise das falhas utilizando a vibração do sistema, é necessário fazer a mesma análise com a corrente elétrica na armadura, 
 que será apresenta na subseção na sequência.
 
@@ -275,19 +275,9 @@ utilizadas para detecção e diagnóstico de falhas.
 \end{figure}
 
 Dentre estas, a FFT (\textit{Fast Fourier Transform - transformada rápida de Fourier}), Valor RMS (\textit{Root Mean Square} - valor quadrático 
-médio) e ML \textit{machine learning} (aprendizado de máquina) serão utilizadas de forma direta ou indireta neste trabalho.
-FFT é um algoritmo muito eficiente que calcula a DFT (\textit{Discrete Fourier Transform} - Transformada  discreta de Fourier), a qual pode ser
-descrita da seguinte forma \cite{Wu2013}:
-
-\begin{equation}\label{eq:dft}
-    G(k)=\frac{1}{N}\sum_{k=0}^{N-1} g(n)exp(-j2\pi kn/N)
-\end{equation}
-
-\begin{equation}\label{eq:dft2}
-    g(n)=\sum_{k=0}^{N-1} G(k)exp(j2\pi kn/N)
-\end{equation}
-
-Esta ferramenta é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
+médio) e ML (\textit{Machine Learning} - aprendizado de máquina) serão utilizadas de forma direta ou indireta neste trabalho.
+FFT é um algoritmo muito eficiente que calcula a DFT (\textit{Discrete Fourier Transform} - Transformada  discreta de Fourier). Esta ferramenta 
+é utilizada para se se representar no domínio da frequência, sinais discretos que estão no domínio do tempo. Isto 
 possibilita extrair informações do espectro desses sinais, conforme descrito na seção anterior. 
 
 Já o Valor RMS, que é a representação mais comum de se descrever a energia que um sinal  $x(t)$ carrega em qualquer período \cite{Cryer2010}, 
@@ -314,7 +304,7 @@ Se compararmos as equações \ref{eq:rms_int} e \ref{eq:power}, vemos que o valo
 sinal. Ao se utilizar sinais discretos, o valor RMS pode ser representado da seguinte forma:
 
 \begin{equation}\label{eq:rms_disc}
-    x_{RMS} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}{X^2(i)}}
+    X_{RMS} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}{x^2(i)}}
 \end{equation}
 
 A última das técnicas utilizadas neste trabalho, ML, que nasceu dentro da ciência da computação, e que veio ao encontro do reconhecimento de 
@@ -362,7 +352,7 @@ deu pela detecção e classificação das falhas.
 Outra forma de detecção de falhas e diagnóstico utilizando rede neural convolucional, é através do processamento dos sinais de corrente. O 
 artigo \cite{Ince2016} trata deste tema ao utilizar uma CNN unidimensional para classificar as falhas. Como o método anterior, o treinamento
 ocorre de forma \textit{offline}, além de tratar os sinais de corrente, que possuem limitações na amostragem e na construção dos sensores, que
-precisam ser não invasivos e não influenciáveis pelos inversores de frequência, encarecendo o hardware, ou até limitando o uso. Os
+precisam ser não invasivos e não influenciáveis pelos inversores de frequência, encarecendo o \textit{hardware}, ou até limitando o uso. Os
 resultados foram bem satisfatórios, com acurácia de mais de \SI{97}{\percent}, com tempo de processamento inferior a \SI{450}{\milli\second}.
 
 Outra técnica aplicada na detecção e diagnóstico de falhas, é a transformada Wavelet, conforme a figura \ref{fig:monitoring_methods_rilski_p78}.
@@ -389,8 +379,8 @@ estudo experimental aconteceu com o uso do mesmo modelo de simulador de falhas q
 capítulo. Ao analisar o espectro e levantar as assinaturas, os resultados deste trabalho também se mostraram satisfatórios. 
 
 Outro exemplo de trabalho importante, mesmo que não se tratando da análise de vibração de motores, e sim de transformadores, é o artigo \cite{Zhang2019}.
-Ele apresenta um software para monitorar em tempo real a vibração de transformadores, utilizando algumas ferramentas estatísticas e transformada
-Wavelet. Utilizou o software labview para a implementação da metodologia desenvolvida, obtendo os resultados esperados. A tabela
+Ele apresenta um \textit{software} para monitorar em tempo real a vibração de transformadores, utilizando algumas ferramentas estatísticas e transformada
+Wavelet. Utilizou o \textit{software} labview para a implementação da metodologia desenvolvida, obtendo os resultados esperados. A tabela
 \ref{tab:correlatos} relaciona todos os trabalhos anteriormente discutidos.
 
 \begin{table}[H]
@@ -407,7 +397,7 @@ Wavelet. Utilizou o software labview para a implementação da metodologia desen
             2017 & \cite{Caesarendra2017}       & Revisão sistemática de ferramentas estatísticas para detecção e diagnóstico de falhas & Valor RMS \\ \hline
             2019 & \cite{Garcia-Bracamonte2019} & Emprego de ICA para detecção e diagnóstico através de sinais de corrente.             & Estudo estatístico e criação de um protótipo \\ \hline
             2019 & \cite{Azeem2019}             & Emprego da FFT                                                                        & FFT e simulador de falhas \\ \hline
-            2019 & \cite{Zhang2019}             & Sistema para monitoramento em tempo real utilizando ferramentas estatísticas          & Ferramentas estatísticas e software para monitoramento em tempo real \\ \hline        
+            2019 & \cite{Zhang2019}             & Sistema para monitoramento em tempo real utilizando ferramentas estatísticas          & Ferramentas estatísticas e \textit{software} para monitoramento em tempo real \\ \hline        
         \end{tabular}
       \fonte{Elaborado pelo autor.} 
   \end{table}

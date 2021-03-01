@@ -17,7 +17,7 @@ desenvolvimento se encontra na Figura \ref{fig:metodologia}, onde as etapas est�
     \label{fig:metodologia}
 \end{figure}
 
-Dentre as etapas descritas na imagem anterior, a simulação, o desenvolvimento do software, a integração do software com o hardware e a implementação
+Dentre as etapas descritas na imagem anterior, a simulação, o desenvolvimento do \textit{software}, a integração do \textit{software} com o \textit{hardware} e a implementação
 estão descritas com detalhes nos subcapítulos a seguir.
 
 
@@ -84,7 +84,7 @@ corrente.
   \end{table}
   
 Após a apresentação de como foram realizados os testes no simulador, é possível aplicar as topologias propostas no presente trabalho nos
-dados gerados. Após a etapa de simulação e análise dos dados, com os resultados obtidos, foi possível o início do desenvolvimento do software,
+dados gerados. Após a etapa de simulação e análise dos dados, com os resultados obtidos, foi possível o início do desenvolvimento do \textit{software},
 que será descrito na próxima etapa. 
 
 
@@ -92,9 +92,9 @@ que será descrito na próxima etapa.
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Desenvolvimento do Software}
+\section{Desenvolvimento do \textit{software}}
 
-Com a escrita dos requisitos, simulações e análise dos dados das simulações, foi possível o início da etapa de desenvolvimento de software,
+Com a escrita dos requisitos, simulações e análise dos dados das simulações, foi possível o início da etapa de desenvolvimento de \textit{software},
 que agrega várias ferramentas para entregar um sistema de tempo real para o monitoramento da saúde de motores elétricos de indução. A 
 implementação foi dividida em três principais tarefas: aquisição dos dados, ML e o monitoramento. As duas primeiras estão
 descritas na imagem a seguir.
@@ -137,14 +137,14 @@ Assumimos que a região de alerta ($A$), a qual significa uma moderada tendênci
     A = \bar{X}_{n+1} + \alpha \sigma_{n+1} 
 \end{equation}
 
-Onde $\alpha$ é um ganho ajustável. Segundo a mesma regra, a região onde há uma falha iminente ($P$), um comportamento ambiental ou regime de funcionamento atípico, 
+Onde $\alpha$ é um coeficiente ajustável. Segundo a mesma regra, a região onde há uma falha iminente ($Pe$), um comportamento ambiental ou regime de funcionamento atípico, 
 pode ser calculado da seguinte forma:
 
 \begin{equation}\label{eq:ml5}
-    P = \bar{X}_{n+1} + \beta \sigma_{n+1} 
+    Pe = \bar{X}_{n+1} + \beta \sigma_{n+1} 
 \end{equation}
 
-Onde $\beta$ é outro ganho ajustável, que deve ser necessariamente maior do que $\alpha$. Por resultados empíricos, o uso de 2 para $\alpha$ e 
+Onde $\beta$ é outro coeficiente ajustável, que deve ser necessariamente maior do que $\alpha$. Por resultados empíricos, o uso de 2 para $\alpha$ e 
 3 para $\beta$, se mostraram valores aceitáveis para motores e máquinas em perfeitas condições, necessitando de ajuste manual se já se encontravam
 em uso por um longo período. Após os valores das linhas de base, alerta e perigo, a aplicação pode ficar encarregada de monitorar os novos dados e aplicar um conjunto
 de regras para classificar se o motor elétrico de indução tem um comportamento normal. O fluxograma da sequência descreve tal tarefa.
@@ -165,11 +165,11 @@ for maior, eliminando os casos em que o motor pode ter um regime não contínuo 
 excedentes.
 
 Para uma interface entre homem e máquina, utilizamos a ferramenta Node-Red parta prototipar a presente aplicação. A imagem da sequência mostra 
-a estrutura básica das telas do sofware, que é uma ferramenta baseada em web que pode ser acessada por qualquer dispositivo com navegador web que esteja
+a estrutura básica das telas do \textit{software}, que é uma ferramenta baseada em web que pode ser acessada por qualquer dispositivo com navegador web que esteja
 na rede.
 
 \begin{figure}[H]
-    \caption{Fluxo de acesso do Software.}
+    \caption{Fluxo de acesso do \textit{software}.}
     \begin{center}
         \includegraphics[scale=0.8, page=2]{metodologia/img/fluxo_layout.pdf}
     \end{center}
@@ -177,7 +177,7 @@ na rede.
     \label{fig:fluxo_software}
 \end{figure}
 
-Como vemos, a aplicação possui uma tela de login que protege o acesso ao dashboard principal, que contém imagens que facilitam a identificação
+Como vemos, a aplicação possui uma tela de \textit{login} que protege o acesso ao \textit{dashboard} principal, que contém imagens que facilitam a identificação
 visual de algum problema com o motor ou com o sistema de aquisição de dados. Ao se selecionar um dos motores, a aplicação é redirecionada para
 uma tela que contém um grupo de gráfico e configurações. A aplicação também permite a configuração manual dos limites de alerta e perigo. As 
 principais informações que podem ser vistas nesta tela são: 
@@ -185,7 +185,7 @@ principais informações que podem ser vistas nesta tela são:
 \begin{itemize}
     \item Configurações de visualização: campos para selecionar se o gráfico será em tempo real, ou os dados serão exibidos dentro de um
 intervalo, além de permitir selecionar qual eixo se deseja visualizar;
-    \item Configurações de de Alerta e Perigo: possui o botão para ativação e desativação do ML, além dos campos para se editar
+    \item Configurações de Alerta e Perigo: possui o botão para ativação e desativação do ML, além dos campos para se editar
 os valores de alerta e perigo, conforme desejo do usuário;
     \item Gráfico de Velocidade RMS em $\SI{}{\milli\metre\per\second}$, que contém: reta da linha de base em azul-escuro, dados de velocidade
 amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
@@ -197,17 +197,17 @@ amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo
 amostrados em azul-claro, linha da alerta em amarelo, e por fim, linha de perigo em vermelho;
 \end{itemize}
 
-Após a conclusão e aprovação do software, foi possível executar a integração entre hardware e software, para finalizar o desenvolvimento. Esta
+Após a conclusão e aprovação do \textit{software}, foi possível executar a integração entre \textit{hardware} e \textit{software}, para finalizar o desenvolvimento. Esta
 etapa está descrita na sequência.
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\section{Integração entre Software e Hardware}
+\section{Integração entre \textit{software} e \textit{Hardware}}
 
-Para a aquisição das grandezas físicas, as quais alimentam a aplicação de software, foi selecionado o sensor de vibração e temperatura QM30VT2, 
-da Banner Engineering, que possui as seguintes característica:
+Para a aquisição das grandezas físicas, as quais alimentam a aplicação de \textit{software}, foi selecionado o sensor de vibração e temperatura QM30VT2, 
+da Banner Engineering, que possui as seguintes características:
 
 \begin{table}[H]
     \caption{Especificações do Sensor QM30VT2}
@@ -232,12 +232,12 @@ da Banner Engineering, que possui as seguintes característica:
 Como podemos ver, ele possui uma largura de banda de até $\SI{4}{\kilo\hertz}$, propícia até para detecção de falhas em rolamentos, como 
 descrito no referencial teórico. Os dados são adquiridos via Modbus RTU (\textit{Remote Terminal Unit} - Unidade de terminal remoto) diretamente
 do sendor, ou ainda, via Modbus TCP (\textit{Transmission Control Protocol} - Protocolo de Controle de Transmissão) a partir de um gateway
-wireless e um nó, facilitando a implantação por não utilizar cabos entre os sensores e a unidade de processamento. O diagrama da Figura a seguir
+\textit{wireless} e um nó, facilitando a implantação por não utilizar cabos entre os sensores e a unidade de processamento. O diagrama da Figura a seguir
 representa o fluxo básico dos sinais, indo do sensor até o sistema embarcado, o qual processa, armazena e disponibiliza a visualização em 
 tempo real dos dados. 
 
 \begin{figure}[H]
-    \caption{Diagrama de integração  entre sensores e Software.}
+    \caption{Diagrama de integração  entre sensores e \textit{software}.}
     \begin{center}
         \includegraphics[scale=0.8, page=1]{metodologia/img/fluxo_layout.pdf}
     \end{center}
@@ -247,7 +247,7 @@ tempo real dos dados.
 
 
 O sistema embarcado, o qual é a unidade de processamento da aplicação, é composto por uma Raspberry Pi 3 Modelo B+, que é um dispositivo muito 
-conhecido e confiável, executando uma distribuição Linux baseada em Debian. Após o desenvolvimento de software, da integração com o hardware, 
+conhecido e confiável, executando uma distribuição Linux baseada em Debian. Após o desenvolvimento de \textit{software}, da integração com o \textit{hardware}, 
 prototipação, o projeto foi executado em campo, em forma de estudo de caso, em uma empresa da região metropolitana de Porto Alegre - RS, seguindo o fluxograma da 
 figura \ref{fig:metodologia}, que será descrito na próxima etapa.
 
@@ -259,26 +259,27 @@ figura \ref{fig:metodologia}, que será descrito na próxima etapa.
 
 
 Como descrito no fluxograma do projeto, a etapa final do desenvolvimento é a de testes em campo, em forma de estudo de caso, com o objetivo 
-de analisar a robustez do produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de software. 
+de analisar a robustez do produto, da comunicação entre o sensor e a unidade de processamento e da confiabilidade da aplicação de \textit{software}. 
 Para aplicar a solução, foram escolhidos equipamentos reais e funcionais, que operam 24 horas, 7 dias por semana em empresas parceiras,
 com o objetivo de prova de conceito e posterior aquisição pelas mesmas. Para isto, um exaustor industrial foi escolhido em uma delas, que é 
-uma montadora da região metropolitana de Porto Alegre - RS. A Figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com o decorrer do uso, apresenta severas falhas com o acumulo 
-de partículas que estão suspensas no ar. Uma falha num dispositivo como este, acarreta uma parada de  produção, impactando diretamente no 
-financeiro da empresa, justificando facilmente o investimento da tecnologia desenvolvida neste trabalho.
+uma montadora da região metropolitana de Porto Alegre - RS. A Figura \ref{fig:exautor} representa um exaustor industrial, um dispositivo que com
+o decorrer do uso, apresenta severas falhas com o acúmulo de partículas que estão suspensas no ar. 
+Uma falha num dispositivo como este, acarreta uma parada de  produção, impactando diretamente no financeiro da empresa, justificando 
+facilmente o investimento da tecnologia desenvolvida neste trabalho.
 
 \begin{figure}[H]
     \caption{Fotografia externa de um exaustor industrial.}
     \begin{center}
         \includegraphics[scale=1.25]{metodologia/img/exaustor.png}
     \end{center}
-    \fonte{Fornececida pela empresa.} 
+    \fonte{Fornecida pela empresa.} 
     \label{fig:exautor}
 \end{figure}
 
 Em um destes dispositivos, foi instalado um sensor industrial de vibração e temperatura, com o objetivo de coletar, processar e armazenar os
-dados, criando um dashboard com o estado de saúde do motor elétrico de indução. A Figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
+dados, criando um \textit{dashboard} com o estado de saúde do motor elétrico de indução. A Figura \ref{fig:sensor_exaustor} apresenta o sensor instalado.
 O motor já se encontrava em uso há algum tempo antes dos testes em campo, significando que já existe uma base de vibração maior do que se fosse
-um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de ML, reduzindo os limites criados pelo software, que
+um motor há pouco recondicionado, exigindo um ajuste manual na ferramenta de ML, reduzindo os limites criados pelo \textit{software}, que
 consideram que o motor está em perfeito estado de saúde para começar a criação dos limites. Já estava previsto na etapa de análise de mercado, 
 a possibilidade de se ajustar os resultados do ML, devido a grande frequência de instalações em motores que possuem médio ou
 elevado MTBF (\textit{Mean Time Between Failures} - tempo médio entre falhas), mas que ainda oferecem prejuízos se a falha acorrer de forma 
@@ -344,5 +345,5 @@ $\SI{5}{\minute}$. Imagens da instalação dos sensores, e nem da máquina, fora
 disponibilizados na íntegra.
 
 Após a descrição de toda a metodologia do presente trabalho, iniciando pela estrutura básica da metodologia, das simulações, do desenvolvimento
-do software, da integração de software e hardware, e por fim, a instalação do protótipo nas empresas parceiras, para a prova de conceito, 
+do \textit{software}, da integração de \textit{software} e \textit{hardware}, e por fim, a instalação do protótipo nas empresas parceiras, para a prova de conceito, 
 podemos apresentar os resultados, que se encontram no próximo capítulo.

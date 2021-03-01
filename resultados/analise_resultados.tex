@@ -6,12 +6,12 @@
 
 Neste capítulo são apresentados os resultados do projeto, os quais são os produtos dos estudos de casos desenvolvidos nas empresas parceiras.
 Como se trata de um estudo de caso, e para as empresas, uma prova de conceito, os resultados também foram divididos por equipamento avaliado:
-exaustor e seleira universal. Os mesmo, inicialmente são apresentados capturas de telas do software na parte de análise dos sinais coletados, para fim
+exaustor e seleira universal. Os mesmo, inicialmente são apresentados capturas de telas do \textit{software} na parte de análise dos sinais coletados, para fim
 de dar uma visão global do estado de saúde do equipamento no dado momento. Na sequência, gráficos específicos, levantando características e 
 comparações em diferentes condições, mostrando a relação de causa e efeito. Por fim, apontamentos e discussões sobre os resultados de cada um
 dos elementos, e também comparações entre os mesmos.
 
-Para a apresentação dos resultados do exaustor, foram feitas capturas de tela do software do sistema que estava instalado no motor, de forma
+Para a apresentação dos resultados do exaustor, foram feitas capturas de tela do \textit{software} do sistema que estava instalado no motor, de forma
 remota e supervisionada pelos responsáveis pela manutenção dos mesmos. A Figura \ref{fig:exaustor_1} é a captura de tela do sistema no dia
 em que um relatório sobre a saúde dos exautores foi gerado, com os dados daquele momento, e com os limites gerados pelo ML
 no momento da instalação (06/12/2020).
@@ -42,7 +42,7 @@ motor.
 \end{figure}
 
 O eixo z se encontra em estado severo de vibração, não entrando em alarme devido ao ML tardio executado
-pelo do operador, sendo agora uma tarefa de gestão do sistema, de se executar da maneira mais adequada, que é logo após o recondicionamento 
+pelo do operador, sendo agora uma tarefa de gerenciamento do sistema, de se executar da maneira mais adequada, que é logo após o recondicionamento 
 ou ajustar manualmente os limites de acordo com a norma ISO 10816-1. Outra característica importante é a temperatura, que pode ser vista na 
 figura \ref{fig:exaustor_temperatura}, que teve uma dinâmica bem comportada e com característica de um sistema linear de primeira ordem.
 
@@ -60,8 +60,8 @@ Fica nítido também o processo de aquecimento do dispositivo, seguindo os ciclo
 exaustor se mostrou um ótimo caso para se analisar o comportamento do sistema em um dispositivo que já estava em funcionamento por um bom tempo 
 após o recondicionamento, onde a técnica de ML, como esperado, não contribuiu com o objetivo de se detectar falhas, pois, as
 condições iniciais não eram as ideais e os limites ficaram além dos permitidos. Mas o funcionamento geral da ferramenta foi excelente, sem nenhum
-problema grave reportado, funcionando dentro das especificações e dentro do esperado pela empresa parceira. Um relatório foi gerado e entregue
-para a empresa, contendo todos os dados e explicações, o qual foi aceito e sinalizaram o desejo de instalar em mais equipamentos.
+problema grave reportado, funcionando nas especificações e dentro do esperado pela empresa parceira. Um relatório foi gerado e entregue
+para a empresa, contendo todos os dados e explicações, o qual foi aceite e o desejo de instalar em mais equipamentos, foi sinalizado.
 
 A segunda prova de conceito foi realizada em uma seleira universal, como descrito anteriormente, onde 5 sensores foram distribuídos pela máquina, com o 
 objetivo de monitorar os pontos críticos. Como no caso do exaustor, foram realizadas capturas de telas do sistema, onde a Figura
@@ -79,7 +79,7 @@ objetivo de monitorar os pontos críticos. Como no caso do exaustor, foram reali
 Esta máquina não apresenta um processo contínuo como o exaustor, exigindo uma amostragem maior para se captar todas as características do 
 funcionamento. Estes sensores foram instalados no dia 13/11/2020, mas os dados começaram a ser coletados apenas no dia 16/11/2020, onde a 
 ferramenta de ML fui usada e os limites foram criados. 
-A ferramenta foi aplicada em todos os 5 sensores, que foram instalados em acoplamentos, nas proximidades de polias e moto-redutores.
+A ferramenta foi aplicada em todos os 5 sensores, que foram instalados em acoplamentos, próximo de polias e moto-redutores.
 Cada um destes monitorou um comportamento diferente, mas o sensor mais importante se mostrou ser o 5, onde os resultados foram mais nítidos. 
 Os outros sensores, pelo menos mais 3 apresentaram comportamento anômalos, mas nenhum como este. A Figura \ref{fig:seleira_universal_antes_depois}
 apresenta uma comparação dos dados de velocidade logo após a instalação, com os dados na iminência de uma falha.
@@ -102,10 +102,10 @@ o sistema já se encontrava em uma situação pouco tolerável, segundo a norma 
 normalmente vibram mais, justamente por possuírem muitos elementos mecânicos e partes móveis. Por fim, a seleira universal apresentou o rompimento de uma
 correia alguns dias após estes dados serem coletados e visualmente alertar uma condição severa de falha, consolidando o uso da ferramenta em
 mais um equipamento, independente de ser um motor ou outro sistema mecânico. A aplicação funcionou perfeitamente, similar ao estudo de caso do
-exaustor, apresentando apenas uma falha de salvar repetidas vezes os limites, que foi resolvida remotamente e incorporada ao software do projeto.
+exaustor, apresentando apenas uma falha de salvar repetidas vezes os limites, que foi resolvida remotamente e incorporada ao \textit{software} do projeto.
 Uma peculiaridade de um sistema mancalizado, que difere de uma instalação em um motor elétrico de indução, é o comportamento da temperatura,
 que pode ser visto na Figura \ref{fig:seleira_universal_temperatura}. 
-Ela tem um perfil mais discreto, e não seguindo um sistema de primeira ordem, por não estar próximo de uma fonte de calor significativa, por isso
+Ela tem um perfil mais discreto, e não seguindo um sistema de primeira ordem, por não estar próximo de uma significativa fonte de calor, por isso
 os limites gerados para algo com pouca variância, são limites muito próximos dos dados amostrados, ocorrendo falsos positivos apenas com a
 variação da temperatura ambiente. A solução para isso, já prevista no início do projeto, é a possibilidade do operador alterar os limites, de 
 acordo com a dinâmica que o sistema está inserido, não cabendo utilizar  ML onde há pouca variância ou o equipamento já se 
